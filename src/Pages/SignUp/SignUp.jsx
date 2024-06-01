@@ -1,17 +1,53 @@
 
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
+import { AuthContext } from "../../Provider/AuthProvider";
+import {  useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
+import SocialLogin from "../../components/SocialLogin";
 
-const Login = () => {
+const SignUp = () => {
+
+    const { createUser, setUser, updateUserProfile} = useContext(AuthContext);
+    // const [error, setError] = useState();
+    // const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+    // const location = useLocation();
 
     const {
         register,
         handleSubmit,
-        watch,
-        formState: { errors },
+        // watch,
+        // formState: { errors },
       } = useForm()
 
-      const onSubmit = (data) => console.log(data)
+      const onSubmit = (data) => {   
+        const email = data.email
+        const password = data.password
+        const name = data.name
+
+        
+            createUser(email, password).then(result => {
+                const user = result.user
+                updateUserProfile(name);
+            setUser({ ...result?.user, displayName: name });
+                if(user){
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Sign up successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      navigate('/')
+                }
+            console.log(user);
+            })
+        
+        console.log(data)}
+
+        // const googleSignIn = 
 
 
     return (
@@ -46,6 +82,7 @@ const Login = () => {
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary">Sign Up</button>
         </div>
+        <SocialLogin></SocialLogin>
       </form>
     </div>
   </div>
@@ -54,4 +91,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;

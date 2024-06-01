@@ -1,9 +1,20 @@
 
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
+import SocialLogin from "../../components/SocialLogin";
 
 
 const Login = () => {
+    const {signIn} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation();
+    
+    const from = location.state?.from?.pathname || "/";
+
 
     const {
         register,
@@ -12,7 +23,33 @@ const Login = () => {
         // formState: { errors },
       } = useForm()
 
-      const onSubmit = (data) => console.log(data)
+      const onSubmit = (data) => {
+        const email = data.email;
+        const password = data.password
+        signIn(email, password)
+        .then((result) => {
+            const user = result.user;
+            Swal.fire({
+                title: "Successfully Logged In!",
+                // text: 'Do you want to continue',
+                icon: "success",
+                confirmButtonText: "Cool",
+            });
+            navigate(from, { replace: true });
+            console.log(user);
+        })
+        .catch((error) => {
+            console.log(error);
+            Swal.fire({
+                title: "Login Failed!",
+                // text: {error.message},
+                icon: "error",
+                confirmButtonText: "Cool",
+            });
+        });
+        
+        console.log(data)}
+
 
 
     return (
@@ -40,6 +77,7 @@ const Login = () => {
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary">Login</button>
         </div>
+       <SocialLogin></SocialLogin>
       </form>
     </div>
   </div>
