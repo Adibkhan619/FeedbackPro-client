@@ -1,19 +1,29 @@
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../../Provider/AuthProvider";
-import {  useNavigate } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 import SocialLogin from "../../components/SocialLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
 
-    const { createUser, setUser, updateUserProfile} = useContext(AuthContext);
+    const { createUser, setUser, updateUserProfile, user, loading} = useContext(AuthContext);
     // const [error, setError] = useState();
     // const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     // const location = useLocation();
+
+        // NAVIGATE TO LAST VISITED PAGE
+        useEffect(() => {
+            if (user) {
+                navigate("/");
+            }
+        }, [navigate, user]);
+        const from = location.state || "/";
+
 
     const {
         register,
@@ -22,17 +32,37 @@ const SignUp = () => {
         // formState: { errors },
       } = useForm()
 
-      const onSubmit = (data) => {   
+      const onSubmit = async(data) => {   
         const email = data.email
         const password = data.password
         const name = data.name
 
         
-            createUser(email, password).then(result => {
-                const user = result.user
-                updateUserProfile(name);
-            setUser({ ...result?.user, displayName: name });
-                if(user){
+            // createUser(email, password).then(result => {
+            //     const user = result.user
+            //     updateUserProfile(name);
+            // setUser({ ...result?.user, displayName: name });
+            
+
+            try {
+                const result = await createUser(email, password);
+    
+                await updateUserProfile(name,);
+                setUser({ ...result?.user, displayName: name });
+    
+                const { data } = await useAxiosPublic.post("/users"
+
+
+
+                    // `https://b9a11-server-side-adibkhan619.vercel.app/jwt`,
+                    // {
+                    //     email: result?.user?.email,
+                    // },
+                    // { withCredentials: true }
+                );
+                navigate(from, { replace: true });
+                console.log(data);
+                       if(user){
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -42,24 +72,26 @@ const SignUp = () => {
                       });
                       navigate('/')
                 }
-            console.log(user);
-            })
-        
-        console.log(data)}
+                console.log(user);
+                console.log(data)
+            } catch (err) {
+                console.log(err);
+            }
+        }
 
-        // const googleSignIn = 
+        if (user || loading) return;
+
 
 
     return (
         <div>
-            <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">Register now!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-    </div>
-    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="max-w-xl min-h-screen mx-auto">
+  <div className="">
+  
+    <div className="max-w-lg my-12 mx-auto shadow-2xl bg-base-100">
       <form className="card-body " onSubmit={handleSubmit(onSubmit)}>
+      <p>Already have an account? <NavLink to="/login" className="text-blue-400">Login</NavLink></p>
+        <h1 className="text-4xl">Sign Up!</h1>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Name</span>

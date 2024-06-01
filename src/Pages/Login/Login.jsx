@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form"
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { FcGoogle } from "react-icons/fc";
 import SocialLogin from "../../components/SocialLogin";
 
 
@@ -59,7 +58,7 @@ const Login = () => {
     
     <div className="max-w-lg my-24 mx-auto shadow-2xl bg-base-100">
       <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-        <p>Don't have an account? <NavLink to="/signUp" className="text-blue-400">Sign Up</NavLink></p>
+        <p>Do not have an account? <NavLink to="/signUp" className="text-blue-400">Sign Up</NavLink></p>
         <h1 className="text-4xl">Log In</h1>
         <div className="form-control">
           <label className="label">
