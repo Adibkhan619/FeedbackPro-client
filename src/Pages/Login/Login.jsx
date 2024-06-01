@@ -45,11 +45,8 @@ const Login = () => {
                 icon: "error",
                 confirmButtonText: "Cool",
             });
-        });
-        
+        });    
         console.log(data)}
-
-
 
     return (
         <div>

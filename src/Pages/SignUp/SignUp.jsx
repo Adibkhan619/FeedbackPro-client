@@ -10,11 +10,12 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
 
-    const { createUser, setUser, updateUserProfile, user, loading} = useContext(AuthContext);
+    const { createUser, updateUserProfile, user, loading} = useContext(AuthContext);
     // const [error, setError] = useState();
     // const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     // const location = useLocation();
+    const axiosPublic = useAxiosPublic()
 
         // NAVIGATE TO LAST VISITED PAGE
         useEffect(() => {
@@ -36,47 +37,34 @@ const SignUp = () => {
         const email = data.email
         const password = data.password
         const name = data.name
+        const role = 'user'
 
-        
-            // createUser(email, password).then(result => {
-            //     const user = result.user
-            //     updateUserProfile(name);
-            // setUser({ ...result?.user, displayName: name });
-            
-
-            try {
-                const result = await createUser(email, password);
-    
-                await updateUserProfile(name,);
-                setUser({ ...result?.user, displayName: name });
-    
-                const { data } = await useAxiosPublic.post("/users"
-
-
-
-                    // `https://b9a11-server-side-adibkhan619.vercel.app/jwt`,
-                    // {
-                    //     email: result?.user?.email,
-                    // },
-                    // { withCredentials: true }
-                );
-                navigate(from, { replace: true });
-                console.log(data);
-                       if(user){
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Sign up successful",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                      navigate('/')
-                }
-                console.log(user);
-                console.log(data)
-            } catch (err) {
-                console.log(err);
-            }
+        createUser(email, password).then((result) => {
+            const user = result.user;
+            updateUserProfile(name)
+            .then(() => {
+                
+                // create user entry in database
+                const userInfo= {name, email, role}
+                console.log(userInfo);
+                axiosPublic.post("/users", userInfo)
+                .then(res => {
+                    console.log(res.data);
+                    navigate(from, { replace: true });
+                    if(res.data.insertedId){
+                         Swal.fire({
+                title: 'Successfully Registered!',
+                // text: 'Do you want to continue',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              })
+              navigate('/')
+                    }
+                })
+            })
+           
+            console.log(user);
+        });
         }
 
         if (user || loading) return;

@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+
+
 const SocialLogin = () => {
 
     const {googleSignIn} = useContext(AuthContext);
