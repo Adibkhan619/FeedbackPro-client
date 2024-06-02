@@ -1,27 +1,43 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAdmin from "../Hooks/useAdmin";
+import useSurveyor from "../Hooks/useSurveyor";
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+    const [isAdmin] = useAdmin();
+    const [isSurveyor] = useSurveyor();
     const navOptions = (
         <>
             <li>
                 <NavLink to="/surveys">Surveys</NavLink>
             </li>
-            {
-            //     user.role === 'admin' ? <li>
-            //     <NavLink to="dashboard/admin">Dashboard</NavLink>
-            // </li> : 
+            { user && isAdmin && (
+                <li>
+                    <NavLink to="dashboard/admin">Dashboard</NavLink>
+                </li>
+            )}
+            {user && isSurveyor && (
+                <li>
+                    <NavLink to="dashboard/surveyor">Dashboard</NavLink>
+                </li>
+            )}
+            {user && !isAdmin && !isSurveyor && (
+                <li>
+                    <NavLink to="dashboard/user">Dashboard</NavLink>
+                </li>
+            )}
+            {!user && !isAdmin && !isSurveyor && (
+                <li>
+                    <NavLink to="login">Dashboard</NavLink>
+                </li>
+            )}
             <li>
-            <NavLink to="dashboard">Dashboard</NavLink>
-        </li>
-            }
-            <li>
-                <NavLink>Item 1</NavLink>
+                <NavLink to="/about">About</NavLink>
             </li>
             <li>
-                <NavLink>Item 1</NavLink>
+                <NavLink to="/contact">Contact</NavLink>
             </li>
         </>
     );
@@ -50,7 +66,11 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex"></div>
                 <div className="navbar-end flex gap-5">
-                    {user? <button onClick={logOut}>Logout</button> : <NavLink to="/login">Login</NavLink>}
+                    {user ? (
+                        <button onClick={logOut}>Logout</button>
+                    ) : (
+                        <NavLink to="/login">Login</NavLink>
+                    )}
                     <NavLink to="/signUp">Sign up for free</NavLink>
                     {/* <ul className="menu menu-horizontal px-1">{navOptions}</ul> */}
                 </div>

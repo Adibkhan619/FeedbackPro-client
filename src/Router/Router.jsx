@@ -8,6 +8,11 @@ import Users from "../Pages/Dashboard/Admin/Users";
 import AddSurvey from "../Pages/Dashboard/Surveyor/AddSurvey";
 import UpdateSurvey from "../Pages/Dashboard/Surveyor/UpdateSurvey";
 import MyPostedSurveys from "../Pages/Dashboard/Surveyor/MyPostedSurveys";
+import Surveys from "../Pages/Surveys/Surveys";
+import UserSurvey from "../Pages/Dashboard/User/UserSurvey";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
+import SurveyorHome from "../Pages/Dashboard/Surveyor/SurveyorHome";
+import UserHome from "../Pages/Dashboard/User/UserHome";
 
 
  const Router  = createBrowserRouter([
@@ -19,8 +24,10 @@ import MyPostedSurveys from "../Pages/Dashboard/Surveyor/MyPostedSurveys";
             path: "/",
             element: <Home></Home>,
         },
-        
-      
+        {
+            path: "/surveys",
+            element: <Surveys></Surveys>
+        },  
       ]
     },  
     {
@@ -41,8 +48,16 @@ import MyPostedSurveys from "../Pages/Dashboard/Surveyor/MyPostedSurveys";
                     path:"admin/users",
                     element: <Users></Users>
                 },
+                {
+                    path: "admin",
+                    element: <AdminHome></AdminHome>
+                },
 
                 // *surveyor ----------------> 
+                {
+                    path: "surveyor",
+                    element: <SurveyorHome></SurveyorHome>
+                },
                 {
                     path: "surveyor/create",
                     element: <AddSurvey></AddSurvey>
@@ -58,6 +73,15 @@ import MyPostedSurveys from "../Pages/Dashboard/Surveyor/MyPostedSurveys";
                     // loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.email}`)
                 },
 
+                // *user ---------->
+                {
+                    path:"user",
+                    element: <UserHome></UserHome>
+                },
+                {
+                    path: "user/surveys",
+                    element: <UserSurvey></UserSurvey>
+                }
 
             ]
         }

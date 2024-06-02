@@ -3,19 +3,19 @@ import useAxiosSecure from "./useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 
-const useAdmin = () => {
+const useSurveyor = () => {
     const {user} = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
-    const {data: isAdmin, isPending: isAdminLoading} = useQuery({
-        queryKey: [user?.email, 'isAdmin'],
+    const {data: isSurveyor, isPending: isSurveyorLoading} = useQuery({
+        queryKey: [user?.email, 'isSurveyor'],
         queryFn: async() => {
-            const res = await axiosSecure.get(`users/admin/${user.email}`)
+            const res = await axiosSecure.get(`users/surveyor/${user.email}`)
             // console.log(res.data);
-            return res.data?.admin
+            return res.data?.surveyor
         }
         
     })
-    return [isAdmin, isAdminLoading]
+    return [isSurveyor, isSurveyorLoading]
 };
 
-export default useAdmin;
+export default useSurveyor;

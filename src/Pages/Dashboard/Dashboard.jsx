@@ -5,14 +5,20 @@ import { HiCalendarDays, HiDocumentPlus,  } from "react-icons/hi2";
 import { FaBook, FaEnvelope,  FaShoppingBag, FaUsers, FaWallet, } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useAdmin from "../../Hooks/useAdmin";
+import useSurveyor from "../../Hooks/useSurveyor";
+// import useAdmin from "../../Hooks/useAdmin";
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
-    const isAdmin = true;
+    // const isAdmin = true;
+    const [isAdmin] = useAdmin()
+    const [isSurveyor] = useSurveyor()
+    
     return (
         <div>
                <div className='flex max-w-screen-2xl mx-auto'>
             {/* DASHBOARD SIDEBAR */}
-            <div className="w-64 min-h-screen bg-orange-200">
+            <div className="w-64 min-h-screen bg-gray-200">
                 <ul className="menu p-4 space-y-1">
                     {
                         isAdmin && 
@@ -25,15 +31,22 @@ const Dashboard = () => {
 
                         </>
                         }
-                        { 
+                        { isSurveyor &&
                         <>
-                        <li><NavLink to="/dashboard/surveyor"><HiHome/> My Home</NavLink></li>
+                        <li><NavLink to="/"><HiHome/>Home</NavLink></li>
                     <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus />Create Survey</NavLink></li>
                     {/* <li><NavLink to="/dashboard/surveyor/update/:id"><HiWallet /> Update Survey</NavLink></li> */}
                     <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart />   My Surveys</NavLink></li>
                     <li><NavLink to="/dashboard/review"><HiStar />  Add Review</NavLink></li>
                     <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
                         </>
+                    }
+
+                    { !isAdmin && !isSurveyor && 
+                         <>
+                         <li><NavLink to="/dashboard/user/surveys"><HiStar /> Join Survey</NavLink></li>
+                         <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
+                         </>
                     }
                     
                     <div className="divider"></div> 
@@ -45,7 +58,7 @@ const Dashboard = () => {
             </div>
             
         {/* DASHBOARD CONTENT */}
-            <div className='flex-1 p-8'>
+            <div className='flex-1'>
                     <Outlet></Outlet>
             </div>
         </div>
