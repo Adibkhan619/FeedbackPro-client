@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { HiTrash } from "react-icons/hi";
-import { FaIdBadge, FaRegIdBadge, FaUsers } from "react-icons/fa";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+// import { HiTrash } from "react-icons/hi";
+import {  FaRegIdBadge, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useState } from "react";
 

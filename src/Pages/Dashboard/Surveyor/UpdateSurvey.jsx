@@ -4,12 +4,14 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const UpdateSurvey = () => {
     const { user } = useContext(AuthContext);
-    const axiosPublic = useAxiosPublic()
-    const survey = useLoaderData()
+    const axiosPublic = useAxiosPublic();
+    const survey = useLoaderData();
+    const navigate = useNavigate()
+    const { _id, question, description, category, deadline } = survey;
     console.log(survey);
 
     const {
@@ -17,22 +19,23 @@ const UpdateSurvey = () => {
         handleSubmit,
         // watch,
         // formState: { errors },
+        
     } = useForm();
 
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
         console.log(data);
-        const res = await axiosPublic.post("/surveys", data)
+        const res = await axiosPublic.patch(`/survey/${_id}`, data);
         console.log(res.data);
-        if(res.data.insertedId){
+        if (res.data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: `Your survey is added.`,
+                title: `Your survey is updated successfully.`,
                 showConfirmButton: false,
-                timer: 1500
-              });
+                timer: 1500,
+            });
+            navigate(`/dashboard/surveyor/surveys/${user?.email}`)
         }
-
     };
 
     return (
@@ -40,13 +43,14 @@ const UpdateSurvey = () => {
             <div className="card shrink-0 mx-auto w-full max-w-md shadow-2xl bg-base-100">
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                     <h1 className="text-4xl">Add Your Custom Survey</h1>
+
                     <div className="form-control">
                         <label className="label">
                             <span className="text-xl">Question</span>
                         </label>
                         <input
                             type="text"
-                            placeholder="Add Question"
+                            defaultValue={question}
                             className="input input-bordered"
                             {...register("question")}
                             required
@@ -58,7 +62,7 @@ const UpdateSurvey = () => {
                         </label>
                         <input
                             type="text"
-                            placeholder="Short Description"
+                            defaultValue={description}
                             className="input input-bordered"
                             {...register("description")}
                             required
@@ -71,13 +75,12 @@ const UpdateSurvey = () => {
                             <span className="text-xl">Category</span>
                         </label>
                         <select
-                            
                             className="select select-bordered h-6  w-full opacity-85  rounded-md focus:ring focus:ring-opacity-75 item-center text-gray-900  my-auto   p-2 text-sm"
                             {...register("category")}
                             required
-                            placeholder="Category"
+                            defaultValue={category}
                         >
-                            <option value="" disabled selected hidden>Category</option>
+                            {/* <option value="" disabled selected hidden>Category</option> */}
                             <option value="Customer Satisfaction">
                                 Customer Satisfaction
                             </option>
@@ -102,15 +105,23 @@ const UpdateSurvey = () => {
                         </label>
                         <input
                             type="text"
-                            placeholder="Deadline"
+                            defaultValue={deadline}
                             className="input input-bordered"
                             {...register("deadline")}
                             required
                         />
                     </div>
-                    <input {...register("name")} value={user.displayName} className="hidden"></input>
-                    <input {...register("email")} value={user.email} className="hidden"></input>
-                    
+                    <input
+                        {...register("name")}
+                        value={user.displayName}
+                        className="hidden"
+                    ></input>
+                    <input
+                        {...register("email")}
+                        value={user.email}
+                        className="hidden"
+                    ></input>
+
                     <div className="form-control mt-6">
                         <button type="submit" className="btn btn-primary">
                             Add Survey

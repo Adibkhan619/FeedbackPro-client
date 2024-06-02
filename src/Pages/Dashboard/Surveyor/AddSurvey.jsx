@@ -14,6 +14,7 @@ const AddSurvey = () => {
         handleSubmit,
         // watch,
         // formState: { errors },
+        reset
     } = useForm();
 
     const onSubmit = async(data) => {
@@ -28,6 +29,7 @@ const AddSurvey = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
+              reset()
         }
 
     };

@@ -1,13 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { HiCalendar, HiHome, HiMenu, HiShoppingCart, HiStar,  } from "react-icons/hi";
-import { HiCalendarDays, HiDocumentPlus, HiWallet } from "react-icons/hi2";
-import { FcAddressBook } from "react-icons/fc";
-import { FaBook, FaEnvelope, FaListUl, FaShoppingBag, FaUsers, FaUtensils, FaWallet, } from "react-icons/fa";
+import {  HiHome, HiMenu, HiShoppingCart, HiStar,  } from "react-icons/hi";
+import { HiCalendarDays, HiDocumentPlus,  } from "react-icons/hi2";
+
+import { FaBook, FaEnvelope,  FaShoppingBag, FaUsers, FaWallet, } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
-    const isAdmin = false;
+    const isAdmin = true;
     return (
         <div>
                <div className='flex max-w-screen-2xl mx-auto'>
@@ -15,7 +15,7 @@ const Dashboard = () => {
             <div className="w-64 min-h-screen bg-orange-200">
                 <ul className="menu p-4 space-y-1">
                     {
-                        isAdmin? 
+                        isAdmin && 
                         <>
                         <li><NavLink to="/dashboard/admin"><HiHome/> Admin Home</NavLink></li>
                     <li><NavLink to="/dashboard/admin/users"><FaUsers />Manage Users</NavLink></li>
@@ -24,7 +24,8 @@ const Dashboard = () => {
                     {/* <li><NavLink to="/dashboard/bookings"><FcAddressBook />Manage Bookings</NavLink></li> */}
 
                         </>
-                        :
+                        }
+                        { 
                         <>
                         <li><NavLink to="/dashboard/surveyor"><HiHome/> My Home</NavLink></li>
                     <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus />Create Survey</NavLink></li>

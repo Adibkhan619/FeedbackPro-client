@@ -4,7 +4,7 @@ import Root from "../Root/Root";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp"
 import Dashboard from "../Pages/Dashboard/Dashboard";
-import Users from "../Pages/Dashboard/Users";
+import Users from "../Pages/Dashboard/Admin/Users";
 import AddSurvey from "../Pages/Dashboard/Surveyor/AddSurvey";
 import UpdateSurvey from "../Pages/Dashboard/Surveyor/UpdateSurvey";
 import MyPostedSurveys from "../Pages/Dashboard/Surveyor/MyPostedSurveys";
@@ -55,7 +55,7 @@ import MyPostedSurveys from "../Pages/Dashboard/Surveyor/MyPostedSurveys";
                 {
                     path: "surveyor/surveys/:email",
                     element: <MyPostedSurveys></MyPostedSurveys>,
-                    loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.email}`)
+                    // loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.email}`)
                 },
 
 
