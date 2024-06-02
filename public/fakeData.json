@@ -1,0 +1,153 @@
+
+[
+    {
+        "question": "Are you satisfied with our product quality?",
+        "description": "Assess the quality of the product.",
+        "category": "Customer Satisfaction",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Did our customer service meet your expectations?",
+        "description": "Evaluate the effectiveness of customer service.",
+        "category": "Customer Satisfaction",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Would you purchase from us again?",
+        "description": "Determine repeat purchase intention.",
+        "category": "Customer Satisfaction",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Was your order delivered on time?",
+        "description": "Assess delivery punctuality.",
+        "category": "Customer Satisfaction",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Is our website easy to navigate?",
+        "description": "Evaluate website usability.",
+        "category": "Customer Satisfaction",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Do you feel valued at work?",
+        "description": "Assess employee recognition.",
+        "category": "Employee Engagement",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Are you satisfied with your current role?",
+        "description": "Evaluate job satisfaction.",
+        "category": "Employee Engagement",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Do you find your work meaningful?",
+        "description": "Determine if employees find purpose in their work.",
+        "category": "Employee Engagement",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Would you recommend our company as a good place to work?",
+        "description": "Assess employee advocacy.",
+        "category": "Employee Engagement",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Do you have the tools and resources to do your job well?",
+        "description": "Evaluate resource availability.",
+        "category": "Employee Engagement",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Are you familiar with our brand?",
+        "description": "Assess brand awareness.",
+        "category": "Market Research",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Do you consider our product affordable?",
+        "description": "Evaluate product pricing.",
+        "category": "Market Research",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Have you used our product in the last six months?",
+        "description": "Determine recent product usage.",
+        "category": "Market Research",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Would you consider trying a new product from our brand?",
+        "description": "Assess openness to new products.",
+        "category": "Market Research",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Is our product easily available in your area?",
+        "description": "Evaluate product availability.",
+        "category": "Market Research",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Is the product easy to use?",
+        "description": "Assess product usability.",
+        "category": "Product Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Are you satisfied with the product features?",
+        "description": "Evaluate feature satisfaction.",
+        "category": "Product Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Did the product meet your expectations?",
+        "description": "Determine if product meets customer expectations.",
+        "category": "Product Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Would you recommend this product to others?",
+        "description": "Assess product recommendation likelihood.",
+        "category": "Product Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Is the product packaging satisfactory?",
+        "description": "Evaluate satisfaction with product packaging.",
+        "category": "Product Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Was the event well-organized?",
+        "description": "Assess event organization.",
+        "category": "Event Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Did the event meet your expectations?",
+        "description": "Evaluate if the event met attendee expectations.",
+        "category": "Event Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Would you attend a similar event in the future?",
+        "description": "Determine future attendance likelihood.",
+        "category": "Event Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Was the event location convenient?",
+        "description": "Assess location convenience.",
+        "category": "Event Feedback",
+        "deadline": "2024-06-30"
+    },
+    {
+        "question": "Did you find the event content valuable?",
+        "description": "Evaluate the value of event content.",
+        "category": "Event Feedback",
+        "deadline": "2024-06-30"
+    }
+]

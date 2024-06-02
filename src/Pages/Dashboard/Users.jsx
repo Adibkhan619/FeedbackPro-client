@@ -80,22 +80,22 @@ const Users = () => {
 
     return (
         <div>
-            
-
             <div className="border mx-24 p-5">
                 <div className="flex justify-between items-center">
-            <h1 className="text-5xl  my-5 ">Total Users: {users.length}</h1>
-            <select
-                onChange={handleRole}
-                className="select select-bordered w-full max-w-xs"
-            >
-                <option value="">All</option>
-                <option value="admin">Admin</option>
-                <option value="surveyor">Surveyor</option>
-                <option value="user">User</option>
-                <option value="proUser">Pro User</option>
-            </select>
-            </div>
+                    <h1 className="text-5xl  my-5 ">
+                        Total Users: {users.length}
+                    </h1>
+                    <select
+                        onChange={handleRole}
+                        className="select select-bordered w-full max-w-xs"
+                    >
+                        <option value="">All</option>
+                        <option value="admin">Admin</option>
+                        <option value="surveyor">Surveyor</option>
+                        <option value="user">User</option>
+                        <option value="proUser">Pro User</option>
+                    </select>
+                </div>
 
                 <div className="overflow-x-auto ">
                     <table className="table ">

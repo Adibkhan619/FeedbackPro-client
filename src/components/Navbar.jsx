@@ -9,9 +9,14 @@ const Navbar = () => {
             <li>
                 <NavLink to="/surveys">Surveys</NavLink>
             </li>
+            {
+            //     user.role === 'admin' ? <li>
+            //     <NavLink to="dashboard/admin">Dashboard</NavLink>
+            // </li> : 
             <li>
-                <NavLink to="dashboard">Dashboard</NavLink>
-            </li>
+            <NavLink to="dashboard">Dashboard</NavLink>
+        </li>
+            }
             <li>
                 <NavLink>Item 1</NavLink>
             </li>

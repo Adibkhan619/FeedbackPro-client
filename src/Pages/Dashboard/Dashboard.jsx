@@ -1,10 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { HiCalendar, HiHome, HiMenu, HiShoppingCart, HiStar,  } from "react-icons/hi";
-import { HiCalendarDays, HiWallet } from "react-icons/hi2";
+import { HiCalendarDays, HiDocumentPlus, HiWallet } from "react-icons/hi2";
 import { FcAddressBook } from "react-icons/fc";
 import { FaBook, FaEnvelope, FaListUl, FaShoppingBag, FaUsers, FaUtensils, FaWallet, } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 const Dashboard = () => {
-    const isAdmin = true;
+    const {user} = useContext(AuthContext)
+    const isAdmin = false;
     return (
         <div>
                <div className='flex max-w-screen-2xl mx-auto'>
@@ -14,7 +17,7 @@ const Dashboard = () => {
                     {
                         isAdmin? 
                         <>
-                        <li><NavLink to="/dashboard/adminHome"><HiHome/> Admin Home</NavLink></li>
+                        <li><NavLink to="/dashboard/admin"><HiHome/> Admin Home</NavLink></li>
                     <li><NavLink to="/dashboard/admin/users"><FaUsers />Manage Users</NavLink></li>
                     <li><NavLink to="/dashboard/admin/surveys"><FaBook /> Surveys</NavLink></li>
                     <li><NavLink to="/dashboard/admin/payments"><FaWallet />Payments</NavLink></li>
@@ -23,10 +26,10 @@ const Dashboard = () => {
                         </>
                         :
                         <>
-                        <li><NavLink to="/dashboard/userHome"><HiHome/>   My Home</NavLink></li>
-                    <li><NavLink to="/dashboard/reservation"><HiCalendar />   My Reservation</NavLink></li>
-                    <li><NavLink to="/dashboard/paymentHistory"><HiWallet />  Payment History</NavLink></li>
-                    <li><NavLink to="/dashboard/cart"><HiShoppingCart />   My Cart ({cart.length})</NavLink></li>
+                        <li><NavLink to="/dashboard/surveyor"><HiHome/> My Home</NavLink></li>
+                    <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus />Create Survey</NavLink></li>
+                    {/* <li><NavLink to="/dashboard/surveyor/update/:id"><HiWallet /> Update Survey</NavLink></li> */}
+                    <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart />   My Surveys</NavLink></li>
                     <li><NavLink to="/dashboard/review"><HiStar />  Add Review</NavLink></li>
                     <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
                         </>
