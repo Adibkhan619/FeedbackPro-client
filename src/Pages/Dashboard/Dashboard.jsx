@@ -25,7 +25,7 @@ const Dashboard = () => {
                         <>
                         <li><NavLink to="/dashboard/admin"><HiHome/> Admin Home</NavLink></li>
                     <li><NavLink to="/dashboard/admin/users"><FaUsers />Manage Users</NavLink></li>
-                    <li><NavLink to="/dashboard/admin/surveys"><FaBook /> Surveys</NavLink></li>
+                    <li><NavLink to="/dashboard/admin/survey"><FaBook /> Surveys</NavLink></li>
                     <li><NavLink to="/dashboard/admin/payments"><FaWallet />Payments</NavLink></li>
                     {/* <li><NavLink to="/dashboard/bookings"><FcAddressBook />Manage Bookings</NavLink></li> */}
 
@@ -45,6 +45,7 @@ const Dashboard = () => {
                     { !isAdmin && !isSurveyor && 
                          <>
                          <li><NavLink to="/dashboard/user/surveys"><HiStar /> Join Survey</NavLink></li>
+                         <li><NavLink to="/dashboard/user/my-reports"><HiStar /> My Reports</NavLink></li>
                          <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
                          </>
                     }

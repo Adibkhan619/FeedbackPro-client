@@ -1,28 +1,24 @@
 import { Link } from "react-router-dom";
+import useSurveys from "../../../Hooks/useSurveys";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import useSurveyorSurvey from "../../../Hooks/useSurveyorSurvey";
-// import MySurveyDetails from "./MySurveyDetails";
 
 
-const MyPostedSurveys = () => {
-
+const AdminSurvey = () => {
+    const [surveys, , refetch] = useSurveys()
     const axiosSecure = useAxiosSecure()
-    // const surveys = useLoaderData()
-    // console.log(surveys);
+    console.log(surveys);
 
-    const [surveys, ,refetch] = useSurveyorSurvey()
-
-    const handleDeleteSurvey = (id) => {
+    const handleUnPublishSurvey = (id) => {
         // console.log(item);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonColor: "#b2d683",
+            cancelButtonColor: "#f4afe3ed",
+            confirmButtonText: "Yes, Unpublish it!",
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/survey/${id}`);
@@ -31,17 +27,19 @@ const MyPostedSurveys = () => {
                 if (res.data.deletedCount > 0) {
                     refetch();
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        title: "Unpublished!",
+                        text: "Survey Has been removed",
                         icon: "success",
                     });
                 }
             }
         });
     };
+
     return (
         <div>
-            <div className="overflow-x-auto">
+              <div>
+            <div className="overflow-x-auto mx-5 my-5">
   <table className="table">
     {/* head */}
     <thead>
@@ -51,9 +49,10 @@ const MyPostedSurveys = () => {
         <th>Description</th>
         <th>Category</th>
         <th>Deadline</th>
-        <th>Update</th>
-        <th>Details</th>
-        <th>Delete</th>
+        <th>View Response</th>
+        <th>Status</th>
+        <th>Unp ublish</th>
+
       </tr>
     </thead>
     <tbody>
@@ -67,16 +66,11 @@ const MyPostedSurveys = () => {
         <td>{survey.category}</td>
         <td>{survey.deadline}</td>
         <td>
-            <Link to={`/dashboard/surveyor/update/${survey._id}`}> Update </Link>
-         </td>  
-        <td>
-            <Link to={`/dashboard/surveyor/details/${survey._id}`}> Details </Link>
+            <Link to={`/dashboard/surveyor/details/${survey._id}`}> Responses</Link>
          </td> 
-         {/* <td className="hidden">
-            <MySurveyDetails survey={survey}></MySurveyDetails>
-            </td>  */}
+         <td className="px-3 bg-green-100 font-semibold text-green-400">Published</td>
         <td>
-          <button onClick={() => handleDeleteSurvey(survey._id)} className="btn-ghost">Delete</button>
+          <button onClick={() => handleUnPublishSurvey(survey._id)} className="btn-ghost text-pink-600 p-5 rounded-md font-semibold hover:bg-pink-200">Unpublish</button>
          </td>  
         
       </tr>)
@@ -85,7 +79,8 @@ const MyPostedSurveys = () => {
   </table>
 </div>
         </div>
+        </div>
     );
 };
 
-export default MyPostedSurveys;
+export default AdminSurvey;
