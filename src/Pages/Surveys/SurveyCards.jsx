@@ -13,7 +13,7 @@ const SurveyCards = ({survey}) => {
                                 <p>{survey.category}</p>
                                 <p>{survey.name}</p>
                                 <p>{survey.email}</p>
-                                <p>{survey.voteCount}</p>
+                                <p>vote: {survey.voteCount}</p>
                                 <p>{survey.yes}</p>
                                 <p>{survey.no}</p>
                                 <div className="card-actions justify-end">
