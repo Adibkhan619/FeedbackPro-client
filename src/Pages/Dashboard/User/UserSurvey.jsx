@@ -6,7 +6,7 @@ const UserSurvey = () => {
     const [surveys] = useSurveys()
     console.log(surveys);
     return (
-        <div>
+        <div className="m-5">
             <div>
             <div className="overflow-x-auto">
   <table className="table">
@@ -14,9 +14,11 @@ const UserSurvey = () => {
     <thead>
       <tr>
         <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>Survey Title</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th className="text-center">Vote</th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +29,7 @@ const UserSurvey = () => {
         <td>{item.question}</td>
         <td>{item.category}</td>
         <td>{item.description}</td>
+        <td>{item.deadline}</td>
         {/* <td>{item.question}</td> */}
         <td>
             <YesNoCheckbox item={item}></YesNoCheckbox>

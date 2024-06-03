@@ -15,6 +15,12 @@ const Surveys = () => {
                                     {survey.question}
                                 </h2>
                                 <p>{survey.description}</p>
+                                <p>{survey.category}</p>
+                                <p>{survey.name}</p>
+                                <p>{survey.email}</p>
+                                <p>{survey.voteCount}</p>
+                                <p>{survey.yes}</p>
+                                <p>{survey.no}</p>
                                 <div className="card-actions justify-end">
                                     <button className="btn btn-primary">
                                         Buy Now

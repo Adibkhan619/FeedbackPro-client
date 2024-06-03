@@ -4,6 +4,11 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 // import useAllUsers from "../Hooks/useAllUsers";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import {
+    FaCheck,
+    FaExclamation,
+    FaTimes,
+} from "react-icons/fa";
 
 const YesNoCheckbox = ({ item }) => {
     // const [users] = useAllUsers()
@@ -21,6 +26,8 @@ const YesNoCheckbox = ({ item }) => {
             category: item.category,
             description: item.description,
             deadline: item.deadline,
+            name: item.name,
+            email: item.email,
             voteCount: 1,
             voterName: user.displayName,
             voterEmail: user.email,
@@ -38,7 +45,8 @@ const YesNoCheckbox = ({ item }) => {
                 Yes: name === "yes" ? 1 : 0,
                 No: name === "no" ? 1 : 0,
                 report: name === "report" ? 1 : 0,
-
+                name: item.name,
+                email: item.email,
                 question: item.question,
                 category: item.category,
                 description: item.description,
@@ -78,7 +86,7 @@ const YesNoCheckbox = ({ item }) => {
     };
 
     return (
-        <div className="flex justify-around gap-8">
+        <div className="flex justify-around gap-10">
             <label className="flex gap-2 items-center">
                 <input
                     type="checkbox"
@@ -86,7 +94,7 @@ const YesNoCheckbox = ({ item }) => {
                     onChange={handleChange}
                     className="checkbox checkbox-md"
                 />
-                {/* <FaCheckCircle/> */}
+                <FaCheck />
                 Yes
             </label>
             <label className="flex gap-2 items-center">
@@ -96,7 +104,7 @@ const YesNoCheckbox = ({ item }) => {
                     onChange={handleChange}
                     className="checkbox checkbox-md "
                 />
-                {/* <FaRegTimesCircle /> */}
+                <FaTimes />
                 No
             </label>
             <label className="flex gap-2 items-center">
@@ -107,7 +115,8 @@ const YesNoCheckbox = ({ item }) => {
                     className="checkbox checkbox-md "
                 />
                 {/* <FaRegTimesCircle /> */}
-                No
+                <FaExclamation></FaExclamation>
+                Report
             </label>
         </div>
     );

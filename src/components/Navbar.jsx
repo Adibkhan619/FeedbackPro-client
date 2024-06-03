@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../Hooks/useAdmin";
 import useSurveyor from "../Hooks/useSurveyor";
@@ -25,7 +25,7 @@ const Navbar = () => {
             )}
             {user && !isAdmin && !isSurveyor && (
                 <li>
-                    <NavLink to="dashboard/user">Dashboard</NavLink>
+                    <Link to="dashboard/user">Dashboard</Link>
                 </li>
             )}
             {!user && !isAdmin && !isSurveyor && (

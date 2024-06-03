@@ -1,6 +1,6 @@
-import { NavLink, Outlet } from "react-router-dom";
-import {  HiHome, HiMenu, HiShoppingCart, HiStar,  } from "react-icons/hi";
-import { HiCalendarDays, HiDocumentPlus,  } from "react-icons/hi2";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import {  HiExclamation, HiHome, HiMenu, HiShoppingCart, HiStar,  } from "react-icons/hi";
+import { HiCalendarDays, HiDocumentPlus, HiHomeModern,  } from "react-icons/hi2";
 
 import { FaBook, FaEnvelope,  FaShoppingBag, FaUsers, FaWallet, } from "react-icons/fa";
 import { useContext } from "react";
@@ -44,8 +44,9 @@ const Dashboard = () => {
 
                     { !isAdmin && !isSurveyor && 
                          <>
-                         <li><NavLink to="/dashboard/user/surveys"><HiStar /> Join Survey</NavLink></li>
-                         <li><NavLink to="/dashboard/user/my-reports"><HiStar /> My Reports</NavLink></li>
+                         <li><Link to="/dashboard/user"><HiHome className="text-lg" /> User Home</Link></li>
+                         <li><NavLink to="/dashboard/user/surveys"><HiStar className="text-lg"/> Join Survey</NavLink></li>
+                         <li><NavLink to="/dashboard/user/my-reports"><HiExclamation className="text-lg"/> My Reports</NavLink></li>
                          <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
                          </>
                     }
