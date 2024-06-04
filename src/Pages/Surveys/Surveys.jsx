@@ -39,7 +39,7 @@ const Surveys = () => {
                 onChange={handleCategory}
                 className="select select-bordered w-full max-w-xs"
             >
-                <option value="">All</option>
+                <option value="">Sort by Category</option>
                 <option value="Customer Satisfaction">
                     Customer Satisfaction
                 </option>

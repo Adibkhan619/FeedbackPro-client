@@ -5,16 +5,30 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaCheck, FaExclamation, FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const YesNoCheckbox = ({ item }) => {
     // const [users] = useAllUsers()
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
     // console.log(users);
     const axiosPublic = useAxiosPublic();
     // console.log(item);
 
     const handleChange = async (e) => {
-        // e.preventDefault();
+        // 
+
+        if(!user){
+            e.preventDefault();
+             Swal.fire({
+                position: "center",
+                icon: "warning",
+                title: `Please Login first`,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            return  navigate('/login')
+        }
         const { name } = e.target;
         // console.log(name);
         const updateData = {

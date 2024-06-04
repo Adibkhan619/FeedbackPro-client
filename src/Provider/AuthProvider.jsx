@@ -1,96 +1,108 @@
-
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from "react";
 import {
-  GoogleAuthProvider,
-  GithubAuthProvider,
-  createUserWithEmailAndPassword,
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-  updateProfile,
-//   updateProfile,
-} from 'firebase/auth'
-import { app } from '../firebase/firebase.config'
-import axios from 'axios'
-import toast from 'react-hot-toast'
+    GoogleAuthProvider,
+    GithubAuthProvider,
+    createUserWithEmailAndPassword,
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut,
+    updateProfile,
+    //   updateProfile,
+} from "firebase/auth";
+import { app } from "../firebase/firebase.config";
+import axios from "axios";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 // import axios from 'axios'
 
-export const AuthContext = createContext(null)
-const auth = getAuth(app)
+export const AuthContext = createContext(null);
+const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const axiosPublic = useAxiosPublic()
 
-  const createUser = (email, password) => {
-    setLoading(true)
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
+    const createUser = (email, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password);
+    };
 
-  const signIn = (email, password) => {
-    setLoading(true)
-    return signInWithEmailAndPassword(auth, email, password)
-  }
+    const signIn = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    };
 
-  const googleSignIn = () => {
-    setLoading(true)
-    return signInWithPopup(auth, googleProvider)
-  }
+    const googleSignIn = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    };
 
-  const githubLogin = () => {
-    setLoading(true);
-    return signInWithPopup(auth, githubProvider);
-}
+    const githubLogin = () => {
+        setLoading(true);
+        return signInWithPopup(auth, githubProvider);
+    };
 
-  const logOut = async () => {
-    setLoading(true)
-    const { data } = await axios(`/logout`, {
-      withCredentials: true,
-    })
-    console.log(data)
-    toast.success('Logged Out')
-    return signOut(auth)
-    
-  }
+    const logOut = async () => {
+        setLoading(true);
+        const { data } = await axios(`/logout`, {
+            withCredentials: true,
+        });
+        console.log(data);
+        toast.success("Logged Out");
+        return signOut(auth);
+    };
 
-  const updateUserProfile = (name) => {
-    return updateProfile( auth.currentUser, {
-        displayName: name
-    })
-}
+    const updateUserProfile = (name) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+        });
+    };
 
-  // onAuthStateChange
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
-      console.log( currentUser)
-      setLoading(false)
-    })
-    return () => {
-      return unsubscribe()
-    }
-  }, [])
+    // onAuthStateChange
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            if(currentUser){
+                const userInfo = {email: currentUser.email}
+                axiosPublic.post('/jwt', userInfo)
+                .then(res =>{
+                    if(res.data.token){
+                        localStorage.setItem('access-token', res.data.token)
+                    }
+                })
+            }
+            else{
+                localStorage.removeItem('access-token')
+            }
 
-  const authInfo = {
-    user,
-    setUser,
-    loading,
-    setLoading,
-    createUser,
-    signIn,
-    googleSignIn,
-    githubLogin,
-    logOut,
-    updateUserProfile,
-  }
+            setLoading(false);
+        });
+        return () => {
+            return unsubscribe();
+        };
+    }, []);
 
-  return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-  )
-}
+    const authInfo = {
+        user,
+        setUser,
+        loading,
+        setLoading,
+        createUser,
+        signIn,
+        googleSignIn,
+        githubLogin,
+        logOut,
+        updateUserProfile,
+    };
 
-export default AuthProvider
+    return (
+        <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    );
+};
+
+export default AuthProvider;

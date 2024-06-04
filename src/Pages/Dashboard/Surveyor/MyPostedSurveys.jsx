@@ -41,7 +41,7 @@ const MyPostedSurveys = () => {
     };
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto m-5">
   <table className="table">
     {/* head */}
     <thead>
@@ -51,9 +51,9 @@ const MyPostedSurveys = () => {
         <th>Description</th>
         <th>Category</th>
         <th>Deadline</th>
-        <th>Update</th>
-        <th>Details</th>
-        <th>Delete</th>
+        <th className="text-center">Update</th>
+        <th className="text-center">Details</th>
+        <th className="text-center">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -66,17 +66,21 @@ const MyPostedSurveys = () => {
         <td>{survey.description}</td>
         <td>{survey.category}</td>
         <td>{survey.deadline}</td>
-        <td>
-            <Link to={`/dashboard/surveyor/update/${survey._id}`}> Update </Link>
+        <td 
+        // className="px-3 bg-blue-100 font-semibold text-blue-400"
+        >
+            <Link to={`/dashboard/surveyor/update/${survey._id}`}><button className="btn-ghost text-blue-400 p-5 rounded-md font-semibold hover:bg-blue-100">Update</button > </Link>
          </td>  
-        <td>
-            <Link to={`/dashboard/surveyor/details/${survey._id}`}> Details </Link>
+        <td 
+        // className="px-3 bg-green-100 font-semibold "
+        >
+            <Link to={`/dashboard/surveyor/details/${survey._id}`} > <button className="btn-ghost p-5 rounded-md text-green-500 font-semibold hover:bg-green-100">Details </button></Link>
          </td> 
          {/* <td className="hidden">
             <MySurveyDetails survey={survey}></MySurveyDetails>
             </td>  */}
         <td>
-          <button onClick={() => handleDeleteSurvey(survey._id)} className="btn-ghost">Delete</button>
+          <button onClick={() => handleDeleteSurvey(survey._id)} className="btn-ghost text-pink-600 p-5 rounded-md font-semibold hover:bg-pink-200">Delete</button>
          </td>  
         
       </tr>)

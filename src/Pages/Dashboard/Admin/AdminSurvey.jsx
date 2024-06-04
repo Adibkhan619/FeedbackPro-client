@@ -66,7 +66,7 @@ const AdminSurvey = () => {
         <td>{survey.category}</td>
         <td>{survey.deadline}</td>
         <td>
-            <Link to={`/dashboard/surveyor/details/${survey._id}`}> Responses</Link>
+            <Link to={`/dashboard/surveyor/details/${survey._id}`}> <button className="btn-ghost text-blue-400 p-5 rounded-md font-semibold hover:bg-blue-100">Responses</button ></Link>
          </td> 
          <td className="px-3 bg-green-100 font-semibold text-green-400">Published</td>
         <td>
