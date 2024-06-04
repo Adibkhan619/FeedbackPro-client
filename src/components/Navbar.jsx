@@ -41,6 +41,10 @@ const Navbar = () => {
             </li>
         </>
     );
+
+    const handleLogout = () => {
+        logOut().then().catch()
+    }
     return (
         <div>
             <div className="navbar max-w-screen-2xl  ">
@@ -67,7 +71,7 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex"></div>
                 <div className="navbar-end flex gap-5">
                     {user ? (
-                        <button onClick={logOut}>Logout</button>
+                        <button onClick={handleLogout}>Logout</button>
                     ) : (
                         <NavLink to="/login">Login</NavLink>
                     )}

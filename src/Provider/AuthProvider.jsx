@@ -12,7 +12,6 @@ import {
     //   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 // import axios from 'axios'
@@ -49,11 +48,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = async () => {
         setLoading(true);
-        const { data } = await axios(`/logout`, {
-            withCredentials: true,
-        });
-        console.log(data);
-        toast.success("Logged Out");
+        // toast.success("Logged Out");
         return signOut(auth);
     };
 
@@ -85,7 +80,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             return unsubscribe();
         };
-    }, []);
+    }, [axiosPublic]);
 
     const authInfo = {
         user,
