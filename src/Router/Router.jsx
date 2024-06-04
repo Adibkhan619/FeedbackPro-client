@@ -16,6 +16,7 @@ import UserHome from "../Pages/Dashboard/User/UserHome";
 import MySurveyDetails from "../Pages/Dashboard/Surveyor/MySurveyDetails";
 import AdminSurvey from "../Pages/Dashboard/Admin/AdminSurvey";
 import UserReport from "../Pages/Dashboard/User/UserReport";
+import SurveyDetails from "../Pages/Surveys/SurveyDetails";
 
 const Router = createBrowserRouter([
     {
@@ -30,6 +31,11 @@ const Router = createBrowserRouter([
                 path: "/surveys",
                 element: <Surveys></Surveys>,
             },
+            {
+                path: "/survey/:id",
+                element: <SurveyDetails></SurveyDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/survey/${params.id}`)
+            }
         ],
     },
     {

@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 
 
 const SurveyCards = ({survey}) => {
     return (
+        <Link to={`/survey/${survey._id}`}>
         <div>
             <div key={survey._id}>
                         <div className="card  h-full bg-base-100 shadow-xl border hover:bg-gray-100">
@@ -14,8 +16,8 @@ const SurveyCards = ({survey}) => {
                                 <p>{survey.name}</p>
                                 <p>{survey.email}</p>
                                 <p>vote: {survey.voteCount}</p>
-                                <p>{survey.yes}</p>
-                                <p>{survey.no}</p>
+                                <p>Yes: {survey.yes}</p>
+                                <p>No: {survey.no}</p>
                                 <div className="card-actions justify-end">
                                     <button className="btn btn-primary">
                                         Buy Now
@@ -25,6 +27,7 @@ const SurveyCards = ({survey}) => {
                         </div>
                     </div>
         </div>
+        </Link>
     );
 };
 

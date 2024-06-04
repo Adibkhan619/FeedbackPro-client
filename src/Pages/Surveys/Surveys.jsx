@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import useSurveys from "../../Hooks/useSurveys";
 import SurveyCards from "./SurveyCards";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 

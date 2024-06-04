@@ -4,11 +4,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 // import useAllUsers from "../Hooks/useAllUsers";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import {
-    FaCheck,
-    FaExclamation,
-    FaTimes,
-} from "react-icons/fa";
+import { FaCheck, FaExclamation, FaTimes } from "react-icons/fa";
 
 const YesNoCheckbox = ({ item }) => {
     // const [users] = useAllUsers()
@@ -16,9 +12,11 @@ const YesNoCheckbox = ({ item }) => {
     // console.log(users);
     const axiosPublic = useAxiosPublic();
     // console.log(item);
-    const handleChange = async (e) => {
-        const { name } = e.target;
 
+    const handleChange = async (e) => {
+        // e.preventDefault();
+        const { name } = e.target;
+        // console.log(name);
         const updateData = {
             Yes: name === "yes" ? 1 : 0,
             No: name === "no" ? 1 : 0,
@@ -36,10 +34,23 @@ const YesNoCheckbox = ({ item }) => {
         };
 
         try {
-            const res = await axiosPublic.patch(
+            if (updateData.Yes > 0 || updateData.No > 0 || updateData.report > 0){
+                const res = await axiosPublic.patch(
                 `/survey/${item._id}`,
                 updateData
             );
+            if (res.data.modifiedCount > 0) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `Your vote is added.`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+            console.log(res.data);
+            }
+            
 
             const newData = {
                 Yes: name === "yes" ? 1 : 0,
@@ -56,10 +67,16 @@ const YesNoCheckbox = ({ item }) => {
                 voterEmail: user.email,
                 id: item._id,
             };
-            const newResponse = await axiosPublic.post("/response", newData);
-            console.log(newResponse.data);
+            console.log(newData);
+            if (newData.Yes > 0 || newData.No > 0 || newData.report > 0) {
+                const newResponse = await axiosPublic.post(
+                    "/response",
+                    newData
+                );
+                console.log(newResponse.data);
+            }
 
-            if (newData.report) {
+            if (newData.report || updateData.report) {
                 Swal.fire({
                     position: "center",
                     icon: "warning",
@@ -70,16 +87,6 @@ const YesNoCheckbox = ({ item }) => {
                 return;
             }
 
-            if (res.data.modifiedCount > 0) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: `Your vote is added.`,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-            }
-            console.log(res.data);
         } catch (error) {
             console.error("Error updating the form data", error);
         }
@@ -87,37 +94,46 @@ const YesNoCheckbox = ({ item }) => {
 
     return (
         <div className="flex justify-around gap-10">
-            <label className="flex gap-2 items-center">
-                <input
-                    type="checkbox"
-                    name="yes"
-                    onChange={handleChange}
-                    className="checkbox checkbox-md"
-                />
-                <FaCheck />
-                Yes
-            </label>
-            <label className="flex gap-2 items-center">
-                <input
-                    type="checkbox"
-                    name="no"
-                    onChange={handleChange}
-                    className="checkbox checkbox-md "
-                />
-                <FaTimes />
-                No
-            </label>
-            <label className="flex gap-2 items-center">
-                <input
-                    type="checkbox"
-                    name="report"
-                    onChange={handleChange}
-                    className="checkbox checkbox-md "
-                />
-                {/* <FaRegTimesCircle /> */}
-                <FaExclamation></FaExclamation>
-                Report
-            </label>
+                <label className="flex gap-2 items-center">
+                    <input
+                        type="checkbox"
+                        name="yes"
+                        value="yes"
+                        onChange={handleChange}
+                        className="checkbox checkbox-md"
+
+
+                    />
+                    <FaCheck />
+                    Yes
+                </label>
+                <label className="flex gap-2 items-center">
+                    <input
+                        type="checkbox"
+                        name="no"
+                        value="no"
+                        onChange={handleChange}
+                        className="checkbox checkbox-md "
+
+
+                    />
+                    <FaTimes />
+                    No
+                </label>
+                <label className="flex gap-2 items-center">
+                    <input
+                        type="checkbox"
+                        name="report"
+                        value="report"
+                        onChange={handleChange}
+                        className="checkbox checkbox-md "
+                    />
+                    {/* <FaRegTimesCircle /> */}
+                    <FaExclamation></FaExclamation>
+                    Report
+                </label>
+                {/* <button type="submit">submit</button> */}
+            
         </div>
     );
 };
