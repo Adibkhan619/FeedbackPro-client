@@ -1,8 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import {  HiExclamation, HiHome, HiMenu, HiShoppingCart, HiStar,  } from "react-icons/hi";
-import { HiCalendarDays, HiDocumentPlus, HiHomeModern,  } from "react-icons/hi2";
-
-import { FaBook, FaEnvelope,  FaShoppingBag, FaUsers, FaWallet, } from "react-icons/fa";
+import { HiCalendarDays, HiDocumentPlus  } from "react-icons/hi2";
+import { FaAward, FaBook, FaEnvelope,  FaShoppingBag, FaUsers, FaWallet, } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAdmin from "../../Hooks/useAdmin";
@@ -23,19 +22,17 @@ const Dashboard = () => {
                     {
                         isAdmin && 
                         <>
-                        <li><NavLink to="/dashboard/admin"><HiHome/> Admin Home</NavLink></li>
+                        <li><Link to="/dashboard/admin"><HiHome/> Admin Home</Link></li>
                     <li><NavLink to="/dashboard/admin/users"><FaUsers />Manage Users</NavLink></li>
                     <li><NavLink to="/dashboard/admin/survey"><FaBook /> Surveys</NavLink></li>
                     <li><NavLink to="/dashboard/admin/payments"><FaWallet />Payments</NavLink></li>
-                    {/* <li><NavLink to="/dashboard/bookings"><FcAddressBook />Manage Bookings</NavLink></li> */}
-
                         </>
                         }
+
                         { isSurveyor &&
                         <>
-                        <li><NavLink to="/"><HiHome/>Home</NavLink></li>
+                        <li><Link to="/"><HiHome/>Home</Link></li>
                     <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus />Create Survey</NavLink></li>
-                    {/* <li><NavLink to="/dashboard/surveyor/update/:id"><HiWallet /> Update Survey</NavLink></li> */}
                     <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart />   My Surveys</NavLink></li>
                     <li><NavLink to="/dashboard/review"><HiStar />  Add Review</NavLink></li>
                     <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
@@ -47,7 +44,7 @@ const Dashboard = () => {
                          <li><Link to="/dashboard/user"><HiHome className="text-lg" /> User Home</Link></li>
                          <li><NavLink to="/dashboard/user/surveys"><HiStar className="text-lg"/> Join Survey</NavLink></li>
                          <li><NavLink to="/dashboard/user/my-reports"><HiExclamation className="text-lg"/> My Reports</NavLink></li>
-                         <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
+                         <li><NavLink to="/dashboard/user/payment"><FaAward /> Become a Member</NavLink></li>
                          </>
                     }
                     

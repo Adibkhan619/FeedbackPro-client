@@ -17,6 +17,10 @@ import MySurveyDetails from "../Pages/Dashboard/Surveyor/MySurveyDetails";
 import AdminSurvey from "../Pages/Dashboard/Admin/AdminSurvey";
 import UserReport from "../Pages/Dashboard/User/UserReport";
 import SurveyDetails from "../Pages/Surveys/SurveyDetails";
+import AdminRoutes from "./AdminRoutes";
+import PrivateRoutes from "./PrivateRoutes";
+import SurveyorRoutes from "./SurveyorRoutes";
+import Payment from "../Pages/Payment/Payment";
 
 const Router = createBrowserRouter([
     {
@@ -48,45 +52,46 @@ const Router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
         children: [
             // *admin ------------>
             {
                 path: "admin/users",
-                element: <Users></Users>,
+                element: <AdminRoutes><Users></Users></AdminRoutes>,
             },
             {
                 path: "admin",
-                element: <AdminHome></AdminHome>,
+                element: <AdminRoutes><AdminHome></AdminHome></AdminRoutes>,
             },
             {
                 path: "admin/survey",
-                element: <AdminSurvey></AdminSurvey>
+                element: <AdminRoutes
+                ><AdminSurvey></AdminSurvey></AdminRoutes>
             },
 
             // *surveyor ---------------->
             {
                 path: "surveyor",
-                element: <SurveyorHome></SurveyorHome>,
+                element: <SurveyorRoutes><SurveyorHome></SurveyorHome></SurveyorRoutes>,
             },
             {
                 path: "surveyor/create",
-                element: <AddSurvey></AddSurvey>,
+                element: <SurveyorRoutes><AddSurvey></AddSurvey></SurveyorRoutes>,
             },
             {
                 path: "surveyor/update/:id",
-                element: <UpdateSurvey></UpdateSurvey>,
+                element: <SurveyorRoutes><UpdateSurvey></UpdateSurvey></SurveyorRoutes>,
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/survey/${params.id}`),
             },
             {
                 path: "surveyor/surveys/:email",
-                element: <MyPostedSurveys></MyPostedSurveys>,
+                element: <SurveyorRoutes><MyPostedSurveys></MyPostedSurveys></SurveyorRoutes>,
                 // loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.email}`)
             },
             {
                 path: "surveyor/details/:id",
-                element: <MySurveyDetails></MySurveyDetails>,
+                element: <PrivateRoutes><MySurveyDetails></MySurveyDetails></PrivateRoutes>,
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/response/${params.id}`),
             },
@@ -94,16 +99,20 @@ const Router = createBrowserRouter([
             // *USER ---------->
             {
                 path: "user",
-                element: <UserHome></UserHome>,
+                element: <PrivateRoutes><UserHome></UserHome></PrivateRoutes>,
             },
             {
                 path: "user/surveys",
-                element: <UserSurvey></UserSurvey>,
+                element: <PrivateRoutes><UserSurvey></UserSurvey></PrivateRoutes>,
             },
             {
                 path: "user/my-reports",
-                element: <UserReport></UserReport>,
+                element: <PrivateRoutes><UserReport></UserReport></PrivateRoutes>,
                 loader:  () => fetch(`http://localhost:5000/response`),
+            },
+            {
+                path: "user/payment",
+                element: <Payment></Payment>
             }
         ],
     },

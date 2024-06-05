@@ -1,19 +1,19 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import useAdmin from "../Hooks/useAdmin";
+import useSurveyor from "../Hooks/useSurveyor";
 
-const AdminRoutes = ({children}) => {
+const SurveyorRoutes = ({children}) => {
 
     const {user, loading} = useContext(AuthContext)
-    const [isAdmin, isAdminLoading] = useAdmin()
+    const [isSurveyor, isSurveyorLoading] = useSurveyor()
 
     const location = useLocation()
 
-    if(loading || isAdminLoading){
+    if(loading || isSurveyorLoading){
         return <progress className="progress w-56"></progress>
     }
-    if(user && isAdmin){
+    if(user && isSurveyor){
         return children;
     }
     return (
@@ -21,4 +21,4 @@ const AdminRoutes = ({children}) => {
     );
 };
 
-export default AdminRoutes;
+export default SurveyorRoutes;
