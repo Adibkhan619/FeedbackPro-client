@@ -21,6 +21,7 @@ import AdminRoutes from "./AdminRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 import SurveyorRoutes from "./SurveyorRoutes";
 import Payment from "../Pages/Payment/Payment";
+import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
 
 const Router = createBrowserRouter([
     {
@@ -67,6 +68,11 @@ const Router = createBrowserRouter([
                 path: "admin/survey",
                 element: <AdminRoutes
                 ><AdminSurvey></AdminSurvey></AdminRoutes>
+            },
+            {
+                path: "admin/allPayments",
+                element: <AdminRoutes
+                ><AllPayments></AllPayments></AdminRoutes>
             },
 
             // *surveyor ---------------->

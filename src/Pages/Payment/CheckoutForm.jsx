@@ -80,37 +80,26 @@ const CheckoutForm = () => {
                         date: new Date(), 
                     }
 
+                    // MAKE USER PRO ------------------> 
                     axiosPublic.patch(`/users/${user.email}`).then(res => {
                     console.log('user made pro', res.data);
-                    if(res.data?.insertedId){
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "You are now a Pro User!",
-                            showConfirmButton: false,
-                            timer: 4500
-                          });
+                    })
 
-                    }})
-                    
-
+                    // SAVE PAYMENT ------------->
                     const res = await axiosSecure.post('/payments', payment)
                     console.log('payment saved', res.data);
-                    
-                    
-                    
+                                       
                     if(res.data?.insertedId){
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
-                            title: "Payment Successful",
+                            title: "Payment Successful. Now you are a Pro User " ,
                             showConfirmButton: false,
                             timer: 1500
                           });
                           navigate("/")
                     }
             }
-
 }
     return (
         <div>

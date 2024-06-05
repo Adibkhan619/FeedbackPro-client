@@ -6,12 +6,15 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAdmin from "../../Hooks/useAdmin";
 import useSurveyor from "../../Hooks/useSurveyor";
+import usePayments from "../../Hooks/usePayments";
 // import useAdmin from "../../Hooks/useAdmin";
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
     // const isAdmin = true;
     const [isAdmin] = useAdmin()
     const [isSurveyor] = useSurveyor()
+    const [payments] = usePayments()
+
     
     return (
         <div>
@@ -25,7 +28,7 @@ const Dashboard = () => {
                         <li><Link to="/dashboard/admin"><HiHome/> Admin Home</Link></li>
                     <li><NavLink to="/dashboard/admin/users"><FaUsers />Manage Users</NavLink></li>
                     <li><NavLink to="/dashboard/admin/survey"><FaBook /> Surveys</NavLink></li>
-                    <li><NavLink to="/dashboard/admin/payments"><FaWallet />Payments</NavLink></li>
+                    <li><NavLink to="/dashboard/admin/allPayments"><FaWallet />All Payments</NavLink></li>
                         </>
                         }
 
@@ -44,7 +47,8 @@ const Dashboard = () => {
                          <li><Link to="/dashboard/user"><HiHome className="text-lg" /> User Home</Link></li>
                          <li><NavLink to="/dashboard/user/surveys"><HiStar className="text-lg"/> Join Survey</NavLink></li>
                          <li><NavLink to="/dashboard/user/my-reports"><HiExclamation className="text-lg"/> My Reports</NavLink></li>
-                         <li><NavLink to="/dashboard/user/payment"><FaAward /> Become a Member</NavLink></li>
+                         { !payments.find(item => item.email === user.email) &&
+                            <li><NavLink to="/dashboard/user/payment"><FaAward /> Become a Member</NavLink></li>}
                          </>
                     }
                     
