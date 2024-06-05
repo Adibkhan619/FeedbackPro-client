@@ -16,10 +16,7 @@ const UpdateSurvey = () => {
 
     const {
         register,
-        handleSubmit,
-        // watch,
-        // formState: { errors },
-        
+        handleSubmit,  
     } = useForm();
 
     const onSubmit = async (data) => {
@@ -121,6 +118,7 @@ const UpdateSurvey = () => {
                         value={user.email}
                         className="hidden"
                     ></input>
+                   
 
                     <div className="form-control mt-6">
                         <button type="submit" className="btn btn-primary">
