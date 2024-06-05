@@ -12,7 +12,6 @@ import {
     //   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
-import toast from "react-hot-toast";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 // import axios from 'axios'
 

@@ -94,7 +94,7 @@ const Users = () => {
                         <option value="admin">Admin</option>
                         <option value="surveyor">Surveyor</option>
                         <option value="user">User</option>
-                        <option value="proUser">Pro User</option>
+                        <option value="pro-user">Pro User</option>
                     </select>
                 </div>
 

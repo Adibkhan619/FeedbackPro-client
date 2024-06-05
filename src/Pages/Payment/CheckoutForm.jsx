@@ -4,6 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const CheckoutForm = () => {
     const [error, setError] = useState('')
@@ -14,12 +15,13 @@ const CheckoutForm = () => {
     const [transactionId, setTransactionId] = useState();
     const [clientSecret, setClientSecret] = useState('')
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const membershipPrice = 5
     const navigate = useNavigate()
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', {price: membershipPrice})
         .then(res => {
-            console.log(res.data.clientSecret);
+            // console.log(res.data.clientSecret);
             setClientSecret(res.data.clientSecret)
         })
 
@@ -75,11 +77,28 @@ const CheckoutForm = () => {
                         name: user.displayName,
                         price: membershipPrice,
                         transactionId: paymentIntent.id,
+                        date: new Date(), 
                     }
+
+                    axiosPublic.patch(`/users/${user.email}`).then(res => {
+                    console.log('user made pro', res.data);
+                    if(res.data?.insertedId){
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "You are now a Pro User!",
+                            showConfirmButton: false,
+                            timer: 4500
+                          });
+
+                    }})
+                    
+
                     const res = await axiosSecure.post('/payments', payment)
                     console.log('payment saved', res.data);
                     
-
+                    
+                    
                     if(res.data?.insertedId){
                         Swal.fire({
                             position: "top-end",
@@ -116,7 +135,7 @@ const CheckoutForm = () => {
                     <button
                         className="btn btn-primary my-5"
                         type="submit"
-                        disabled={!stripe || !clientSecret}
+                        // disabled={!stripe || !clientSecret}
                     >
                         Pay
                     </button>

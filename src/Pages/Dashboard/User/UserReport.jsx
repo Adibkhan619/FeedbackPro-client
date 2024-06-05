@@ -5,7 +5,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 const UserReport = () => {
     const {user} = useContext(AuthContext)
     const reports = useLoaderData()
-    console.log(reports);
+    // console.log(reports);
 
     const filteredReports = reports.filter(item => item?.voterEmail === user?.email)
     console.log(filteredReports);
