@@ -16,7 +16,8 @@ const AddSurvey = () => {
     } = useForm();
 
     const onSubmit = async(data) => {
-        data.comment=[]
+        data.comment=[],
+        data.status="publish"
         console.log(data);
         const res = await axiosPublic.post("/surveys", data)
         console.log(res.data);
@@ -105,10 +106,6 @@ const AddSurvey = () => {
                             {...register("deadline")}
                             required
                         />
-                        {/* <input type="text"
-                          {...register(comment)}
-                          className="hidden"
-                         /> */}
                     </div>
                     <input {...register("name")} value={user?.displayName} className="hidden"></input>
                     <input {...register("email")} value={user?.email} className="hidden"></input>

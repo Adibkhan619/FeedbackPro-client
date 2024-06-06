@@ -1,17 +1,22 @@
 import { useLoaderData } from "react-router-dom";
 import YesNoCheckbox from "../../components/YesNocheckbox";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-
+import useAllUsers from "../../Hooks/useAllUsers";
 
 const SurveyDetails = () => {
-    const {user} = useContext(AuthContext)
-    const axiosPublic = useAxiosPublic()
+    const { user } = useContext(AuthContext);
+    // console.log(user?.email);
+    const [users] = useAllUsers();
+    const axiosPublic = useAxiosPublic();
     const survey = useLoaderData();
-    // console.log(survey);
+    // console.log(users);
+    const currentUser = users.find((item) => item.email == user?.email);
+    console.log(currentUser);
+
     const {
-        _id,
+        // _id,
         name,
         email,
         category,
@@ -22,18 +27,23 @@ const SurveyDetails = () => {
         yes,
         no,
         report,
-        comment
+        comments,
     } = survey;
     console.log(survey);
-    // const [array, setArray] = useState([comment])
-    const handleAddComment = async(e) => {
-        e.preventDefault()
 
-        const newComment = {comm:e.currentTarget.comment.value, email:user.email}
+    const handleAddComment = async (e) => {
+        // e.preventDefault()
+        const newComment = {
+            comm: e.currentTarget.comment.value,
+            email: user.email,
+        };
 
-        const res = await axiosPublic.patch(`/survey/comment/${survey._id}`, newComment)
+        const res = await axiosPublic.patch(
+            `/survey/comment/${survey._id}`,
+            newComment
+        );
         console.log(res.data);
-    }
+    };
 
     return (
         <div>
@@ -48,31 +58,36 @@ const SurveyDetails = () => {
             <p>{deadline}</p>
             <p>{report}</p>
             <div>
-                {
-                    comment.map(item => (
-                        <p key={item._id}>
-                            {item.comm}
-                        </p>
-                    ))
-                }
+                {comments.map((item, idx) => (
+                    <div key={idx}>
+                        <p>{item.comm}</p>
+                    </div>
+                ))}
             </div>
             <div className="w-48">
                 <YesNoCheckbox item={survey}></YesNoCheckbox>
             </div>
-            <form onSubmit={handleAddComment}>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Email</span>
-                    </label>
-                    <input
-                        type="text"
-                        name="comment"
-                        placeholder="Your thoughts"
-                        className="input input-bordered"
-                    />
-                </div>
-                <button type="submit">Add Comment</button>
-            </form>
+
+            {currentUser?.role === "pro-user" ? (
+                <form onSubmit={handleAddComment}>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Add comment</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="comment"
+                            placeholder="Your thoughts"
+                            className="input input-bordered"
+                        />
+                    </div>
+                    <button type="submit" className="btn">
+                        Add Your feedback
+                    </button>
+                </form>
+            ) : (
+                <p>Join as a pro-user to add your feedback</p>
+            )}
         </div>
     );
 };
