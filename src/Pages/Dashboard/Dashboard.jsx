@@ -18,10 +18,13 @@ const Dashboard = () => {
     
     return (
         <div>
-               <div className='flex max-w-screen-2xl mx-auto'>
+               <div className='flex lg:flex-row flex-col  max-w-screen-2xl mx-auto'>
             {/* DASHBOARD SIDEBAR */}
-            <div className="w-64 min-h-screen bg-gray-200">
-                <ul className="menu p-4 space-y-1">
+            
+           
+            <div className="lg:w-64 w-full h-16  lg:min-h-screen ">
+                <ul 
+                className=" lg:p-4  space-y-1 flex lg:flex-col lg:menu  justify-around">
                     {
                         isAdmin && 
                         <>
@@ -52,7 +55,7 @@ const Dashboard = () => {
                          </>
                     }
                     
-                    <div className="divider"></div> 
+                    <div className="divider hidden lg:flex"></div> 
                     <li><NavLink to="/"><HiHome/>Home</NavLink></li>
                     <li><NavLink to="/order/salad"><HiMenu/>Menu</NavLink></li>
                     <li><NavLink to="/order/salad"><FaShoppingBag/>Shop</NavLink></li>

@@ -8,6 +8,7 @@ import { useState } from "react";
 const MyPostedSurveys = () => {
     const axiosSecure = useAxiosSecure();
     const [chart, setChart] = useState(false);
+    const [category, setCategory] = useState();
     console.log(chart);
     const [surveys, , refetch] = useSurveyorSurvey();
 
@@ -17,6 +18,14 @@ const MyPostedSurveys = () => {
         } else {
             setChart(false);
         }
+    };
+
+    const filteredCategory = surveys.filter(
+        (item) => item.category == category
+    );
+    const handleCategory = (e) => {
+        setCategory(e.target.value);
+        console.log(category);
     };
 
     const handleDeleteSurvey = (id) => {
@@ -56,6 +65,23 @@ const MyPostedSurveys = () => {
                 <Chart></Chart>
             ) : (
                 <div className="overflow-x-auto m-5">
+                    <select
+                        onChange={handleCategory}
+                        className="select select-bordered w-full max-w-xs"
+                    >
+                        <option value="">Sort by Category</option>
+                        <option value="Customer Satisfaction">
+                            Customer Satisfaction
+                        </option>
+                        <option value="Employee Engagement">
+                            Employee Engagement
+                        </option>
+                        <option value="Market Research">Market Research</option>
+                        <option value="Product Feedback">
+                            Product Feedback
+                        </option>
+                        <option value="Event Feedback">Event Feedback</option>
+                    </select>
                     <table className="table">
                         {/* head */}
                         <thead>
@@ -72,51 +98,124 @@ const MyPostedSurveys = () => {
                         </thead>
                         <tbody>
                             {/* row 1 */}
-                            {surveys.map((survey, idx) => (
-                                <tr key={survey._id}>
-                                    <th>{idx + 1}</th>
-                                    <th>{survey.question}</th>
-                                    <td>{survey.description}</td>
-                                    <td>{survey.category}</td>
-                                    <td>{survey.deadline}</td>
-                                    <td
-                                    // className="px-3 bg-blue-100 font-semibold text-blue-400"
-                                    >
-                                        <Link
-                                            to={`/dashboard/surveyor/update/${survey._id}`}
-                                        >
-                                            <button className="btn-ghost text-blue-400 p-5 rounded-md font-semibold hover:bg-blue-100">
-                                                Update
-                                            </button>{" "}
-                                        </Link>
-                                    </td>
-                                    <td
-                                    // className="px-3 bg-green-100 font-semibold "
-                                    >
-                                        <Link
-                                            to={`/dashboard/surveyor/details/${survey._id}`}
-                                        >
-                                            {" "}
-                                            <button className="btn-ghost p-5 rounded-md text-green-500 font-semibold hover:bg-green-100">
-                                                Details{" "}
-                                            </button>
-                                        </Link>
-                                    </td>
-                                    {/* <td className="hidden">
+                            {!category
+                                ? surveys?.map((survey, idx) => (
+                                    <>
+                                    <tr key={survey._id}>
+                                          <th>{idx + 1}</th>
+                                          <th>
+                                            <ul>
+                                                <li>{survey.question}</li> <li>{survey?.question2}</li> <li>{survey?.question3}</li>  
+                                            </ul>
+                                          </th>
+                                          <td>{survey.description} <br />{survey?.description2} <br />{survey?.description3}</td>
+                                          <td>{survey.category}</td>
+                                          <td>{survey.deadline}</td>
+                                          <td
+                                          // className="px-3 bg-blue-100 font-semibold text-blue-400"
+                                          >
+                                              <Link
+                                                  to={`/dashboard/surveyor/update/${survey._id}`}
+                                              >
+                                                  <button className="btn-ghost text-blue-400 p-5 rounded-md font-semibold hover:bg-blue-100">
+                                                      Update
+                                                  </button>{" "}
+                                              </Link>
+                                          </td>
+                                          <td
+                                          // className="px-3 bg-green-100 font-semibold "
+                                          >
+                                              <Link
+                                                  to={`/dashboard/surveyor/details/${survey._id}`}
+                                              >
+                                                  {" "}
+                                                  <button className="btn-ghost p-5 rounded-md text-green-500 font-semibold hover:bg-green-100">
+                                                      Details{" "}
+                                                  </button>
+                                              </Link>
+                                          </td>
+                                          {/* <td className="hidden">
             <MySurveyDetails survey={survey}></MySurveyDetails>
             </td>  */}
-                                    <td>
-                                        <button
-                                            onClick={() =>
-                                                handleDeleteSurvey(survey._id)
-                                            }
-                                            className="btn-ghost text-pink-600 p-5 rounded-md font-semibold hover:bg-pink-200"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                                          <td>
+                                              <button
+                                                  onClick={() =>
+                                                      handleDeleteSurvey(
+                                                          survey._id
+                                                      )
+                                                  }
+                                                  className="btn-ghost text-pink-600 p-5 rounded-md font-semibold hover:bg-pink-200"
+                                              >
+                                                  Delete
+                                              </button>
+                                          </td>
+                                      </tr>
+                                    </>
+                                      
+                                  ))
+                                : filteredCategory?.map((survey, idx) => (
+                                    <>
+                                    <tr key={survey._id}>
+                                          <th>{idx + 1}</th>
+                                          <th>
+                                            <ol>
+                                                <li>{survey.question}</li> 
+                                                <li>{survey?.question2}</li> 
+                                                <li>{survey?.question3}</li>  
+                                            </ol>
+                                          </th>
+                                          <td>
+                                            <ol>
+                                                <li> {survey.description}</li>
+                                                <li> {survey?.description2}</li>
+                                                <li> {survey?.description3}</li>
+                                            </ol>
+                                            <br />            
+                                          </td>
+                                          <td>{survey.category}</td>
+                                          <td>{survey.deadline}</td>
+                                          <td
+                                          // className="px-3 bg-blue-100 font-semibold text-blue-400"
+                                          >
+                                              <Link
+                                                  to={`/dashboard/surveyor/update/${survey._id}`}
+                                              >
+                                                  <button className="btn-ghost text-blue-400 p-5 rounded-md font-semibold hover:bg-blue-100">
+                                                      Update
+                                                  </button>{" "}
+                                              </Link>
+                                          </td>
+                                          <td
+                                          // className="px-3 bg-green-100 font-semibold "
+                                          >
+                                              <Link
+                                                  to={`/dashboard/surveyor/details/${survey._id}`}
+                                              >
+                                                  {" "}
+                                                  <button className="btn-ghost p-5 rounded-md text-green-500 font-semibold hover:bg-green-100">
+                                                      Details{" "}
+                                                  </button>
+                                              </Link>
+                                          </td>
+                                          {/* <td className="hidden">
+            <MySurveyDetails survey={survey}></MySurveyDetails>
+            </td>  */}
+                                          <td>
+                                              <button
+                                                  onClick={() =>
+                                                      handleDeleteSurvey(
+                                                          survey._id
+                                                      )
+                                                  }
+                                                  className="btn-ghost text-pink-600 p-5 rounded-md font-semibold hover:bg-pink-200"
+                                              >
+                                                  Delete
+                                              </button>
+                                          </td>
+                                      </tr>
+                                    </>
+                                      
+                                  ))}
                         </tbody>
                     </table>
                 </div>

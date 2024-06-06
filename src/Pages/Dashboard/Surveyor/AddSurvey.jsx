@@ -1,13 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 // import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddSurvey = () => {
     const { user } = useContext(AuthContext);
     const axiosPublic = useAxiosPublic()
+    const [startDate, setStartDate] = useState(new Date());
 
     const {
         register,
@@ -37,36 +40,12 @@ const AddSurvey = () => {
 
     return (
         <div>
-            <div className="card shrink-0 mx-auto w-full max-w-md shadow-2xl bg-base-100">
+            <div className="card lg:mx-16 lg:my-5  max-w-screen  shadow-2xl bg-base-100">
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                     <h1 className="text-4xl">Add Your Custom Survey</h1>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="text-xl">Question</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Add Question"
-                            className="input input-bordered"
-                            {...register("question")}
-                            required
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="text-xl">Description</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Short Description"
-                            className="input input-bordered"
-                            {...register("description")}
-                            required
-                        />
-                    </div>
-
-                    {/* category=========> */}
-                    <div className="col-span-full sm:col-span-3">
+                    <p>You can add up-to 3 question into your survey</p>
+                       {/* category=========> */}
+                       <div className="col-span-full sm:col-span-3">
                         <label className="label">
                             <span className="text-xl">Category</span>
                         </label>
@@ -96,17 +75,103 @@ const AddSurvey = () => {
                         </select>
                     </div>
 
+                    {/* questions */}
+                    <div className="flex gap-5 flex-col lg:flex-row">
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="text-xl">Question: 1</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Add Question"
+                            className="input input-bordered w-full"
+                            {...register("question")}
+                            required
+                        />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="text-xl">Description</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Short Description"
+                            className="input input-bordered"
+                            {...register("description")}
+                            required
+                        />
+                    </div>
+                    </div>
+                    <div className="flex gap-5 flex-col lg:flex-row">
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="text-xl">Question: 2</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Add Question"
+                            className="input input-bordered w-full"
+                            {...register("question2")}
+                            required
+                        />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="text-xl">Description</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Short Description"
+                            className="input input-bordered"
+                            {...register("description2")}
+                            required
+                        />
+                    </div>
+                    </div>
+                    <div className="flex gap-5 flex-col lg:flex-row">
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="text-xl">Question: 3</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Add Question"
+                            className="input input-bordered w-full"
+                            {...register("question3")}
+                            required
+                        />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="text-xl">Description</span>
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Short Description"
+                            className="input input-bordered"
+                            {...register("description3")}
+                            required
+                        />
+                    </div>
+                    </div>
+                   
+
+                 
+
                     <div className="form-control">
                         <label className="label">
                             <span className="text-xl">Deadline</span>
                         </label>
-                        <input
+
+                        <DatePicker
+                        {...register("deadline")}
+                        className="input input-bordered w-full"
+                        selected={startDate} onChange={(date) => setStartDate(date)} required/>
+
+                        {/* <input
                             type="text"
-                            placeholder="Deadline"
-                            className="input input-bordered"
-                            {...register("deadline")}
-                            required
-                        />
+                            placeholder="Deadline"  
+                        /> */}
                     </div>
                     <input {...register("name")} value={user?.displayName} className="hidden"></input>
                     <input {...register("email")} value={user?.email} className="hidden"></input>
