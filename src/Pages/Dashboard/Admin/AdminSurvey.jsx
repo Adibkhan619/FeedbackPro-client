@@ -2,20 +2,50 @@ import { Link } from "react-router-dom";
 import useSurveys from "../../../Hooks/useSurveys";
 // import UnpublishSurvey from "./UnpublishSurvey";
 import { useState } from "react";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+
 
 const AdminSurvey = () => {
     const [surveys] = useSurveys();
     // const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
     console.log(surveys);
 
     const [selectedItem, setSelectedItem] = useState(null);
-console.log(selectedItem);
+    console.log(selectedItem);
+
     const openModal = (item) => {
-        setSelectedItem(item);      
+        setSelectedItem(item);
     };
 
     const closeModal = () => {
-        setSelectedItem(null);
+        // setSelectedItem();
+    };
+
+    const handleUnPublish = async (e) => {
+        // e.preventDefault()
+        // console.log(e.currenTarget.feedback.value);
+        const updateData = {
+            status: "Unpublish",
+            adminFeedback: e.currentTarget.feedback.value,
+        };
+
+        const res = await axiosPublic.patch(
+            `/survey/status/${selectedItem._id}`,
+            updateData
+        );
+        if (res.data.modifiedCount > 0) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: `Your vote is added.`,
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+        console.log(res.data);
+        // console.log(item);
     };
 
     return (
@@ -55,32 +85,80 @@ console.log(selectedItem);
                                             </button>
                                         </Link>
                                     </td>
-                                    <td className="px-3 bg-green-100 font-semibold text-green-400">
-                                        Published
+                                    
+                                    {survey.status ==="Unpublish" ? <td className="px-3 bg-red-100 font-semibold text-red-400">
+                                        {survey.status}
                                     </td>
+                                    :
+                                    <td className="px-3 bg-green-100 font-semibold text-green-400">
+                                        {survey.status}
+                                    </td>}
                                     <td>
+                                        <button
+                                            className="btn"
+                                            onClick={() => {
+                                                document
+                                                    .getElementById(
+                                                        "my_modal_1"
+                                                    )
+                                                    .showModal();
+                                                openModal(survey);
+                                            }}
+                                        >
+                                            Unpublish
+                                        </button>
 
-                                    <button className="btn" onClick={()=>{
-                                        document.getElementById('my_modal_1').showModal()
-                                        openModal(survey)
-                                    }}>open modal</button>
+                                        <dialog
+                                            id="my_modal_1"
+                                            className="modal"
+                                        >
+                                            <div className="modal-box">
+                                                <h3 className="font-bold text-lg">
+                                                    {selectedItem?.question}
+                                                </h3>
+                                                <p className="py-4">
+                                                    {selectedItem?.description}
+                                                </p>
+                                                <div className="">
+                                                    <form
+                                                        method="dialog"
+                                                        onSubmit={
+                                                            handleUnPublish
+                                                        }
+                                                    >
+                                                        <div className="form-control">
+                                                            <label className="label">
+                                                                <span className="label-text">
+                                                                    Why do you want to unpublish the survey?
+                                                                </span>
+                                                            </label>
+                                                            <input
 
-
-                                    <dialog id="my_modal_1" className="modal">
-                                        <div className="modal-box">
-                                            <h3 className="font-bold text-lg">{selectedItem?.question}!</h3>
-                                            <p className="py-4">Press ESC key or click the button below to close</p>
-                                            <div className="modal-action">
-                                            <form method="dialog">
-                                                <button className="btn" onClick={closeModal}>Close</button>
-                                            </form>
+                                                                type="text"
+                                                                name="feedback"
+                                                                placeholder="Feedback"
+                                                                className="input input-bordered w-full my-5"
+                                                                required
+                                                            />
+                                                        </div>
+                                                        <div className="flex justify-between items-center">
+                                                            <button
+                                                            className="btn bg-pink-300"
+                                                            type="submit"
+                                                            onClick={closeModal}
+                                                        >
+                                                            Unpublish
+                                                        </button>
+                                                        <p>Press <span className="text-green-400">Esc </span>to cancel</p>
+                                                        </div>
+                                                        
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
-                                        </dialog>                                     
+                                        </dialog>
                                     </td>
                                 </tr>
                             ))}
-         
                         </tbody>
                     </table>
                 </div>
