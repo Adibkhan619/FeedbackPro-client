@@ -8,24 +8,23 @@ import Swal from "sweetalert2";
 
 const AdminSurvey = () => {
     const [surveys] = useSurveys();
-    // const axiosSecure = useAxiosSecure();
+
     const axiosPublic = useAxiosPublic();
-    console.log(surveys);
+
 
     const [selectedItem, setSelectedItem] = useState(null);
-    console.log(selectedItem);
+
 
     const openModal = (item) => {
         setSelectedItem(item);
     };
 
     const closeModal = () => {
-        // setSelectedItem();
+
     };
 
     const handleUnPublish = async (e) => {
-        // e.preventDefault()
-        // console.log(e.currenTarget.feedback.value);
+
         const updateData = {
             status: "Unpublish",
             adminFeedback: e.currentTarget.feedback.value,
@@ -39,13 +38,12 @@ const AdminSurvey = () => {
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: `Your vote is added.`,
+                title: `Survey has been unpublished`,
                 showConfirmButton: false,
                 timer: 1500,
             });
         }
-        console.log(res.data);
-        // console.log(item);
+
     };
 
     return (

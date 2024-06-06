@@ -37,7 +37,7 @@ const Dashboard = () => {
                         <li><Link to="/"><HiHome/>Home</Link></li>
                     <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus />Create Survey</NavLink></li>
                     <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart />   My Surveys</NavLink></li>
-                    <li><NavLink to="/dashboard/review"><HiStar />  Add Review</NavLink></li>
+                    <li><NavLink to="/dashboard/surveyor/feedback"><HiStar /> Feedback</NavLink></li>
                     <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
                         </>
                     }

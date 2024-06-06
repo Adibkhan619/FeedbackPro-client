@@ -6,10 +6,10 @@ const MySurveyDetails = () => {
 
 
     const response = useLoaderData()
-    console.log(response[0].id);
-    const Title = response[0].question
-    const Description = response[0].description
-    const Category = response[0].category
+    console.log(response[0]?.id);
+    const Title = response[0]?.question
+    const Description = response[0]?.description
+    const Category = response[0]?.category
 
     return (
         <div>

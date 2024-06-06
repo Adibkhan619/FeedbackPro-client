@@ -22,6 +22,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import SurveyorRoutes from "./SurveyorRoutes";
 import Payment from "../Pages/Payment/Payment";
 import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
+import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
 
 const Router = createBrowserRouter([
     {
@@ -100,6 +101,10 @@ const Router = createBrowserRouter([
                 element: <PrivateRoutes><MySurveyDetails></MySurveyDetails></PrivateRoutes>,
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/response/${params.id}`),
+            },
+            {
+                path: "surveyor/feedback",
+                element: <Feedback></Feedback>
             },
 
             // *USER ---------->
