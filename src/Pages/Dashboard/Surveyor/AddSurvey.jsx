@@ -18,6 +18,7 @@ const AddSurvey = () => {
     const onSubmit = async(data) => {
         data.comment=[],
         data.status="publish"
+        data.adminFeedback= ""
         console.log(data);
         const res = await axiosPublic.post("/surveys", data)
         console.log(res.data);
