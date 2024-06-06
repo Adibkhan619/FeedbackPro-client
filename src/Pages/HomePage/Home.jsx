@@ -1,10 +1,12 @@
+import Banner from "./Banner/Banner";
+import ParallaxBanner from "./Banner/ParallaxBanner";
 
 
 const Home = () => {
     return (
         <div>
-            <h1>this is homes</h1>
-
+            <Banner></Banner>
+        <ParallaxBanner></ParallaxBanner>
         </div>
     );
 };

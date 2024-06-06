@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import YesNoCheckbox from "../../components/YesNocheckbox";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useContext } from "react";
@@ -86,7 +86,13 @@ const SurveyDetails = () => {
                     </button>
                 </form>
             ) : (
-                <p>Join as a pro-user to add your feedback</p>
+                
+                <div>Join as a pro-user to add your feedback
+                    {
+                        user? <Link to="user/payment"><button>Join Now</button></Link>: <p><Link to="/login"> Login First</Link></p>
+                    }
+                </div>
+
             )}
         </div>
     );

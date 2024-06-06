@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 // import { FaCheckCircle, FaMarker, FaRegTimesCircle, FaThumbsUp } from "react-icons/fa";
 // import useAllUsers from "../Hooks/useAllUsers";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaCheck, FaExclamation, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +11,27 @@ const YesNoCheckbox = ({ item }) => {
     // const [users] = useAllUsers()
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
+    const [vote, setVote] = useState()
     // console.log(users);
     const axiosPublic = useAxiosPublic();
     // console.log(item);
+    const handleVote = (e) =>{
+        // e.preventDefault()
+        setVote(e)
+    }
+
+    const [checkedState, setCheckedState] = useState([false, false, false]);
+
+    const handleCheckboxChange = (index) => {
+      const newCheckedState = [false, false, false];
+      newCheckedState[index] = true;
+      setCheckedState(newCheckedState);
+    };
+
 
     const handleChange = async (e) => {
         // 
-
+        e.preventDefault()
         if(!user){
             e.preventDefault();
              Swal.fire({
@@ -29,11 +43,11 @@ const YesNoCheckbox = ({ item }) => {
             });
             return  navigate('/login')
         }
-        const { name } = e.target;
+        // const { vote } = e.target;
         // console.log(name);
         const updateData = {
-            Yes: name === "yes" ? 1 : 0,
-            No: name === "no" ? 1 : 0,
+            Yes: vote === "yes" ? 1 : 0,
+            No: vote === "no" ? 1 : 0,
             question: item.question,
             category: item.category,
             description: item.description,
@@ -44,7 +58,7 @@ const YesNoCheckbox = ({ item }) => {
             voterName: user.displayName,
             voterEmail: user.email,
             id: item._id,
-            report: name === "report" ? 1 : 0,
+            report: vote === "report" ? 1 : 0,
         };
 
         try {
@@ -57,7 +71,7 @@ const YesNoCheckbox = ({ item }) => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: `Your vote is added.`,
+                    title: `${vote} vote is added.`,
                     showConfirmButton: false,
                     timer: 1500,
                 });
@@ -67,9 +81,9 @@ const YesNoCheckbox = ({ item }) => {
             
 
             const newData = {
-                Yes: name === "yes" ? 1 : 0,
-                No: name === "no" ? 1 : 0,
-                report: name === "report" ? 1 : 0,
+                Yes: vote === "yes" ? 1 : 0,
+                No: vote === "no" ? 1 : 0,
+                report: vote === "report" ? 1 : 0,
                 name: item.name,
                 email: item.email,
                 question: item.question,
@@ -107,13 +121,16 @@ const YesNoCheckbox = ({ item }) => {
     };
 
     return (
-        <div className="flex justify-around gap-10">
+
+        <form onSubmit={handleChange}>
+            <div className="flex justify-around gap-10">
                 <label className="flex gap-2 items-center">
                     <input
                         type="checkbox"
                         name="yes"
                         value="yes"
-                        onChange={handleChange}
+                        checked={checkedState[0]}
+                        onChange={()=>{handleVote("yes"); handleCheckboxChange(0)}}
                         className="checkbox checkbox-md"
 
 
@@ -126,7 +143,8 @@ const YesNoCheckbox = ({ item }) => {
                         type="checkbox"
                         name="no"
                         value="no"
-                        onChange={handleChange}
+                        checked={checkedState[1]}
+                        onChange={()=>{handleVote("no"); handleCheckboxChange(1)}}
                         className="checkbox checkbox-md "
 
 
@@ -139,16 +157,18 @@ const YesNoCheckbox = ({ item }) => {
                         type="checkbox"
                         name="report"
                         value="report"
-                        onChange={handleChange}
+                        checked={checkedState[2]}
+                        onChange={()=>{ handleVote("report"); handleCheckboxChange(2)}}
                         className="checkbox checkbox-md "
                     />
                     {/* <FaRegTimesCircle /> */}
                     <FaExclamation></FaExclamation>
                     Report
                 </label>
-                {/* <button type="submit">submit</button> */}
+                <button type="submit">submit</button>
             
         </div>
+        </form>
     );
 };
 

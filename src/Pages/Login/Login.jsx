@@ -11,10 +11,10 @@ const Login = () => {
     const {signIn} = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation();
-    
-    const from = location.state?.from?.pathname || "/";
-
-
+    const {user, loading} = useContext(AuthContext)
+    // const from = location.state?.from?.pathname || "/";
+    const from = location.state || "/";
+    console.log(from);
     const {
         register,
         handleSubmit,
@@ -45,6 +45,8 @@ const Login = () => {
             });
         });    
         console.log(data)}
+
+        if (user || loading) return;
 
     return (
         <div>
