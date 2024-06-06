@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../Hooks/useAdmin";
@@ -8,6 +8,7 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isAdmin] = useAdmin();
     const [isSurveyor] = useSurveyor();
+
     const navOptions = (
         <>
             <li>
@@ -41,6 +42,21 @@ const Navbar = () => {
             </li>
         </>
     );
+
+    const [theme, setTheme] = useState("bumblebee");
+    useEffect(() => {
+        localStorage.setItem("theme", theme);
+        const localTheme = localStorage.getItem("theme");
+        document.querySelector("html").setAttribute("data-theme", localTheme);
+    }, [theme]);
+
+    const handleToggle = (e) => {
+        if (e.target.checked) {
+            setTheme("forest");
+        } else {
+            setTheme("bumblebee");
+        }
+    };
 
     const handleLogout = () => {
         logOut().then().catch()
@@ -78,6 +94,14 @@ const Navbar = () => {
                     <NavLink to="/signUp">Sign up for free</NavLink>
                     {/* <ul className="menu menu-horizontal px-1">{navOptions}</ul> */}
                 </div>
+                <div className="flex justify-between mx-2">
+                        <input
+                            value=""
+                            type="checkbox"
+                            onChange={handleToggle}
+                            className="toggle"
+                        />
+                    </div>
             </div>
         </div>
     );
