@@ -14,7 +14,7 @@ import { EffectFade } from 'swiper/modules';
 const Banner = () => {
     return (
         <Fade>
-        <div className="container  mx-auto">
+        <div className=" mx-auto">
         <Swiper
           effect="fade"
 
