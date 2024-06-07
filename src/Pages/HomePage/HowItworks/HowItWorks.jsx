@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HowItWorks = () => {
     return (
-        <div className=" card mx-5 rounded-xl p-10 bg-base-100 space-y-20">
+        <div className=" card mx-5 rounded-xl p-10 bg-base-100 space-y-24">
             <div className=" lg:flex-row   flex flex-col justify-center gap-10  items-center  ">
             <div className="space-y-6 ">
                 <h1 className="text-4xl">How FeedbackPro Works</h1>
@@ -12,6 +12,7 @@ const HowItWorks = () => {
             </div>
             <img className="lg:min-w-[600px]  rounded-xl" src="https://i.postimg.cc/MTpc8MxN/luke-chesser-JKUTr-J4v-K00-unsplash.jpg" alt="" />
         </div>
+
             <div className=" lg:flex-row-reverse flex flex-col justify-center items-center gap-10   bg-base-100 ">
             <div className="space-y-8 ">
                 <h1 className="text-4xl">Getting Started with FeedbackPro</h1>

@@ -43,7 +43,7 @@ const Navbar = () => {
         </>
     );
 
-    const [theme, setTheme] = useState("bumblebee");
+    const [theme, setTheme] = useState("nord");
     useEffect(() => {
         localStorage.setItem("theme", theme);
         const localTheme = localStorage.getItem("theme");
@@ -52,9 +52,9 @@ const Navbar = () => {
 
     const handleToggle = (e) => {
         if (e.target.checked) {
-            setTheme("forest");
+            setTheme("night");
         } else {
-            setTheme("bumblebee");
+            setTheme("nord");
         }
     };
 
@@ -63,11 +63,11 @@ const Navbar = () => {
     }
     return (
         <div>
-            <div className="navbar  z-10  bg-black bg-opacity-30 text-white  ">
+            <div className="navbar  z-10  bg-gradient-to-r from-sky-400 via-sky-500 to-sky-400 text-white  ">
                 <div className="navbar-start ">
                     <a className="btn btn-ghost text-xl">daisyUI</a>
                     {/* <ul className="menu menu-horizontal px-1"></ul> */}
-                    <ul className=" menu menu-horizontal hidden lg:flex gap-5">{navOptions}</ul>
+                    <ul className=" menu menu-horizontal hidden lg:flex ">{navOptions}</ul>
 
 
                     <div className="dropdown">
