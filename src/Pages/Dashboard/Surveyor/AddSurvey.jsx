@@ -19,6 +19,7 @@ const AddSurvey = () => {
     } = useForm();
 
     const onSubmit = async(data) => {
+        data.deadline=startDate
         data.comment=[],
         data.status="Publish"
         data.adminFeedback= ""
@@ -43,7 +44,7 @@ const AddSurvey = () => {
             <div className="card lg:mx-16 lg:my-5  max-w-screen  shadow-2xl bg-base-100">
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                     <h1 className="text-4xl">Add Your Custom Survey</h1>
-                    <p>You can add up-to 3 question into your survey</p>
+                    {/* <p>You can add up-to 3 question into your survey</p> */}
                        {/* category=========> */}
                        <div className="col-span-full sm:col-span-3">
                         <label className="label">
@@ -102,7 +103,7 @@ const AddSurvey = () => {
                         />
                     </div>
                     </div>
-                    <div className="flex gap-5 flex-col lg:flex-row">
+                    {/* <div className="flex gap-5 flex-col lg:flex-row">
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="text-xl">Question: 2</span>
@@ -153,7 +154,7 @@ const AddSurvey = () => {
                             required
                         />
                     </div>
-                    </div>
+                    </div> */}
                    
 
                  
@@ -166,10 +167,11 @@ const AddSurvey = () => {
                         <DatePicker
                         {...register("deadline")}
                         className="input input-bordered w-full"
+                        type="text"
                         selected={startDate} onChange={(date) => setStartDate(date)} required/>
 
                         {/* <input
-                            type="text"
+                            
                             placeholder="Deadline"  
                         /> */}
                     </div>

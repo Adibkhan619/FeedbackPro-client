@@ -63,6 +63,7 @@ const YesNoCheckbox = ({ item }) => {
 
         try {
             if (updateData.Yes > 0 || updateData.No > 0 || updateData.report > 0){
+                
                 const res = await axiosPublic.patch(
                 `/survey/${item._id}`,
                 updateData
