@@ -63,7 +63,7 @@ const Navbar = () => {
     }
     return (
         <div>
-            <div className="navbar  fixed z-10 max-w-screen-2xl bg-black bg-opacity-30 text-white  ">
+            <div className="navbar fixed z-10 max-w-screen-2xl bg-black bg-opacity-30 text-white  ">
                 <div className="navbar-start">
                     <a className="btn btn-ghost text-xl">daisyUI</a>
                     <ul className="menu menu-horizontal px-1">{navOptions}</ul>

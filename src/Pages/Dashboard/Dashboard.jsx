@@ -37,11 +37,10 @@ const Dashboard = () => {
 
                         { isSurveyor &&
                         <>
-                        <li><Link to="/"><HiHome/>Home</Link></li>
-                    <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus />Create Survey</NavLink></li>
-                    <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart />   My Surveys</NavLink></li>
-                    <li><NavLink to="/dashboard/surveyor/feedback"><HiStar /> Feedback</NavLink></li>
-                    <li><NavLink to="/dashboard/bookings"><HiCalendarDays />  Booking</NavLink></li>
+                        <li><Link to="/"><HiHome className="text-lg"/>Home</Link></li>
+                    <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus className="text-lg" />Create Survey</NavLink></li>
+                    <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart  className="text-lg"/>   My Surveys</NavLink></li>
+                    <li><NavLink to="/dashboard/surveyor/feedback"><HiStar  className="text-lg"/> Feedback</NavLink></li>
                         </>
                     }
 
@@ -51,15 +50,15 @@ const Dashboard = () => {
                          <li><NavLink to="/dashboard/user/surveys"><HiStar className="text-lg"/> Join Survey</NavLink></li>
                          <li><NavLink to="/dashboard/user/my-reports"><HiExclamation className="text-lg"/> My Reports</NavLink></li>
                          { !payments.find(item => item.email === user.email) &&
-                            <li><NavLink to="/dashboard/user/payment"><FaAward /> Become a Member</NavLink></li>}
+                            <li><NavLink to="/dashboard/user/payment"><FaAward  className="text-lg"/> Become a Member</NavLink></li>}
                          </>
                     }
                     
                     <div className="divider hidden lg:flex"></div> 
-                    <li><NavLink to="/"><HiHome/>Home</NavLink></li>
-                    <li><NavLink to="/order/salad"><HiMenu/>Menu</NavLink></li>
-                    <li><NavLink to="/order/salad"><FaShoppingBag/>Shop</NavLink></li>
-                    <li><NavLink to="/order/salad"><FaEnvelope/>Contact</NavLink></li>
+                    <li><NavLink to="/"><HiHome className="text-lg"/>Home</NavLink></li>
+                    <li><NavLink to="/order/salad"><HiMenu className="text-lg"/>Menu</NavLink></li>
+                    <li><NavLink to="/order/salad"><FaShoppingBag className="text-lg"/>Shop</NavLink></li>
+                    <li><NavLink to="/order/salad"><FaEnvelope className="text-lg"/>Contact</NavLink></li>
                 </ul>
             </div>
             

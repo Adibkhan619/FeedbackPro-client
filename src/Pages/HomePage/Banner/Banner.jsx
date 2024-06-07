@@ -6,7 +6,7 @@ import "swiper/css";
 // import "swiper/css/navigation";
 import 'swiper/css/effect-fade';
 
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import Slides from "./Slides";
 import { Fade } from "react-awesome-reveal";
 import { EffectFade } from 'swiper/modules';
@@ -31,21 +31,30 @@ const Banner = () => {
                 clickable: true,
             }}
             navigation={true}
-            modules={[Autoplay,  EffectFade]}
+            modules={[Autoplay,  EffectFade, Navigation]}
             className="mySwiper "
         >
             <SwiperSlide>
-                <Slides image="https://i.postimg.cc/fLxsK9bh/jason-jarrach-LJ5-Ih-BA4gbs-unsplash.jpg"  paragraph={'We pride ourselves on delivering exceptional culinary experiences. From our carefully crafted menus to our inviting atmosphere, every visit promises delightful moments and unforgettable flavors.'} text={'Welcome to Flavour Paradise'}></Slides>
+                <Slides image="https://i.postimg.cc/vmz1jLR5/nick-morrison-FHnnjk1-Yj7-Y-unsplash.jpg"  paragraph={'At FeedbackPro, we simplify the process of gathering meaningful insights. Whether you need to assess customer satisfaction, measure employee engagement, conduct market research, or collect product and event feedback, our intuitive survey tool helps you get the answers you need quickly and efficiently. Join us today and start turning feedback into action!'} text={'Your Ultimate Survey Solution!'}></Slides>
             </SwiperSlide>
             <SwiperSlide>
-                <Slides image="https://i.postimg.cc/jj0928WZ/shayna-douglas-H8qwry-GP-h0-unsplash.jpg" 
-                text={'Indulge in Culinary Excellence'} paragraph={'Step into a world of culinary excellence at Flavour Paradise. Our chefs blend passion with innovation, presenting dishes that tantalize the senses and leave a lasting impression on every palate.'}></Slides>
+                <Slides image="https://i.postimg.cc/t7QC7YQX/annie-spratt-h-Cb3l-IB8-L8-E-unsplash.jpg" 
+                paragraph={'At FeedbackPro, we simplify the process of gathering meaningful insights. Whether you need to assess customer satisfaction, measure employee engagement, conduct market research, or collect product and event feedback, our intuitive survey tool helps you get the answers you need quickly and efficiently. Join us today and start turning feedback into action!'} text={'Your Ultimate Survey Solution!'}></Slides>
             </SwiperSlide>
             <SwiperSlide>
-                <Slides image="https://i.postimg.cc/bYCBkYDG/jordan-arnold-Ul07-QK2-AR-0-unsplash.jpg" text={'Experience Unmatched Hospitality'} paragraph={'At Flavour Paradise, hospitality is not just a service; it is a philosophy. Our dedicated team ensures every guest feels welcomed and valued, creating memorable dining experiences filled with warmth and care'}></Slides>
+                <Slides image="https://i.postimg.cc/MTpc8MxN/luke-chesser-JKUTr-J4v-K00-unsplash.jpg" paragraph={'At FeedbackPro, we simplify the process of gathering meaningful insights. Whether you need to assess customer satisfaction, measure employee engagement, conduct market research, or collect product and event feedback, our intuitive survey tool helps you get the answers you need quickly and efficiently. Join us today and start turning feedback into action!'} text={'Your Ultimate Survey Solution!'}></Slides>
             </SwiperSlide>
             <SwiperSlide>
-                <Slides image="https://i.postimg.cc/Tw2t5BTq/jed-owen-Eg-G6wcsj-Ft-E-unsplash.jpg" text={'Discover Your New Favorite Dining Destination'} paragraph={'Embark on a journey of taste and discovery at Flavour Paradise. From cozy dinners to celebratory gatherings, our restaurant offers an inviting ambiance and a diverse menu that caters to every occasion and craving.'}></Slides>
+                <Slides image="https://i.postimg.cc/rpc0QZH8/john-schnobrich-y-Fbyvp-EGHFQ-unsplash.jpg" paragraph={'At FeedbackPro, we simplify the process of gathering meaningful insights. Whether you need to assess customer satisfaction, measure employee engagement, conduct market research, or collect product and event feedback, our intuitive survey tool helps you get the answers you need quickly and efficiently. Join us today and start turning feedback into action!'} text={'Your Ultimate Survey Solution!'}></Slides>
+            </SwiperSlide>
+            <SwiperSlide>
+                <Slides image="https://i.postimg.cc/28Z1mfRk/campaign-creators-e6n7uo-En-Yb-A-unsplash.jpg" paragraph={'At FeedbackPro, we simplify the process of gathering meaningful insights. Whether you need to assess customer satisfaction, measure employee engagement, conduct market research, or collect product and event feedback, our intuitive survey tool helps you get the answers you need quickly and efficiently. Join us today and start turning feedback into action!'} text={'Your Ultimate Survey Solution!'}></Slides>
+            </SwiperSlide>
+            <SwiperSlide>
+                <Slides image="https://i.postimg.cc/Kjg8ZtWq/andrew-neel-cckf4-Ts-HAuw-unsplash.jpg" paragraph={'At FeedbackPro, we simplify the process of gathering meaningful insights. Whether you need to assess customer satisfaction, measure employee engagement, conduct market research, or collect product and event feedback, our intuitive survey tool helps you get the answers you need quickly and efficiently. Join us today and start turning feedback into action!'} text={'Your Ultimate Survey Solution!'}></Slides>
+            </SwiperSlide>
+            <SwiperSlide>
+                <Slides image="https://i.postimg.cc/26t5R00L/agence-olloweb-qfp4-Ud6-Fyg-unsplash.jpg" paragraph={'At FeedbackPro, we simplify the process of gathering meaningful insights. Whether you need to assess customer satisfaction, measure employee engagement, conduct market research, or collect product and event feedback, our intuitive survey tool helps you get the answers you need quickly and efficiently. Join us today and start turning feedback into action!'} text={'Your Ultimate Survey Solution!'}></Slides>
             </SwiperSlide>
             
         </Swiper>

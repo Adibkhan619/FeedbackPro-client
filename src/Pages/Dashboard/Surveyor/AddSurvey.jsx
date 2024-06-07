@@ -41,18 +41,22 @@ const AddSurvey = () => {
 
     return (
         <div>
-            <div className="card lg:mx-16 lg:my-5  max-w-screen  shadow-2xl bg-base-100">
-                <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+            <div className="card lg:mx-16 lg:my-5 lg:flex-row flex-col-reverse max-w-full  shadow-2xl bg-base-100">
+                <div className="card-body w-1/2 hidden lg:flex">
+                    {/* <h1>Add survey</h1> */}
+                    <p>Creating surveys has never been easier! Whether you’re looking to gauge customer satisfaction, understand employee engagement, conduct market research, gather product feedback, or collect event feedback, our survey tool empowers you to gather valuable insights with just a few clicks. Customize your surveys and start collecting responses in no time!</p>
+                </div>
+                <form className="card-body w-full" onSubmit={handleSubmit(onSubmit)}>
                     <h1 className="text-4xl">Add Your Custom Survey</h1>
                     {/* <p>You can add up-to 3 question into your survey</p> */}
                        {/* category=========> */}
                        <div className="col-span-full sm:col-span-3">
                         <label className="label">
-                            <span className="text-xl">Category</span>
+                            <span className="text-xl">Survey Category</span>
                         </label>
                         <select
                             
-                            className="select select-bordered h-6  w-full opacity-85  rounded-md focus:ring focus:ring-opacity-75 item-center text-gray-900  my-auto   p-2 text-sm"
+                            className="select select-bordered h-6  w-full opacity-85  rounded-md focus:ring focus:ring-opacity-75 item-center text-gray-900 dark:text-white  my-auto   p-2 text-sm"
                             {...register("category")}
                             required
                             placeholder="Category"
@@ -77,10 +81,10 @@ const AddSurvey = () => {
                     </div>
 
                     {/* questions */}
-                    <div className="flex gap-5 flex-col lg:flex-row">
+                    <div className="flex gap-5 flex-col ">
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="text-xl">Question: 1</span>
+                            <span className="text-xl">Enter your question :</span>
                         </label>
                         <input
                             type="text"
@@ -92,7 +96,7 @@ const AddSurvey = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="text-xl">Description</span>
+                            <span className="text-xl">Short description : </span>
                         </label>
                         <input
                             type="text"
@@ -161,26 +165,23 @@ const AddSurvey = () => {
 
                     <div className="form-control">
                         <label className="label">
-                            <span className="text-xl">Deadline</span>
+                            <span className="text-xl">Voting deadline</span>
                         </label>
 
                         <DatePicker
                         {...register("deadline")}
                         className="input input-bordered w-full"
                         type="text"
+                        
                         selected={startDate} onChange={(date) => setStartDate(date)} required/>
 
-                        {/* <input
-                            
-                            placeholder="Deadline"  
-                        /> */}
                     </div>
                     <input {...register("name")} value={user?.displayName} className="hidden"></input>
                     <input {...register("email")} value={user?.email} className="hidden"></input>
                     
                     <div className="form-control mt-6">
                         <button type="submit" className="btn btn-primary">
-                            Add Survey
+                            Post Your Survey
                         </button>
                     </div>
                 </form>

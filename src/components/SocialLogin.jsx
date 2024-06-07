@@ -40,7 +40,7 @@ const SocialLogin = () => {
                 <FcGoogle className='text-3xl'></FcGoogle>
                 Google
             </button>
-            <Toaster />,
+            <Toaster />
         </div>
     );
     

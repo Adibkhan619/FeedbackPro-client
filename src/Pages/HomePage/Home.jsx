@@ -1,12 +1,12 @@
 import Banner from "./Banner/Banner";
-import ParallaxBanner from "./Banner/ParallaxBanner";
+// import ParallaxBanner from "./Banner/ParallaxBanner";
 
 
 const Home = () => {
     return (
-        <div>
+        <div className="bg-gray-900">
             <Banner></Banner>
-        <ParallaxBanner></ParallaxBanner>
+        {/* <ParallaxBanner></ParallaxBanner> */}
         </div>
     );
 };

@@ -58,9 +58,9 @@ const SurveyDetails = () => {
             <p>{deadline}</p>
             <p>{report}</p>
             <div>
-                {comments.map((item, idx) => (
+                {comments?.map((item, idx) => (
                     <div key={idx}>
-                        <p>{item.comm}</p>
+                        <p>{item?.comm}</p>
                     </div>
                 ))}
             </div>

@@ -34,7 +34,7 @@ const Surveys = () => {
     };
 
     return (
-        <div className="lg:mx-24 my-10">
+        <div className="lg:mx-24 py-28">
             <select
                 onChange={handleCategory}
                 className="select select-bordered w-full max-w-xs"

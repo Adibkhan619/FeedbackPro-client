@@ -53,10 +53,10 @@ const Login = () => {
             <div className=" ">
   <div className=" ">
     
-    <div className="max-w-lg my-24 mx-auto shadow-2xl bg-base-100">
-      <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+    <div className="card max-w-lg my-24 mx-auto shadow-2xl bg-base-100">
+      <form className="card-body min-w-[400px]" onSubmit={handleSubmit(onSubmit)}>
         <p>Do not have an account? <NavLink to="/signUp" className="text-blue-400">Sign Up</NavLink></p>
-        <h1 className="text-4xl">Log In</h1>
+        <h1 className="text-4xl text-gray-600 ">Log In</h1>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
