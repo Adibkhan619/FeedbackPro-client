@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 import { FaTag, FaUser } from "react-icons/fa";
 import { Fade } from "react-awesome-reveal";
+import 'animate.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const SurveyCards = ({ survey }) => {
     return (
         <Fade>
             <Link to={`/survey/${survey._id}`}>
-                <div>
+                <div 
+                // className="
+                //  animate__animated animate__flipInX"
+                  data-aos="flip-up" data-aos-duration="2000">
                     <div key={survey?._id}>
                         <div className="rounded-xl shadow-md  dark:bg-base-100   bg-white   card hover:bg-base-300 dark:hover:bg-base-300">
                             <div className="card-body h-72 ">
@@ -25,7 +33,7 @@ const SurveyCards = ({ survey }) => {
 
                                     <p className="  text-base  flex items-center gap-4">
                                         <FaUser className="text-sky-500"></FaUser>
-                                        Voted: {survey?.voteCount} times
+                                        Vote : {survey?.voteCount} 
                                     </p>
                                 </div>
 

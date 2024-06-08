@@ -10,37 +10,37 @@ import useSingleSurvey from "../Hooks/useSingleSurvey";
 // import useSingleSurvey from "../Hooks/useSingleSurvey";
 
 const YesNoCheckbox = ({ item }) => {
-    const [, ,refetch] = useSingleSurvey()
+    const [, , refetch] = useSingleSurvey();
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate()
-    const [vote, setVote] = useState()
+    const navigate = useNavigate();
+    const [vote, setVote] = useState();
     const axiosPublic = useAxiosPublic();
 
-    const handleVote = (e) =>{
-        setVote(e)
-    }
+    const handleVote = (e) => {
+        setVote(e);
+    };
 
     const [checkedState, setCheckedState] = useState([false, false, false]);
 
     const handleCheckboxChange = (index) => {
-      const newCheckedState = [false, false, false];
-      newCheckedState[index] = true;
-      setCheckedState(newCheckedState);
+        const newCheckedState = [false, false, false];
+        newCheckedState[index] = true;
+        setCheckedState(newCheckedState);
     };
 
     const handleChange = async (e) => {
-        e.preventDefault()
-        
-        if(!user){
+        e.preventDefault();
+
+        if (!user) {
             e.preventDefault();
-             Swal.fire({
+            Swal.fire({
                 position: "center",
                 icon: "warning",
                 title: `Please Login first`,
                 showConfirmButton: false,
                 timer: 1500,
             });
-            return  navigate('/login')
+            return navigate("/login");
         }
 
         const updateData = {
@@ -60,25 +60,27 @@ const YesNoCheckbox = ({ item }) => {
         };
 
         try {
-            if (updateData.Yes > 0 || updateData.No > 0 || updateData.report > 0){
-                
+            if (
+                updateData.Yes > 0 ||
+                updateData.No > 0 ||
+                updateData.report > 0
+            ) {
                 const res = await axiosPublic.patch(
-                `/survey/${item._id}`,
-                updateData
-            );
-            if (res.data.modifiedCount > 0) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: `${vote} vote is added.`,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                    `/survey/${item._id}`,
+                    updateData
+                );
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `${vote} vote is added.`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+                refetch();
+                console.log(res.data);
             }
-            refetch()
-            console.log(res.data);
-            }
-            
 
             const newData = {
                 Yes: vote === "yes" ? 1 : 0,
@@ -114,18 +116,15 @@ const YesNoCheckbox = ({ item }) => {
                 });
                 return;
             }
-
         } catch (error) {
             console.error("Error updating the form data", error);
         }
-        refetch()
+        refetch();
     };
 
     return (
-
         <form onSubmit={handleChange}>
             <div className="flex flex-col lg:flex-row gap-3 justify-around lg:gap-10">
-
                 {/* YES */}
                 <label className="flex gap-2 items-center">
                     <input
@@ -133,9 +132,13 @@ const YesNoCheckbox = ({ item }) => {
                         name="yes"
                         value="yes"
                         checked={checkedState[0]}
-                        onChange={()=>{handleVote("yes"); handleCheckboxChange(0)}}
-                        className="checkbox checkbox-md border-green-500"/>
-                    <FaCheck className="text-green-500"/>
+                        onChange={() => {
+                            handleVote("yes");
+                            handleCheckboxChange(0);
+                        }}
+                        className="checkbox checkbox-md border-green-500"
+                    />
+                    <FaCheck className="text-green-500" />
                     <span className="text-green-500 font-semibold">Yes</span>
                 </label>
 
@@ -146,9 +149,13 @@ const YesNoCheckbox = ({ item }) => {
                         name="no"
                         value="no"
                         checked={checkedState[1]}
-                        onChange={()=>{handleVote("no"); handleCheckboxChange(1)}}
-                        className="checkbox checkbox-md border-red-400"/>
-                    <FaTimes className="text-red-400"/>
+                        onChange={() => {
+                            handleVote("no");
+                            handleCheckboxChange(1);
+                        }}
+                        className="checkbox checkbox-md border-red-400"
+                    />
+                    <FaTimes className="text-red-400" />
                     <span className="text-red-400 font-semibold">No</span>
                 </label>
                 <label className="flex gap-2 items-center">
@@ -157,16 +164,25 @@ const YesNoCheckbox = ({ item }) => {
                         name="report"
                         value="report"
                         checked={checkedState[2]}
-                        onChange={()=>{ handleVote("report"); handleCheckboxChange(2)}}
+                        onChange={() => {
+                            handleVote("report");
+                            handleCheckboxChange(2);
+                        }}
                         className="checkbox checkbox-md border-orange-600"
                     />
                     {/* <FaRegTimesCircle /> */}
                     <FaExclamation className="text-orange-400"></FaExclamation>
-                    <span className="text-orange-400 font-semibold">Report</span>
+                    <span className="text-orange-400 font-semibold">
+                        Report
+                    </span>
                 </label>
-                <button type="submit" className="btn px-5 bg-green-400 rounded-md  font-semibold text-white">SUBMIT</button>
-            
-        </div>
+                <button
+                    type="submit"
+                    className="btn px-5 bg-green-400 rounded-md  font-semibold text-white"
+                >
+                    SUBMIT
+                </button>
+            </div>
         </form>
     );
 };

@@ -34,10 +34,12 @@ const Surveys = () => {
     };
 
     return (
-        <div className="lg:mx-24 py-28">
-            <select
+        <div className="lg:mx-24">
+
+            <div className="my-10 flex gap-5">
+                <select
                 onChange={handleCategory}
-                className="select select-bordered w-full max-w-xs"
+                className="select select-bordered w-full max-w-xs rounded-xl"
             >
                 <option value="">Sort by Category</option>
                 <option value="Customer Satisfaction">
@@ -55,12 +57,15 @@ const Surveys = () => {
                 }}
                 value={sort}
                 name="sort"
-                className="select select-bordered w-full max-w-xs"
+                className="select select-bordered w-full max-w-xs rounded-xl menu"
             >
                 <option value="">Sort By Vote Count</option>
                 <option value="asc">Ascending</option>
                 <option value="dsc">Descending</option>
             </select>
+            </div>
+            
+
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
                 {!category
                     ? surveys?.map((survey) => (

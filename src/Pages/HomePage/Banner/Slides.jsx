@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import Login from "../../Login/Login";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const Slides = ({image, text, paragraph}) => {
     return (
@@ -15,13 +18,13 @@ const Slides = ({image, text, paragraph}) => {
                 <div className="  text-center text-neutral-content">
                     <div className="lg:px-12 p-8 lg:flex justify-around lg:gap-12 lg:items-center max-h-[500px]">
                         <div className="max-w-[800px]">
-                            <h1 className="mb-5 text-7xl text-left oleo font-bold ">
+                            <h1 className="mb-5 text-7xl text-left oleo font-bold " data-aos="flip-down" data-aos-duration="2000">
                             {text}
                         </h1>
-                        <p className="mb-5 text-left acme text-lg hidden md:flex lg:flex max-w-[600px]">
+                        <p className="mb-5 text-left acme text-lg hidden md:flex lg:flex max-w-[600px]" data-aos="fade-up" data-aos-duration="3000" >
                             {paragraph}
                         </p>
-                        <Link to="/surveys"><button className="btn flex btn-ghost text-xl acme text-amber-300">Explore Now</button></Link>
+                        <Link to="/surveys" ><button  className="btn flex btn-ghost text-xl acme text-amber-300" data-aos="zoom-in" data-aos-duration="3000">Explore Now</button></Link>
                         </div>
 
                        

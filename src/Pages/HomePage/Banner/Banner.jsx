@@ -1,5 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 // Import Swiper styles
 import "swiper/css";
 // import "swiper/css/pagination";

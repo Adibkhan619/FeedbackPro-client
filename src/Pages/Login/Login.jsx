@@ -5,7 +5,9 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/SocialLogin";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const Login = () => {
     const {signIn} = useContext(AuthContext)
@@ -51,25 +53,26 @@ const Login = () => {
     return (
         <div>
             <div className=" ">
-  <div className=" ">
+  <div className=" " data-aos="fade-down" data-aos-duration="3000">
     
-    <div className="card max-w-lg my-24 mx-auto shadow-2xl bg-base-100">
+    <div className="card max-w-lg my-24 mx-auto  bg-base-100 text-center  rounded-2xl">
       <form className="card-body min-w-[400px]" onSubmit={handleSubmit(onSubmit)}>
-        <p>Do not have an account? <NavLink to="/signUp" className="text-blue-400">Sign Up</NavLink></p>
-        <h1 className="text-4xl text-gray-600 ">Log In</h1>
+        <p className="text-primary"><small>Do not have an account? </small><NavLink to="/signUp" className=" font-semibold">Sign Up</NavLink></p>
+        <h1 className="text-4xl font-semibold text-blue-400">Log In</h1>
         <div className="form-control">
-          <label className="label">
+          <label className="label ">
             <span className="label-text">Email</span>
           </label>
           <input type="email" placeholder="email" className="input input-bordered" {...register("email")} required />
         </div>
         <div className="form-control">
-          <label className="label">
+          <label className="label ">
             <span className="label-text">Password</span>
           </label>
           <input type="password" placeholder="password" className="input input-bordered" {...register("password")} required />
          
         </div>
+        
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary">Login</button>
         </div>
