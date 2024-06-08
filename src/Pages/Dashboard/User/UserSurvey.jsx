@@ -1,10 +1,12 @@
-import useSurveys from "../../../Hooks/useSurveys";
-import YesNoCheckbox from "../../../components/YesNocheckbox";
 
+import useSurveys from "../../../Hooks/useSurveys";
+import YesNoCheckbox2 from "../../../components/YesNocheckbox2";
 
 const UserSurvey = () => {
     const [surveys] = useSurveys()
-    console.log(surveys);
+    // console.log(surveys);
+    
+    
     return (
         <div className="m-5">
             <div>
@@ -21,10 +23,11 @@ const UserSurvey = () => {
         <th className="text-center">Vote</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className="">
       {/* row 1 */}
-      {surveys?.map((item, idx) => (
-        <tr key={item._id}>
+      {
+      surveys?.map((item, idx) => (
+        <tr key={item._id} className="">
         <th>{idx + 1}</th>
         <td>{item.question}</td>
         <td>{item.category}</td>
@@ -32,7 +35,7 @@ const UserSurvey = () => {
         <td>{item.deadline}</td>
         {/* <td>{item.question}</td> */}
         <td>
-            <YesNoCheckbox item={item}></YesNoCheckbox>
+            <YesNoCheckbox2 item={item}></YesNoCheckbox2>
         </td>
         
       </tr>

@@ -4,6 +4,9 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useSurveyorSurvey from "../../../Hooks/useSurveyorSurvey";
 import Chart from "./Chart";
 import { useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const MyPostedSurveys = () => {
     const axiosSecure = useAxiosSecure();
@@ -101,7 +104,7 @@ const MyPostedSurveys = () => {
                             {!category
                                 ? surveys?.map((survey, idx) => (
                                     <>
-                                    <tr key={survey._id}>
+                                    <tr key={survey._id} data-aos="flip-down" data-aos-duration="1500">
                                           <th>{idx + 1}</th>
                                           <th>
                                             <ul>

@@ -11,7 +11,7 @@ const UserReport = () => {
     console.log(filteredReports);
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mt-10">
   <table className="table">
     {/* head */}
     <thead>
@@ -23,11 +23,11 @@ const UserReport = () => {
         <th>Deadline</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
       {/* row 1 */}
       {
         filteredReports.map((item, idx) => 
-        <tr key ={item._id}>
+        <tr key ={item._id} className="text-base">
             <th>{idx +1 }</th>
         <th>{item.question}</th>
         <td>{item.description}</td>

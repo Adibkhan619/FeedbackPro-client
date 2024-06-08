@@ -1,32 +1,74 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { FaCheckCircle, FaExclamationCircle, FaTimesCircle } from "react-icons/fa";
 
 
 const UserHome = () => {
+    const {user} = useContext(AuthContext)
+    console.log(user);
+    const axiosPublic = useAxiosPublic()
+
+    const {data: responses =[]} = useQuery({
+        queryKey: ['response'],
+        queryFn: async() =>{
+            const res = await axiosPublic.get(`/response`)
+            return res.data
+        }
+    })
+
+    const userResponse = responses.filter(item => item?.voterEmail === user?.email)
+    console.log(userResponse);
+
+    console.log(responses);
+
     return (
         <div>
-            <h1>Its my home, im a user</h1>
-            <div className="lg:flex">
-        <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
-            <div className="max-w-xl">
-                <h2 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Build Your New <span className="text-blue-600 dark:text-blue-400">Idea</span></h2>
+            <h1 className="mt-10 text-4xl font-semibold">My Responses</h1>
+            <div className="overflow-x-auto mt-5">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th></th>
+        <th>Survey Question</th>
+        <th>Yes Vote</th>
+        <th>No Vote</th>
+        <th>Report</th>
+        
+      </tr>
+    </thead>
+    <tbody className="text-base">
+      {/* row 1 */}
+      {
+        userResponse?.map((item, idx) => 
+        <tr key ={item._id}>
+            <th>{idx +1 }</th>
+        <th>{item.question}</th>
+        <td>
+        {
+            item.Yes == 1 ? <FaCheckCircle className="text-green-400 text-xl"></FaCheckCircle> : <p> </p>
+        }
+        </td>  
+        <td>
+        {
+            item.No == 1 ? <FaTimesCircle className="text-red-400 text-xl"></FaTimesCircle> : <p> </p>
+        }
+        </td>
+        <td>
+        {
+            item.report == 1 ? <FaExclamationCircle className="text-orange-400 text-xl"></FaExclamationCircle> : <p> </p>
+        }
+        </td>
+        
 
-                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi cum cupiditate ducimus, fugit harum id necessitatibus odio quam quasi, quibusdam rem tempora voluptates.</p>
-
-                <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-                    <a href="#" className="block px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700">Get Started</a>
-                    <a href="#" className="block px-5 py-2 text-sm font-medium tracking-wider text-center text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md lg:mx-4 hover:bg-gray-300">Learn More</a>
-                </div>
-            </div>
-        </div>
-
-        <div className="w-full h-64 lg:w-1/2 lg:h-auto">
-            <div className="w-full h-full bg-cover" 
-            // style="background-image: url(https://images.unsplash.com/photo-1508394522741-82ac9c15ba69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=748&q=80)"
-            
-            >
-                <div className="w-full h-full bg-black opacity-25"></div>
-            </div>
-        </div>
-    </div>
+      </tr>)
+      }
+    </tbody>
+  </table>
+</div>
+          
         </div>
     );
 };

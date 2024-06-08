@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { FaAward } from "react-icons/fa";
 
 const CheckoutForm = () => {
     const [error, setError] = useState('')
@@ -103,9 +104,10 @@ const CheckoutForm = () => {
 }
     return (
         <div>
-            <div>
+            <div className="card max-w-screen-lg border m-32 p-10  shadow-lg rounded-2xl">
+                <h1 className="text-3xl flex gap-5 justify-between items-center font-semibold">Become Our Pro User <FaAward></FaAward></h1>
                 <form onSubmit={handleSubmit}>
-                    <CardElement
+                    <CardElement className="border border-gray-300 p-5 mt-5 rounded-xl"
                         options={{
                             style: {
                                 base: {
@@ -122,11 +124,11 @@ const CheckoutForm = () => {
                         }}
                     />
                     <button
-                        className="btn btn-primary my-5"
+                        className="btn bg-sky-300 my-5 px-5 rounded-lg font-semibold"
                         type="submit"
                         // disabled={!stripe || !clientSecret}
                     >
-                        Pay
+                        Pay Now
                     </button>
                 </form>
                 <div>

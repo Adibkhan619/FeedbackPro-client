@@ -23,6 +23,7 @@ import SurveyorRoutes from "./SurveyorRoutes";
 import Payment from "../Pages/Payment/Payment";
 import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
 import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
+import About from "../Pages/About/About";
 
 const Router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const Router = createBrowserRouter([
             {
                 path: "/survey/:id",
                 element: <SurveyDetails></SurveyDetails>
+            },
+            {
+                path: "/about",
+                element: <About></About>
             }
         ],
     },

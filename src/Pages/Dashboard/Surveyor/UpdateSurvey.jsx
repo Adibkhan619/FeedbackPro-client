@@ -40,14 +40,14 @@ const UpdateSurvey = () => {
 
     return (
         <div>
-            <div className="card lg:mx-16 lg:my-5  max-w-screen  shadow-2xl bg-base-100">
+            <div className="card lg:mx-16 lg:my-16 bg-base-200 max-w-screen  shadow-2xl bg-base-100">
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className="text-4xl">Add Your Custom Survey</h1>
-                    <p>You can add up-to 3 question into your survey</p>
+                    <h1 className="text-4xl font-semibold">Update Your Existing Survey</h1>
+                    
                        {/* category=========> */}
                        <div className="col-span-full sm:col-span-3">
                         <label className="label">
-                            <span className="text-xl">Category</span>
+                            <span className="text-lg font-semibold">Category</span>
                         </label>
                         <select
                             
@@ -77,10 +77,10 @@ const UpdateSurvey = () => {
                     </div>
 
                     {/* questions */}
-                    <div className="flex gap-5 flex-col lg:flex-row">
-                    <div className="form-control w-full">
+                    <div className="">
+                    <div className="form-control ">
                         <label className="label">
-                            <span className="text-xl">Question: 1</span>
+                            <span className="text-lg font-semibold">Question</span>
                         </label>
                         <input
                             type="text"
@@ -93,7 +93,7 @@ const UpdateSurvey = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="text-xl">Description</span>
+                            <span className="text-lg font-semibold">Description</span>
                         </label>
                         <input
                             type="text"
@@ -105,69 +105,13 @@ const UpdateSurvey = () => {
                         />
                     </div>
                     </div>
-                    <div className="flex gap-5 flex-col lg:flex-row">
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="text-xl">Question: 2</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Add Question"
-                            className="input input-bordered w-full"
-                            {...register("question2")}
-                            defaultValue={question2}
-                            required
-                        />
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="text-xl">Description</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Short Description"
-                            className="input input-bordered"
-                            {...register("description2")}
-                            defaultValue={description2}
-                            required
-                        />
-                    </div>
-                    </div>
-                    <div className="flex gap-5 flex-col lg:flex-row">
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="text-xl">Question: 3</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Add Question"
-                            className="input input-bordered w-full"
-                            {...register("question3")}
-                            defaultValue={question3}
-                            required
-                        />
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="text-xl">Description</span>
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Short Description"
-                            defaultValue={description3}
-                            className="input input-bordered"
-                            {...register("description3")}
-                            required
-                        />
-                    </div>
-                    </div>
-                   
+                  
 
                  
 
                     <div className="form-control">
                         <label className="label">
-                            <span className="text-xl">Deadline</span>
+                            <span className="text-lg font-semibold">Deadline</span>
                         </label>
 
                         <DatePicker
@@ -185,8 +129,8 @@ const UpdateSurvey = () => {
                     <input {...register("email")} value={user?.email} className="hidden"></input>
                     
                     <div className="form-control mt-6">
-                        <button type="submit" className="btn btn-primary">
-                            Add Survey
+                        <button type="submit" className="btn bg-sky-300 font-bold">
+                            Update Survey
                         </button>
                     </div>
                 </form>

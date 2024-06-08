@@ -1,18 +1,12 @@
 import Swal from "sweetalert2";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-// import { FaCheckCircle, FaMarker, FaRegTimesCircle, FaThumbsUp } from "react-icons/fa";
-// import useAllUsers from "../Hooks/useAllUsers";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaCheck, FaExclamation, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import useSingleSurvey from "../Hooks/useSingleSurvey";
-// import useSingleSurvey from "../Hooks/useSingleSurvey";
-// import useSingleSurvey from "../Hooks/useSingleSurvey";
 
-const YesNoCheckbox = ({ item }) => {
-    const [survey, ,refetch] = useSingleSurvey()
-    console.log(survey);
+const YesNoCheckbox2 = ({ item }) => {
+
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
     const [vote, setVote] = useState()
@@ -77,7 +71,7 @@ const YesNoCheckbox = ({ item }) => {
                     timer: 1500,
                 });
             }
-            refetch()
+
             console.log(res.data);
             }
             
@@ -120,7 +114,7 @@ const YesNoCheckbox = ({ item }) => {
         } catch (error) {
             console.error("Error updating the form data", error);
         }
-        refetch()
+
     };
 
     return (
@@ -173,4 +167,4 @@ const YesNoCheckbox = ({ item }) => {
     );
 };
 
-export default YesNoCheckbox;
+export default YesNoCheckbox2;

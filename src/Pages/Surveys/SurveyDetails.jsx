@@ -162,15 +162,11 @@ const SurveyDetails = () => {
                 </form>
             ) : (
                 <div className="lg:mt-5">
-                    Join as a pro-user to add your feedback
-                    {currentUser?.role === "user"? (
-                        <Link to="dashboard/user/payment">
-                            <button>Join Now</button>
+                    Join as a pro-user to add comment
+                    {currentUser?.role === "user" && (
+                        <Link to="/dashboard/user/payment">
+                            <button className="btn ml-5">Join Now</button>
                         </Link>
-                    ) : (
-                        <p>
-                            <Link to="/login"><button className="btn">Login First</button> </Link>
-                        </p>
                     )}
                 </div>
             )}

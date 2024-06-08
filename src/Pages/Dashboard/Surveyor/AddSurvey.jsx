@@ -6,6 +6,9 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const AddSurvey = () => {
     const { user } = useContext(AuthContext);
@@ -41,9 +44,9 @@ const AddSurvey = () => {
 
     return (
         <div>
-            <div className="card lg:mx-16 lg:my-5 lg:flex-row flex-col-reverse max-w-full  shadow-2xl bg-base-100">
-                <div className="card-body w-1/2 hidden lg:flex">
-                    {/* <h1>Add survey</h1> */}
+            <div data-aos="fade-up" data-aos-duration="1500" className="card lg:mx-16 lg:my-16 lg:flex-row flex-col-reverse max-w-full  shadow-2xl bg-base-200">
+                <div className="card-body w-1/2 hidden lg:flex  gap-5">
+                    <h1 className="text-2xl font-semibold">Surveyor : {user.displayName}</h1>
                     <p>Creating surveys has never been easier! Whether you’re looking to gauge customer satisfaction, understand employee engagement, conduct market research, gather product feedback, or collect event feedback, our survey tool empowers you to gather valuable insights with just a few clicks. Customize your surveys and start collecting responses in no time!</p>
                 </div>
                 <form className="card-body w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -56,7 +59,7 @@ const AddSurvey = () => {
                         </label>
                         <select
                             
-                            className="select select-bordered h-6  w-full opacity-85  rounded-md focus:ring focus:ring-opacity-75 item-center text-gray-900 dark:text-white  my-auto   p-2 text-sm"
+                            className="select select-bordered h-6  w-full opacity-85  rounded-md focus:ring focus:ring-opacity-75 item-center text-gray-900   my-auto   p-2 text-sm"
                             {...register("category")}
                             required
                             placeholder="Category"
@@ -180,7 +183,7 @@ const AddSurvey = () => {
                     <input {...register("email")} value={user?.email} className="hidden"></input>
                     
                     <div className="form-control mt-6">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn bg-sky-300 font-bold">
                             Post Your Survey
                         </button>
                     </div>

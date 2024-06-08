@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 
 const useSurveys = () => {
     const axiosPublic = useAxiosPublic()
-
     const {data: surveys =[], isPending: loading, refetch} = useQuery({
         queryKey: ['survey'],
         queryFn: async() =>{

@@ -15,8 +15,11 @@ const Login = () => {
     const location = useLocation();
     const {user, loading} = useContext(AuthContext)
     // const from = location.state?.from?.pathname || "/";
-    const from = location.state || "/";
+    const from = location.state?.from?.pathname || "/";
     // console.log(from);
+    // console.log(location);
+    // console.log(navigate);
+
     const {
         register,
         handleSubmit,
@@ -53,7 +56,7 @@ const Login = () => {
     return (
         <div>
             <div className=" ">
-  <div className=" " data-aos="fade-down" data-aos-duration="3000">
+  <div className=" " data-aos="fade-down" data-aos-duration="1500">
     
     <div className="card max-w-lg my-24 mx-auto  bg-base-100 text-center  rounded-2xl">
       <form className="card-body min-w-[400px]" onSubmit={handleSubmit(onSubmit)}>
@@ -63,16 +66,16 @@ const Login = () => {
           <label className="label ">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" placeholder="email" className="input input-bordered" {...register("email")} required />
+          <input type="email" placeholder="email" className="input input-bordered text-black" {...register("email")} required />
         </div>
         <div className="form-control">
           <label className="label ">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered" {...register("password")} required />
+          <input type="password" placeholder="password" className="input input-bordered text-black" {...register("password")} required />
          
         </div>
-        
+
         <div className="form-control mt-6">
           <button type="submit" className="btn btn-primary">Login</button>
         </div>

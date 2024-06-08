@@ -22,9 +22,11 @@ const Dashboard = () => {
             {/* DASHBOARD SIDEBAR */}
             
            
-            <div className="lg:w-64 w-full h-16  lg:min-h-screen ">
+            <div className="lg:w-64 w-full h-16 p-4 lg:min-h-screen ">
+                <h1 className="text-3xl font-semibold m-10 hidden lg:flex">Welcome {user.displayName}</h1>
+                <div className="divider hidden lg:flex"></div> 
                 <ul 
-                className=" lg:p-4 p-2 space-y-1 flex lg:flex-col lg:menu  justify-around">
+                className="lg:p-0 p-2 space-y-1 flex lg:flex-col lg:menu  justify-around">
                     {
                         isAdmin && 
                         <>
@@ -37,10 +39,10 @@ const Dashboard = () => {
 
                         { isSurveyor &&
                         <>
-                        <li><Link to="/"><HiHome className="text-lg"/><span className="lg:flex hidden md:flex"></span>Home</Link></li>
-                    <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus className="text-lg" /><span className="lg:flex hidden md:flex"></span>Create Survey</NavLink></li>
-                    <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart  className="text-lg"/><span className="lg:flex hidden md:flex"></span>   My Surveys</NavLink></li>
-                    <li><NavLink to="/dashboard/surveyor/feedback"><HiStar  className="text-lg"/><span className="lg:flex hidden md:flex"></span> Feedback</NavLink></li>
+                        <li><Link to="/dashboard/surveyor"><HiHome className="text-lg"/><span className="lg:flex hidden md:flex">Home</span></Link></li>
+                    <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus className="text-lg" /><span className="lg:flex hidden md:flex">Create Survey</span></NavLink></li>
+                    <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart  className="text-lg"/><span className="lg:flex hidden md:flex">My Surveys</span>   </NavLink></li>
+                    <li><NavLink to="/dashboard/surveyor/feedback"><HiStar  className="text-lg"/><span className="lg:flex hidden md:flex">Feedback</span> </NavLink></li>
                         </>
                     }
 
