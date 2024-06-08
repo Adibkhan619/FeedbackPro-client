@@ -6,8 +6,11 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaCheck, FaExclamation, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import useSingleSurvey from "../Hooks/useSingleSurvey";
+// import useSingleSurvey from "../Hooks/useSingleSurvey";
 
 const YesNoCheckbox = ({ item }) => {
+    const [, ,refetch] = useSingleSurvey()
     // const [users] = useAllUsers()
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
@@ -16,8 +19,8 @@ const YesNoCheckbox = ({ item }) => {
     const axiosPublic = useAxiosPublic();
     // console.log(item);
     const handleVote = (e) =>{
-        // e.preventDefault()
         setVote(e)
+       
     }
 
     const [checkedState, setCheckedState] = useState([false, false, false]);
@@ -32,6 +35,7 @@ const YesNoCheckbox = ({ item }) => {
     const handleChange = async (e) => {
         // 
         e.preventDefault()
+        
         if(!user){
             e.preventDefault();
              Swal.fire({
@@ -77,6 +81,7 @@ const YesNoCheckbox = ({ item }) => {
                     timer: 1500,
                 });
             }
+            
             console.log(res.data);
             }
             
@@ -119,6 +124,7 @@ const YesNoCheckbox = ({ item }) => {
         } catch (error) {
             console.error("Error updating the form data", error);
         }
+        refetch()
     };
 
     return (
@@ -166,7 +172,7 @@ const YesNoCheckbox = ({ item }) => {
                     <FaExclamation></FaExclamation>
                     Report
                 </label>
-                <button type="submit">submit</button>
+                <button type="submit" className="btn bg-sky-500">submit</button>
             
         </div>
         </form>

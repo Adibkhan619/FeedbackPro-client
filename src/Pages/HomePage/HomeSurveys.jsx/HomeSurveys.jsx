@@ -18,7 +18,7 @@ const HomeSurveys = () => {
                     "Discover the most popular surveys created by our community! These top-voted surveys highlight key insights and trends across various categories, including customer satisfaction, employee engagement, and market research."
                 }
             ></Title>
-            <div className="lg:grid lg: grid-cols-3 gap-5 flex overflow-auto mt-12">
+            <div className="lg:grid lg: grid-cols-3 gap-5 flex overflow-auto py-12 my-12">
                 {surveys?.map((item) => (
                     <SurveyCards key={item._id} survey={item}></SurveyCards>
                 ))}

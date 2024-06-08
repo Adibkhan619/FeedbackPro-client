@@ -23,7 +23,7 @@ const UserSurvey = () => {
     </thead>
     <tbody>
       {/* row 1 */}
-      {surveys.map((item, idx) => (
+      {surveys?.map((item, idx) => (
         <tr key={item._id}>
         <th>{idx + 1}</th>
         <td>{item.question}</td>

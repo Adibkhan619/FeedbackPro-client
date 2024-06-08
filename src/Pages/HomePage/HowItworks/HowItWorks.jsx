@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HowItWorks = () => {
     return (
-        <div className=" card mx-5 rounded-xl p-10 bg-base-100 space-y-24">
+        <div className=" card mx-5 bg-base-100 rounded-xl p-10  space-y-24">
             <div className=" lg:flex-row   flex flex-col justify-center gap-10  items-center  ">
             <div className="space-y-6 ">
                 <h1 className="text-4xl">How FeedbackPro Works</h1>

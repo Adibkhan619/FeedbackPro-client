@@ -9,7 +9,10 @@ const Root = () => {
         max-w-screen-2xl 
         mx-auto poppins">
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div className='min-h-[calc(100vh-300px)]'>
+                <Outlet></Outlet>
+            </div>
+            
             <Footer></Footer>
         </div>
     );

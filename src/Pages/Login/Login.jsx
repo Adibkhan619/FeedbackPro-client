@@ -14,7 +14,7 @@ const Login = () => {
     const {user, loading} = useContext(AuthContext)
     // const from = location.state?.from?.pathname || "/";
     const from = location.state || "/";
-    console.log(from);
+    // console.log(from);
     const {
         register,
         handleSubmit,
