@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form"
 import { AuthContext } from "../../Provider/AuthProvider";
 import {  NavLink, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 import SocialLogin from "../../components/SocialLogin";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -56,7 +59,8 @@ const SignUp = () => {
                 title: 'Successfully Registered!',
                 // text: 'Do you want to continue',
                 icon: 'success',
-                confirmButtonText: 'Cool'
+                confirmButtonText: 'Cool',
+                confirmButtonColor: "#87CEEB"
               })
               navigate('/')
                     }
@@ -73,7 +77,7 @@ const SignUp = () => {
 
     return (
         <div>
-            <div className="max-w-xl min-h-screen mx-auto">
+            <div data-aos="fade-up" data-aos-duration="1500" className="max-w-xl min-h-screen mx-auto">
   <div className="">
   
     <div className="max-w-lg my-12 mx-auto shadow-2xl bg-base-100">

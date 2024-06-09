@@ -1,5 +1,5 @@
 
-import { FaTags } from "react-icons/fa";
+import { FaCheckCircle, FaExclamationCircle, FaTags, FaTimesCircle } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 
 
@@ -33,6 +33,7 @@ const MySurveyDetails = () => {
     <th>User Email</th>
     <th>Yes</th>
     <th>No </th>
+    <th>Report </th>
   </tr>
 </thead>
 <tbody>
@@ -44,9 +45,21 @@ const MySurveyDetails = () => {
     <th>{item?.name}</th>
     <td>{item?.email}</td>
    
-    <td className="  text-xl">{item.Yes} </td>
-
-    <td className=" text-xl">{item.No} </td>
+    <td>
+        {
+            item.Yes == 1 ? <FaCheckCircle className="text-green-400 text-xl"></FaCheckCircle> : <p> </p>
+        }
+        </td>  
+        <td>
+        {
+            item.No == 1 ? <FaTimesCircle className="text-red-400 text-xl"></FaTimesCircle> : <p> </p>
+        }
+        </td>
+        <td>
+        {
+            item.report == 1 ? <FaExclamationCircle className="text-orange-400 text-xl"></FaExclamationCircle> : <p> </p>
+        }
+        </td>
   </tr>)
   }
 </tbody>

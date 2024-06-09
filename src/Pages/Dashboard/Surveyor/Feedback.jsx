@@ -11,6 +11,7 @@ const Feedback = () => {
     console.log(unPublished);
     return (
         <div className="my-10">
+            <h1 className="text-4xl font-semibold my-10">My Feedbacks</h1>
               <table className="table">
     {/* head */}
     <thead>

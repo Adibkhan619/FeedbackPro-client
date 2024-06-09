@@ -24,7 +24,7 @@ const Slides = ({image, text, paragraph}) => {
                         <p className="mb-5 text-left acme text-lg hidden md:flex lg:flex max-w-[600px]" data-aos="fade-up" data-aos-duration="3000" >
                             {paragraph}
                         </p>
-                        <Link to="/surveys" ><button  className="btn flex btn-ghost text-xl acme text-amber-300" data-aos="zoom-in" data-aos-duration="3000">Explore Now</button></Link>
+                        <Link to="/surveys" ><button  className="btn flex btn-ghost text-xl acme text-amber-300" >Explore Now</button></Link>
                         </div>
 
                        

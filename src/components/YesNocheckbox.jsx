@@ -72,7 +72,7 @@ const YesNoCheckbox = ({ item }) => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: `"${vote}" vote is added.`,
+                    title: `Your vote is added.`,
                     showConfirmButton: false,
                     timer: 1500,
                 });

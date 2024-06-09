@@ -32,7 +32,7 @@ const SurveyorHome = () => {
                         </div>
                     ))}
                 </div>
-                <img className="max-w-[500px] max-h-[500px] shadow-3xl rounded-full" src={icon} alt="" />
+                <img data-aos="fade-up" data-aos-duration="3000" className="max-w-[500px] max-h-[500px] shadow-3xl rounded-full" src={icon} alt="" />
             </div>
         </div>
     );

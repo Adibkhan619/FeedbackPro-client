@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
-import {  HiExclamation, HiHome, HiMenu, HiShoppingCart, HiStar,  } from "react-icons/hi";
-import {  HiDocumentPlus  } from "react-icons/hi2";
-import { FaAward, FaBook, FaEnvelope,  FaShoppingBag, FaUsers, FaWallet, } from "react-icons/fa";
+import {  HiHome  } from "react-icons/hi";
+import {  HiChartBar, HiDocumentPlus  } from "react-icons/hi2";
+import { FaAward, FaBook, FaComment, FaDove, FaEnvelope,  FaExclamationTriangle,  FaHome, FaUsers, FaWallet, } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAdmin from "../../Hooks/useAdmin";
@@ -41,26 +41,26 @@ const Dashboard = () => {
                         <>
                         <li><Link to="/dashboard/surveyor"><HiHome className="text-lg"/><span className="lg:flex hidden md:flex">Home</span></Link></li>
                     <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus className="text-lg" /><span className="lg:flex hidden md:flex">Create Survey</span></NavLink></li>
-                    <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiShoppingCart  className="text-lg"/><span className="lg:flex hidden md:flex">My Surveys</span>   </NavLink></li>
-                    <li><NavLink to="/dashboard/surveyor/feedback"><HiStar  className="text-lg"/><span className="lg:flex hidden md:flex">Feedback</span> </NavLink></li>
+                    <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiChartBar  className="text-lg"/><span className="lg:flex hidden md:flex">My Surveys</span>   </NavLink></li>
+                    <li><NavLink to="/dashboard/surveyor/feedback"><FaComment  className="text-lg"/><span className="lg:flex hidden md:flex">Feedback</span> </NavLink></li>
                         </>
                     }
 
                     { !isAdmin && !isSurveyor && 
                          <>
-                         <li><Link to="/dashboard/user"><HiHome className="text-lg" /><span className="lg:flex hidden md:flex">User Home</span> </Link></li>
-                         <li><NavLink to="/dashboard/user/surveys"><HiStar className="text-lg"/><span className="lg:flex hidden md:flex">Join Survey</span> </NavLink></li>
-                         <li><NavLink to="/dashboard/user/my-reports"><HiExclamation className="text-lg"/><span className="lg:flex hidden md:flex">My Reports</span> </NavLink></li>
+                         <li><Link to="/dashboard/user"><HiHome className="text-xl" /><span className="lg:flex hidden md:flex">My Home</span> </Link></li>
+                         <li><NavLink to="/dashboard/user/surveys"><HiChartBar className="text-lg"/><span className="lg:flex hidden md:flex">Join Survey</span> </NavLink></li>
+                         <li><NavLink to="/dashboard/user/my-reports"><FaExclamationTriangle className="text-lg"/><span className="lg:flex hidden md:flex">My Reports</span> </NavLink></li>
                          { !payments.find(item => item.email === user.email) &&
                             <li><NavLink to="/dashboard/user/payment"><FaAward  className="text-lg"/><span className="lg:flex hidden md:flex">Become a Member</span> </NavLink></li>}
                          </>
                     }
                     
                     <div className="divider hidden lg:flex"></div> 
-                    <li><NavLink to="/"><HiHome className="text-lg"/><span className="lg:flex hidden md:flex">Home</span></NavLink></li>
-                    <li><NavLink to="/order/salad"><HiMenu className="text-lg"/><span className="lg:flex hidden md:flex">Menu</span></NavLink></li>
-                    <li><NavLink to="/order/salad"><FaShoppingBag className="text-lg"/><span className="lg:flex hidden md:flex">Shop</span></NavLink></li>
-                    <li><NavLink to="/order/salad"><FaEnvelope className="text-lg"/><span className="lg:flex hidden md:flex">Contact</span></NavLink></li>
+                    <li><NavLink to="/"><FaHome className="text-xl"/><span className="lg:flex hidden md:flex">Home</span></NavLink></li>
+                    <li><NavLink to="/about"><FaDove className="text-lg"/><span className="lg:flex hidden md:flex">About Us</span></NavLink></li>
+                    
+                    <li><NavLink to="/contact"><FaEnvelope className="text-lg"/><span className="lg:flex hidden md:flex">Contact</span></NavLink></li>
                 </ul>
             </div>
             

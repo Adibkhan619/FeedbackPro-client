@@ -36,6 +36,7 @@ const Login = () => {
                 // text: 'Do you want to continue',
                 icon: "success",
                 confirmButtonText: "Cool",
+                confirmButtonColor: "#87CEEB"
             });
             navigate(from, { replace: true });
             console.log(user);
@@ -46,7 +47,7 @@ const Login = () => {
                 title: "Login Failed!",
                 // text: {error.message},
                 icon: "error",
-                confirmButtonText: "Cool",
+                confirmButtonText: "Go Back",
             });
         });    
         console.log(data)}

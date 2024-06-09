@@ -26,7 +26,7 @@ const Banner = () => {
             centeredSlides={true}
             loop={true}
             autoplay={{
-                delay: 4000,
+                delay: 5000,
                 disableOnInteraction: false,
             }}
             pagination={{

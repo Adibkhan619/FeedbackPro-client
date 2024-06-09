@@ -24,6 +24,7 @@ import Payment from "../Pages/Payment/Payment";
 import AllPayments from "../Pages/Dashboard/Admin/AllPayments";
 import Feedback from "../Pages/Dashboard/Surveyor/Feedback";
 import About from "../Pages/About/About";
+import Contact from "../Pages/Contact/Contact";
 
 const Router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const Router = createBrowserRouter([
             {
                 path: "/about",
                 element: <About></About>
+            },
+            {
+                path: "/contact",
+                element: <Contact></Contact>
             }
         ],
     },

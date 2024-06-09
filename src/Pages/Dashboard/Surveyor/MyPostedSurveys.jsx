@@ -57,20 +57,32 @@ const MyPostedSurveys = () => {
         });
     };
     return (
-        <div>
-            <input
+        <div className="my-10 mx-5">
+            <div className="flex items-center justify-start gap-24">
+                <h1 className="text-4xl font-semibold">My Posted Surveys</h1>
+                <div className="flex gap-6 items-center">
+                    {!chart? <p className="font-semibold">Click for Chart view</p>: <p className="font-semibold">Click for Table view</p>}
+                    <input
                 type="checkbox"
                 onChange={handleToggle}
                 className="toggle"
                 value=""
             />
+                </div>
+            </div>
+            
+            <div className="">
+                
+
+
+
             {chart ? (
-                <Chart></Chart>
+                <Chart className="m-32 p-32"></Chart>
             ) : (
                 <div className="overflow-x-auto m-5">
                     <select
                         onChange={handleCategory}
-                        className="select select-bordered w-full max-w-xs"
+                        className="select select-bordered w-full max-w-xs mb-5"
                     >
                         <option value="">Sort by Category</option>
                         <option value="Customer Satisfaction">
@@ -223,6 +235,8 @@ const MyPostedSurveys = () => {
                     </table>
                 </div>
             )}
+            </div>
+            
         </div>
     );
 };

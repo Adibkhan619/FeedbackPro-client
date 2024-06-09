@@ -1,6 +1,9 @@
 
 import useSurveys from "../../../Hooks/useSurveys";
 import YesNoCheckbox2 from "../../../components/YesNocheckbox2";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const UserSurvey = () => {
     const [surveys] = useSurveys()
@@ -8,8 +11,8 @@ const UserSurvey = () => {
     
     
     return (
-        <div className="m-5">
-            <div>
+        <div data-aos="fade-up" data-aos-duration="1000" className="m-5">
+            <div className="">
             <div className="overflow-x-auto">
   <table className="table">
     {/* head */}

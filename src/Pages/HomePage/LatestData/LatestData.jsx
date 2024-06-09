@@ -16,7 +16,7 @@ const LatestData = () => {
             <div>
                 <Title subHeading={"Stay up-to-date with the newest surveys added by our users! These fresh surveys cover a range of topics, from product feedback to event evaluations, providing timely insights and valuable data."} heading={"Latest Added Survey"}></Title>
             </div>
-            <div className="lg:grid lg: grid-cols-3 flex overflow-auto mt-12">
+            <div className="lg:grid lg:grid-cols-3 md:grid-cols-2 gap-5 flex overflow-auto py-12 my-12">
             {
                 surveys?.map(item => <SurveyCards key={item._id} survey={item}></SurveyCards>)
             }

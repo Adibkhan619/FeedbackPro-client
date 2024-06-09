@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const UserReport = () => {
     const {user} = useContext(AuthContext)
@@ -10,8 +13,8 @@ const UserReport = () => {
     const filteredReports = reports.filter(item => item?.voterEmail === user?.email)
     console.log(filteredReports);
     return (
-        <div>
-            <div className="overflow-x-auto mt-10">
+        <div  data-aos="fade-down" data-aos-duration="1000">
+            <div className="overflow-x-auto mt-10 mx-5">
   <table className="table">
     {/* head */}
     <thead>

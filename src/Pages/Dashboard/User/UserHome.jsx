@@ -3,7 +3,9 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaCheckCircle, FaExclamationCircle, FaTimesCircle } from "react-icons/fa";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const UserHome = () => {
     const {user} = useContext(AuthContext)
@@ -24,7 +26,7 @@ const UserHome = () => {
     console.log(responses);
 
     return (
-        <div>
+        <div className="mx-5" data-aos="fade-down" data-aos-duration="1500">
             <h1 className="mt-10 text-4xl font-semibold">My Responses</h1>
             <div className="overflow-x-auto mt-5">
   <table className="table">
