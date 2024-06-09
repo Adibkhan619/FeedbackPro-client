@@ -1,4 +1,5 @@
 import img1 from "../../../public/icon/pngwing.com (11).png";
+import {Helmet} from "react-helmet";
 import img2 from "../../../public/icon/pngwing.com (10).png";
 import img3 from "../../../public/icon/pngwing.com (12).png";
 import AOS from 'aos';
@@ -8,6 +9,9 @@ AOS.init();
 const About = () => {
     return (
         <div className="lg:mx-24 my-10 mx-5">
+            <Helmet>
+                <title>Feedback Pro | About</title>
+            </Helmet>
             <div data-aos="fade-down" data-aos-duration="1500">
                 <h1 className="text-4xl font-semibold"> About Us</h1>
                 <p>

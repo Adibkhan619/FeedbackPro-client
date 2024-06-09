@@ -6,13 +6,14 @@ import Chart from "./Chart";
 import { useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
 AOS.init();
 
 const MyPostedSurveys = () => {
     const axiosSecure = useAxiosSecure();
     const [chart, setChart] = useState(false);
     const [category, setCategory] = useState();
-    console.log(chart);
+    // console.log(chart);
     const [surveys, , refetch] = useSurveyorSurvey();
 
     const handleToggle = (e) => {
@@ -37,9 +38,9 @@ const MyPostedSurveys = () => {
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonColor: "#58aeff",
+            cancelButtonColor: "#fc5555",
+            confirmButtonText: "Yes, Delete it",
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/survey/${id}`);
@@ -49,8 +50,8 @@ const MyPostedSurveys = () => {
                     refetch();
                     Swal.fire({
                         title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success",
+                        text: "Your survey has been deleted.",
+                        icon: "success",                   
                     });
                 }
             }
@@ -58,6 +59,9 @@ const MyPostedSurveys = () => {
     };
     return (
         <div className="my-10 mx-5">
+              <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
             <div className="flex items-center justify-start gap-24 mx-5">
                 <h1 className="text-4xl font-semibold">My Posted Surveys</h1>
                 <div className="flex gap-6 items-center">
@@ -106,6 +110,8 @@ const MyPostedSurveys = () => {
                                 <th>Description</th>
                                 <th>Category</th>
                                 <th>Deadline</th>
+                                <th>Status</th>
+
                                 <th className="text-center">Update</th>
                                 <th className="text-center">Details</th>
                                 <th className="text-center">Delete</th>
@@ -115,17 +121,22 @@ const MyPostedSurveys = () => {
                             {/* row 1 */}
                             {!category
                                 ? surveys?.map((survey, idx) => (
-                                    <>
+                                   
                                     <tr key={survey._id} data-aos="flip-down" data-aos-duration="1500">
                                           <th>{idx + 1}</th>
-                                          <th>
-                                            <ul>
-                                                <li>{survey.question}</li> <li>{survey?.question2}</li> <li>{survey?.question3}</li>  
-                                            </ul>
-                                          </th>
-                                          <td>{survey.description} <br />{survey?.description2} <br />{survey?.description3}</td>
+                                          <td>{survey.question}</td>
+                                          <td>{survey.description} </td>
                                           <td>{survey.category}</td>
-                                          <td>{survey.deadline}</td>
+                                          <td>{survey.deadline?.slice(0,10)}</td>
+
+                                          {survey?.status ==="Unpublish" ? <td >
+                                            <p className="px-3 py-1 text-center rounded-lg bg-red-400  font-semibold text-white"> {survey?.status}</p>
+                                       
+                                    </td>
+                                    :
+                                    <td>
+                                      <p className="px-3 py-1 text-center rounded-lg bg-green-400  font-semibold text-white"> {survey?.status}</p>
+                                    </td>}
                                           <td
                                           // className="px-3 bg-blue-100 font-semibold text-blue-400"
                                           >
@@ -144,7 +155,7 @@ const MyPostedSurveys = () => {
                                                   to={`/dashboard/surveyor/details/${survey._id}`}
                                               >
                                                   {" "}
-                                                  <button className="btn-ghost p-5 rounded-md text-green-500 font-semibold hover:bg-green-100">
+                                                  <button className="btn-ghost p-5 rounded-md text-orange-500 font-semibold hover:bg-orange-200">
                                                       Details{" "}
                                                   </button>
                                               </Link>
@@ -165,7 +176,7 @@ const MyPostedSurveys = () => {
                                               </button>
                                           </td>
                                       </tr>
-                                    </>
+                                    
                                       
                                   ))
                                 : filteredCategory?.map((survey, idx) => (
@@ -188,7 +199,15 @@ const MyPostedSurveys = () => {
                                             <br />            
                                           </td>
                                           <td>{survey.category}</td>
-                                          <td>{survey.deadline}</td>
+                                          <td>
+                                            {survey.deadline.slice(0,10)}
+                                            </td>
+                                          <td>
+                                            {
+                                                survey.status === "Publish" ? <p className="bg-green-400 px-2 text-center rounded-xl text-white font-semibold py-1">{survey.status}</p> : <p className="bg-orange-600 px-2 text-center rounded-xl text-white font-semibold py-1">{survey.status}</p>
+                                            }
+                                            
+                                            </td>
                                           <td
                                           // className="px-3 bg-blue-100 font-semibold text-blue-400"
                                           >

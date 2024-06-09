@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
 AOS.init();
 
 
@@ -86,6 +87,9 @@ const Users = () => {
     return (
         <div>
             <div  data-aos="fade-up" data-aos-duration="1500" className=" mx-5 p-5">
+            <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
                 <div className="flex justify-between items-center">
                     <h1 className="text-4xl font-bold  my-5 ">
                         Total Users: {users.length}

@@ -6,10 +6,13 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { FaAward } from "react-icons/fa";
+import useAllUsers from "../../Hooks/useAllUsers";
 
 const CheckoutForm = () => {
     const [error, setError] = useState('')
     const {user} = useContext(AuthContext)
+    const [users] = useAllUsers()
+    // console.log(users);
     const stripe = useStripe()
     const elements = useElements()
     const [message, setMessage] = useState('')
@@ -28,6 +31,9 @@ const CheckoutForm = () => {
 
     },[axiosSecure, membershipPrice])
 
+    const proUser = users?.find(item => item.email === user.email)
+    // console.log(proUser);
+    
     const handleSubmit = async(e) => {
         e.preventDefault()
 
@@ -81,8 +87,10 @@ const CheckoutForm = () => {
                         date: new Date(), 
                     }
 
-                    // MAKE USER PRO ------------------> 
-                    axiosPublic.patch(`/users/${user.email}`).then(res => {
+                    // !MAKE USER PRO ------------------> 
+                    await axiosPublic.patch(`/users/pro/${proUser._id}`)
+
+                    .then(res => {
                     console.log('user made pro', res.data);
                     })
 
@@ -92,9 +100,9 @@ const CheckoutForm = () => {
                                        
                     if(res.data?.insertedId){
                         Swal.fire({
-                            position: "top-end",
+                            position: "center",
                             icon: "success",
-                            title: "Payment Successful. Now you are a Pro User " ,
+                            title: "Payment Successful. Now you are a Pro User Now!" ,
                             showConfirmButton: false,
                             timer: 1500
                           });

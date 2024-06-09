@@ -11,8 +11,8 @@ import useSingleSurvey from "../Hooks/useSingleSurvey";
 // import useSingleSurvey from "../Hooks/useSingleSurvey";
 
 const YesNoCheckbox = ({ item }) => {
-    const [survey, ,refetch] = useSingleSurvey()
-    console.log(survey);
+    const [, ,refetch] = useSingleSurvey()
+    // console.log(survey);
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
     const [vote, setVote] = useState()
@@ -58,6 +58,7 @@ const YesNoCheckbox = ({ item }) => {
             voterName: user.displayName,
             voterEmail: user.email,
             id: item._id,
+            status:item.status,
             report: vote === "report" ? 1 : 0,
         };
 
@@ -78,7 +79,7 @@ const YesNoCheckbox = ({ item }) => {
                 });
             }
             refetch()
-            console.log(res.data);
+            // console.log(res.data);
             }
             
 
@@ -96,8 +97,9 @@ const YesNoCheckbox = ({ item }) => {
                 voterName: user.displayName,
                 voterEmail: user.email,
                 id: item._id,
+                status: item.status
             };
-            console.log(newData);
+            // console.log(newData);
             if (newData.Yes > 0 || newData.No > 0 || newData.report > 0) {
                 const newResponse = await axiosPublic.post(
                     "/response",

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import SurveyCards from "./SurveyCards";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const Surveys = () => {
     // const [surveys, setSurveys] = useSurveys();
@@ -22,8 +23,8 @@ const Surveys = () => {
         getData();
         // console.log(getData);
     }, [sort]);
-    console.log(surveys);
-    console.log(sort);
+    // console.log(surveys);
+    // console.log(sort);
 
     const filteredCategory = surveys.filter(
         (item) => item.category == category
@@ -35,6 +36,9 @@ const Surveys = () => {
 
     return (
         <div className="lg:mx-24">
+              <Helmet>
+                <title>Feedback Pro | Surveys</title>
+            </Helmet>
             <div className="my-10 flex gap-5 justify-between">
 
                 <h1 className="text-4xl font-semibold"><span className="font-bold text-5xl">Feedback Pro</span> Surveys</h1>

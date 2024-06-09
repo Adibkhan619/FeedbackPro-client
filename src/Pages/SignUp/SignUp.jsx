@@ -10,6 +10,7 @@ AOS.init();
 
 import SocialLogin from "../../components/SocialLogin";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
 
@@ -49,7 +50,7 @@ const SignUp = () => {
                 
                 // create user entry in database
                 const userInfo= {name, email, role}
-                console.log(userInfo);
+                // console.log(userInfo);
                 axiosPublic.post("/users", userInfo)
                 .then(res => {
                     console.log(res.data);
@@ -77,6 +78,9 @@ const SignUp = () => {
 
     return (
         <div>
+              <Helmet>
+                <title>Feedback Pro | Sign up</title>
+            </Helmet>
             <div data-aos="fade-up" data-aos-duration="1500" className="max-w-xl min-h-screen mx-auto">
   <div className="">
   

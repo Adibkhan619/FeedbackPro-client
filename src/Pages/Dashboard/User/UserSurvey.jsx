@@ -1,4 +1,5 @@
 
+import { Helmet } from "react-helmet";
 import useSurveys from "../../../Hooks/useSurveys";
 import YesNoCheckbox2 from "../../../components/YesNocheckbox2";
 import AOS from 'aos';
@@ -12,6 +13,9 @@ const UserSurvey = () => {
     
     return (
         <div data-aos="fade-up" data-aos-duration="1000" className="m-5">
+              <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
             <div className="">
             <div className="overflow-x-auto">
   <table className="table">
@@ -35,7 +39,7 @@ const UserSurvey = () => {
         <td>{item.question}</td>
         <td>{item.category}</td>
         <td>{item.description}</td>
-        <td>{item.deadline}</td>
+        <td>{item.deadline?.slice(0,10)}</td>
         {/* <td>{item.question}</td> */}
         <td>
             <YesNoCheckbox2 item={item}></YesNoCheckbox2>

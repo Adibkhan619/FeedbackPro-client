@@ -52,6 +52,7 @@ const YesNoCheckbox2 = ({ item }) => {
             voterName: user.displayName,
             voterEmail: user.email,
             id: item._id,
+            status:item.status,
             report: vote === "report" ? 1 : 0,
         };
 
@@ -90,6 +91,7 @@ const YesNoCheckbox2 = ({ item }) => {
                 voterName: user.displayName,
                 voterEmail: user.email,
                 id: item._id,
+                status:item.status,
             };
             console.log(newData);
             if (newData.Yes > 0 || newData.No > 0 || newData.report > 0) {

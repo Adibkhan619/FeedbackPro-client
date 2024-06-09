@@ -5,11 +5,12 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaCheckCircle, FaExclamationCircle, FaTimesCircle } from "react-icons/fa";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
 AOS.init();
 
 const UserHome = () => {
     const {user} = useContext(AuthContext)
-    console.log(user);
+    // console.log(user);
     const axiosPublic = useAxiosPublic()
 
     const {data: responses =[]} = useQuery({
@@ -21,12 +22,15 @@ const UserHome = () => {
     })
 
     const userResponse = responses.filter(item => item?.voterEmail === user?.email)
-    console.log(userResponse);
+    // console.log(userResponse);
 
-    console.log(responses);
+    // console.log(responses);
 
     return (
-        <div className="mx-5" data-aos="fade-down" data-aos-duration="1500">
+        <div className="mx-5" data-aos="fade-down" data-aos-duration="1000">
+              <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
             <h1 className="mt-10 text-4xl font-semibold">My Responses</h1>
             <div className="overflow-x-auto mt-5">
   <table className="table">

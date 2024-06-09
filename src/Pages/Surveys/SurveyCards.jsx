@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaTag, FaUser } from "react-icons/fa";
-import { Fade } from "react-awesome-reveal";
+// import { Fade } from "react-awesome-reveal";
 import 'animate.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
@@ -9,7 +9,7 @@ AOS.init();
 
 const SurveyCards = ({ survey }) => {
     return (
-        <Fade>
+        <>
             <Link to={`/survey/${survey._id}`}>
                 <div 
                 // className="
@@ -33,7 +33,7 @@ const SurveyCards = ({ survey }) => {
 
                                     <p className="  text-base font-semibold  flex items-center gap-4">
                                         <FaUser className="text-sky-500 font-semibold"></FaUser>
-                                        Vote : {survey?.voteCount} 
+                                        Vote : {survey?.voteCount ? survey?.voteCount : "0"} 
                                     </p>
                                 </div>
 
@@ -47,7 +47,7 @@ const SurveyCards = ({ survey }) => {
                     </div>
                 </div>
             </Link>
-        </Fade>
+        </>
     );
 };
 

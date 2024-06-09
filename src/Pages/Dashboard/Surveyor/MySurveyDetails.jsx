@@ -1,4 +1,5 @@
 
+import { Helmet } from "react-helmet";
 import { FaCheckCircle, FaExclamationCircle, FaTags, FaTimesCircle } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 
@@ -14,12 +15,19 @@ const MySurveyDetails = () => {
 
     return (
         <div className="my-10 mx-5">
+              <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
+         
              <p className="my-5 bg-base-300 shadow-md p-4 rounded-r-xl lg:w-64 flex font-semibold    items-center gap-2">
                         <FaTags className=" text-2xl"></FaTags>
                         {Category}
                     </p>
              <h1 className="text-4xl font-bold">{Title}</h1>
              <h1 className="my-5">{Description}</h1>
+             {
+                response.length === 0 && <p className="text-3xl font-semibold">No response recorded yet</p>
+            }
         <div className="overflow-x-auto">
            
 

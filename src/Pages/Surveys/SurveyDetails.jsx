@@ -12,10 +12,10 @@ import {
 } from "react-icons/fa";
 import useSingleSurvey from "../../Hooks/useSingleSurvey";
 import Swal from "sweetalert2";
-import { Fade } from "react-awesome-reveal";
 import 'animate.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
 AOS.init();
 
 const SurveyDetails = () => {
@@ -29,10 +29,10 @@ const SurveyDetails = () => {
     const axiosPublic = useAxiosPublic();
 
     const [survey, , refetch] = useSingleSurvey();
-    console.log(survey);
+    // console.log(survey);
 
     const currentUser = users.find((item) => item.email == user?.email);
-    console.log(currentUser);
+    // console.log(currentUser);
 
     const {
         name,
@@ -47,7 +47,7 @@ const SurveyDetails = () => {
         report,
         comments,
     } = survey;
-    console.log(survey);
+    // console.log(survey);
 
     const handleAddComment = async (e) => {
         e.preventDefault();
@@ -75,8 +75,11 @@ const SurveyDetails = () => {
     };
 
     return (
-        <Fade>
+        <>
             <div className="lg:mx-48  mx-5 lg:my-8 md:my-3 my-3">
+            <Helmet>
+                <title>Feedback Pro | Survey Details</title>
+            </Helmet>
             <div className="flex-col flex lg:flex-row lg:gap-10 items-center lg:justify-between">
                 <div className="lg:w-1/2 space-y-3">
                     <p className="my-5 bg-base-300 shadow-md p-4 rounded-r-xl lg:w-64 flex font-semibold    items-center gap-2">
@@ -108,30 +111,30 @@ const SurveyDetails = () => {
                         <span className="p-4 text-orange-400 font-bold ">
                             Total Votes :
                         </span>
-                        {voteCount}
+                        {voteCount? voteCount : "0"}
                     </p>
                     <p className="font-bold text-4xl">
                         <span className="p-4 text-green-500 font-bold ">
                             YES :
                         </span>
-                        {yes}
+                        {yes? yes : "0"}
                     </p>
                     <p className="font-bold text-4xl">
                         <span className="p-4 text-red-400 font-bold ">
                             NO :
                         </span>
-                        {no}
+                        {no? no : "0"}
                     </p>
                     <p className="font-semibold text-xl">
                         <span className="p-4 text-orange-600 font-semibold ">
                             Report :
                         </span>
-                        {report}
+                        {report? report : "0"}
                     </p>
 
                     <p className="font-semibold mt-10">Created By: {name}</p>
                     <p className="">{email}</p>
-                    <p className="">{deadline}</p>
+                    <p className="">Deadline : {deadline?.slice(0,10)}</p>
                 </div>
             </div>
 
@@ -195,7 +198,7 @@ const SurveyDetails = () => {
                 ))}
             </div>
         </div>
-        </Fade>
+        </>
     );
 };
 

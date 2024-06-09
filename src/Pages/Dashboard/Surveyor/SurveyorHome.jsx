@@ -3,17 +3,31 @@ import icon from "../../../../public/icon/survey.png.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 AOS.init();
 
 
 const SurveyorHome = () => {
-    const [surveys] = useSurveyorSurvey();
+    const [surveys, , ] = useSurveyorSurvey([]);
+    
     return (
         <div className="mt-10 mx-5">
+              <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
             <h1 className="text-5xl font-semibold mb-10">
                 My Posted Surveys : {surveys.length}
             </h1>
+            
             <div className="flex justify-start gap-10">
+            {
+                surveys.length === 0 && 
+                <div className="space-y-5">
+                    <h1 className="text-4xl font-bold">No Survey Posted Yet</h1>
+                    <div className="divider"></div>
+                    <Link to="/dashboard/surveyor/create" className="btn bg-sky-300">Add Survey</Link>
+                </div>
+            }
                 <div>
                     {surveys?.map((item, idx) => (
                         <div key={item._id}>

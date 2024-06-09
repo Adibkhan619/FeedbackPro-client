@@ -6,6 +6,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
 AOS.init();
 
 const AdminSurvey = () => {
@@ -52,6 +53,9 @@ const AdminSurvey = () => {
     return (
         <div>
             <div  data-aos="fade-up" data-aos-duration="1500" className="mx-5">
+            <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
                 <h1 className="text-4xl ml-5 font-bold my-7">All Surveys</h1>
                 <div className="overflow-x-auto  my-5">
                     <table className="table">
@@ -63,8 +67,8 @@ const AdminSurvey = () => {
                                 <th>Description</th>
                                 <th>Category</th>
                                 <th>Deadline</th>
-                                <th>View Response</th>
                                 <th>Status</th>
+                                <th>View Response</th>
                                 <th>Unpublish</th>
                             </tr>
                         </thead>
@@ -76,7 +80,17 @@ const AdminSurvey = () => {
                                     <th>{survey.question}</th>
                                     <td>{survey.description}</td>
                                     <td>{survey.category}</td>
-                                    <td>{survey.deadline}</td>
+                                    <td>{survey.deadline?.slice(0,10)}</td>
+
+                                    {survey?.status ==="Unpublish" ? <td className="px-3  font-semibold text-red-400">
+                                        {survey?.status}
+                                    </td>
+                                    :
+                                    <td className="px-3  font-semibold text-green-400">
+                                        {survey?.status}
+                                    </td>}
+
+                                    <td>{survey.status}</td>
                                     <td>
                                         <Link
                                             to={`/dashboard/surveyor/details/${survey._id}`}
@@ -88,13 +102,7 @@ const AdminSurvey = () => {
                                         </Link>
                                     </td>
                                     
-                                    {survey.status ==="Unpublish" ? <td className="px-3  font-semibold text-red-400">
-                                        {survey.status}
-                                    </td>
-                                    :
-                                    <td className="px-3  font-semibold text-green-400">
-                                        {survey.status}
-                                    </td>}
+                                    
                                     <td>
                                         <button
                                             className="btn"

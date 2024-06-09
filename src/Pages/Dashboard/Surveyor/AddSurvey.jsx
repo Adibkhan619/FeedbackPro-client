@@ -9,10 +9,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import img from "../../../../public/icon/img2.png"
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 AOS.init();
 
 const AddSurvey = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
     const [startDate, setStartDate] = useState(new Date());
 
@@ -23,29 +26,33 @@ const AddSurvey = () => {
     } = useForm();
 
     const onSubmit = async(data) => {
-        data.deadline=startDate
+        data.deadline=startDate,
         data.comment=[],
-        data.status="Publish"
-        data.adminFeedback= ""
+        data.status="Publish",
+        data.adminFeedback= "",
         console.log(data);
         const res = await axiosPublic.post("/surveys", data)
         console.log(res.data);
         if(res.data.insertedId){
             Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "success",
-                title: `Your survey is added.`,
+                title: `Your survey is posted.`,
                 showConfirmButton: false,
                 timer: 1500
               });
               reset()
+              navigate(`/dashboard/surveyor/surveys/${user.email}`)
         }
 
     };
 
     return (
         <div>
-            <div data-aos="fade-up" data-aos-duration="1500" className="card my-10  lg:mx-16 lg:my-16 lg:flex-row flex-col-reverse max-w-full  shadow-2xl bg-base-200">
+            <div data-aos="fade-up" data-aos-duration="1000" className="card my-10  lg:mx-16 lg:my-16 lg:flex-row flex-col-reverse max-w-full  shadow-2xl bg-base-200">
+            <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
                 <div className="card-body w-1/2 hidden lg:flex  gap-5">
 
                     <h1 className="text-2xl font-semibold">Surveyor : {user.displayName}</h1>
@@ -186,7 +193,7 @@ const AddSurvey = () => {
                     <input {...register("email")} value={user?.email} className="hidden"></input>
                     
                     <div className="form-control mt-6">
-                        <button type="submit" className="btn bg-sky-300 font-bold text-base-300">
+                        <button type="submit" className="btn bg-sky-300 font-bold ">
                             Post Your Survey
                         </button>
                     </div>

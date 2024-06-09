@@ -10,12 +10,12 @@ import 'swiper/css/effect-fade';
 
 import { Autoplay, Navigation } from "swiper/modules";
 import Slides from "./Slides";
-import { Fade } from "react-awesome-reveal";
+// import { Fade } from "react-awesome-reveal";
 import { EffectFade } from 'swiper/modules';
 
 const Banner = () => {
     return (
-        <Fade>
+        <>
         <div className=" mx-auto">
         <Swiper
           effect="fade"
@@ -61,7 +61,7 @@ const Banner = () => {
             
         </Swiper>
     </div>
-    </Fade>
+    </>
     );
 };
 

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../Hooks/useAdmin";
 import useSurveyor from "../Hooks/useSurveyor";
+import icon from "../../public/icon/img3.png"
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -14,26 +15,27 @@ const Navbar = () => {
             <li>
                 <NavLink to="/surveys">Surveys</NavLink>
             </li>
-            { user && isAdmin && (
+            { isAdmin && (
                 <li>
                     <NavLink to="dashboard/admin">Dashboard</NavLink>
                 </li>
             )}
-            {user && isSurveyor && (
+            { isSurveyor && (
                 <li>
                     <NavLink to="dashboard/surveyor">Dashboard</NavLink>
                 </li>
             )}
-            {user && !isAdmin && !isSurveyor && (
+            { !isAdmin && !isSurveyor &&
                 <li>
                     <Link to="dashboard/user">Dashboard</Link>
-                </li>
-            )}
-            {!user && !isAdmin && !isSurveyor && (
+                </li> 
+                
+            }
+            {/* {!user || !isAdmin || !isSurveyor &&  
                 <li>
-                    <NavLink to="login">Dashboard</NavLink>
-                </li>
-            )}
+                <NavLink to="login">Dashboard</NavLink>
+            </li>
+            } */}
             <li>
                 <NavLink to="/about">About Us</NavLink>
             </li>
@@ -63,9 +65,9 @@ const Navbar = () => {
     }
     return (
         <div>
-            <div className="navbar  z-10  bg-gradient-to-r from-sky-300 via-sky-300 to-sky-300 text-white  ">
+            <div className="navbar  z-10  bg-gradient-to-r from-sky-300 via-sky-300 to-sky-300 text-white  font-semibold">
                 <div className="navbar-start ">
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <Link to="/"><button className="text-xl font-semibold btn btn-ghost rounded-full"><img src={icon} className="w-10 h-10" alt="" /><em>Feedback Pro</em></button></Link>
                     {/* <ul className="menu menu-horizontal px-1"></ul> */}
                     <ul className=" menu menu-horizontal hidden lg:flex ">{navOptions}</ul>
 
@@ -77,23 +79,18 @@ const Navbar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black"
-                        >{navOptions}
-                            
+                        >{navOptions}                         
                         </ul>
                     </div>
-                    {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
-                    {/* {user && <p>{user?.email}</p>} */}
                 </div>
-                {/* <div className="navbar-start hidden lg:flex">
-                    <ul className="flex">{navOptions}</ul>
-                </div> */}
+
                 <div className="navbar-end flex gap-5">
                     {user ? (
-                        <button onClick={handleLogout}>Logout</button>
+                        <button className="btn btn-ghost" onClick={handleLogout}>Logout</button>
                     ) : (
-                        <NavLink to="/login">Login</NavLink>
+                        <NavLink to="/login"><button className="btn btn-ghost">Login</button></NavLink>
                     )}
-                    <NavLink to="/signUp" className="btn hidden lg:flex">Sign up for free</NavLink>
+                    <NavLink to="/signUp" className="btn hidden lg:flex ">Sign up for free</NavLink>
                     {/* <ul className="menu menu-horizontal px-1">{navOptions}</ul> */}
                 </div>
                 <div className="flex justify-between mx-2">

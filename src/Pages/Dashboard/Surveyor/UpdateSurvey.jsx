@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-// import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet";
 
 const UpdateSurvey = () => {
     const { user } = useContext(AuthContext);
@@ -14,7 +14,7 @@ const UpdateSurvey = () => {
     const survey = useLoaderData();
     const navigate = useNavigate()
     const [startDate, setStartDate] = useState(new Date());
-    const { _id, question, question2, question3, description, description2, description3, category, deadline } = survey;
+    const { _id, question,  description, category, deadline } = survey;
     console.log(survey);
 
     const {
@@ -28,9 +28,9 @@ const UpdateSurvey = () => {
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
             Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "success",
-                title: `Your survey is updated successfully.`,
+                title: `Your survey has been updated successfully.`,
                 showConfirmButton: false,
                 timer: 1500,
             });
@@ -40,7 +40,10 @@ const UpdateSurvey = () => {
 
     return (
         <div>
-            <div className="card lg:mx-16 lg:my-16 bg-base-200 max-w-screen  shadow-2xl bg-base-100">
+            <div className="card lg:mx-16 lg:my-16 bg-base-200 max-w-screen  shadow-2xl ">
+            <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                     <h1 className="text-4xl font-semibold">Update Your Existing Survey</h1>
                     

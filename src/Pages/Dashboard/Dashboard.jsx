@@ -1,27 +1,31 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import {  HiHome  } from "react-icons/hi";
-import {  HiChartBar, HiChartBarSquare, HiDocumentPlus  } from "react-icons/hi2";
-import { FaAward, FaBook, FaChartArea, FaChartBar, FaChartLine, FaComment, FaDove, FaEnvelope,  FaExclamationTriangle,  FaHome, FaRegChartBar, FaUsers, FaWallet, } from "react-icons/fa";
+import {  HiChartBar,  HiDocumentPlus  } from "react-icons/hi2";
+import { FaAward, FaComment, FaDove, FaEnvelope,  FaExclamationTriangle,  FaHome, FaUsers, FaWallet, } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAdmin from "../../Hooks/useAdmin";
 import useSurveyor from "../../Hooks/useSurveyor";
 import usePayments from "../../Hooks/usePayments";
-// import useAdmin from "../../Hooks/useAdmin";
+import { Helmet } from "react-helmet";
+
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
     // const isAdmin = true;
     const [isAdmin] = useAdmin()
     const [isSurveyor] = useSurveyor()
     const [payments] = usePayments()
-
-    
+  
     return (
         <div>
                <div className='flex lg:flex-row flex-col  max-w-screen-2xl mx-auto'>
+
+               <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+                </Helmet>
+
             {/* DASHBOARD SIDEBAR */}
-            
-           
+
             <div className="lg:w-64 w-full h-16 p-4 lg:min-h-screen ">
                 <h1 className="text-3xl font-semibold m-10 hidden lg:flex">Welcome {user.displayName}</h1>
                 <div className="divider hidden lg:flex"></div> 
@@ -32,7 +36,7 @@ const Dashboard = () => {
                         <>
                         <li><Link to="/dashboard/admin"><HiHome className="text-2xl"/><span className="lg:flex hidden md:flex">Admin Home</span> </Link></li>
                     <li><NavLink to="/dashboard/admin/users"><FaUsers className="text-xl"/><span className="lg:flex hidden md:flex">Manage Users</span></NavLink></li>
-                    <li><NavLink to="/dashboard/admin/survey"><FaChartArea className="text-xl"/><span className="lg:flex hidden md:flex"> Surveys</span></NavLink></li>
+                    <li><NavLink to="/dashboard/admin/survey"><HiChartBar className="text-xl"/><span className="lg:flex hidden md:flex"> Surveys</span></NavLink></li>
                     <li><NavLink to="/dashboard/admin/allPayments"><FaWallet className="text-lg" /><span className="lg:flex hidden md:flex">All Payments</span></NavLink></li>
                         </>
                         }
@@ -52,7 +56,11 @@ const Dashboard = () => {
                          <li><NavLink to="/dashboard/user/surveys"><HiChartBar className="text-lg"/><span className="lg:flex hidden md:flex">Join Survey</span> </NavLink></li>
                          <li><NavLink to="/dashboard/user/my-reports"><FaExclamationTriangle className="text-lg"/><span className="lg:flex hidden md:flex">My Reports</span> </NavLink></li>
                          { !payments.find(item => item.email === user.email) &&
-                            <li><NavLink to="/dashboard/user/payment"><FaAward  className="text-lg"/><span className="lg:flex hidden md:flex">Become a Member</span> </NavLink></li>}
+                            <li><NavLink to="/dashboard/user/payment"><FaAward  className="text-lg"/><span className="lg:flex hidden md:flex">Become a Member</span> </NavLink></li>
+                         }
+                         
+
+                         
                          </>
                     }
                     

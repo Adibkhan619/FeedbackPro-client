@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
 AOS.init();
 
 const UserReport = () => {
@@ -10,10 +11,14 @@ const UserReport = () => {
     const reports = useLoaderData()
     // console.log(reports);
 
-    const filteredReports = reports.filter(item => item?.voterEmail === user?.email)
+    const report = reports.filter(item => item?.voterEmail === user?.email)
+    const filteredReports = report.filter(item => item.report === 1 )
     console.log(filteredReports);
     return (
         <div  data-aos="fade-down" data-aos-duration="1000">
+              <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
             <div className="overflow-x-auto mt-10 mx-5">
   <table className="table">
     {/* head */}

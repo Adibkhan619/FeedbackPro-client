@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import useSurveys from "../../../Hooks/useSurveys";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const Feedback = () => {
     const [surveys] = useSurveys()
@@ -11,7 +12,13 @@ const Feedback = () => {
     console.log(unPublished);
     return (
         <div className="my-10 mx-5 overflow-x-auto">
+              <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
             <h1 className="text-4xl font-semibold my-10">My Feedbacks</h1>
+            {
+                unPublished.length === 0 && <p className="text-3xl font-semibold mb-5">No Feedback from the admin</p>
+            }
               <table className="table">
     {/* head */}
     <thead>

@@ -10,7 +10,7 @@ const useSurveyorSurvey = () => {
     const {data: surveys =[], isPending: loading, refetch} = useQuery({
         queryKey: ['survey'],
         queryFn: async() =>{
-            const res = await axiosPublic.get(`/surveys/${user.email}`)
+            const res = await axiosPublic.get(`/surveys/${user?.email}`)
             return res.data
         }
     })

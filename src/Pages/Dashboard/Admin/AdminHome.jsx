@@ -5,6 +5,7 @@ import useResponse from "../../../Hooks/useResponse";
 import img from "../../../../public/icon/pngwing.com (11).png"
 import useAllUsers from "../../../Hooks/useAllUsers";
 import { FaArrowAltCircleDown, FaCheckSquare, FaExclamation, FaExclamationTriangle, FaTimesCircle, FaVoteYea } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 AOS.init();
 
 const AdminHome = () => {
@@ -20,6 +21,9 @@ const AdminHome = () => {
             data-aos-duration="1500"
             className="space-y-5 lg:m-24 m-5 lg:flex-row-reverse flex flex-col items-center"
         >
+                <Helmet>
+                <title>Feedback Pro | Dashboard</title>
+            </Helmet>
             <img className="lg:max-w-[600px]" src={img} alt="" />
             <div>
                 <h1 className="lg:text-6xl text-5xl font-bold text-sky-300">

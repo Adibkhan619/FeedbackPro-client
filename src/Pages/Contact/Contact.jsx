@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet";
 import img from "../../../public/icon/pngwing.com (13).png"
 
 const Contact = () => {
     return (
         <div className="lg:mx-24 mx-5 my-10 flex items-center lg:flex-row flex-col gap-10">
+                <Helmet>
+                <title>Feedback Pro | Contact</title>
+            </Helmet>
 <div>               
     <h1 className="text-5xl font-bold my-5">Contact Us</h1>
         <p>We would love to hear from you! Whether you have questions, feedback, or need assistance, our team is here to help. Reach out to us through any of the methods below, and we will get back to you as soon as possible.</p>

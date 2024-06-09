@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import SocialLogin from "../../components/SocialLogin";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Helmet } from "react-helmet";
 AOS.init();
 
 const Login = () => {
@@ -56,6 +57,9 @@ const Login = () => {
 
     return (
         <div>
+              <Helmet>
+                <title>Feedback Pro | Login</title>
+            </Helmet>
             <div className=" ">
   <div className=" " data-aos="fade-down" data-aos-duration="1500">
     
@@ -67,13 +71,13 @@ const Login = () => {
           <label className="label ">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" placeholder="email" className="input input-bordered text-black" {...register("email")} required />
+          <input type="email" placeholder="email" className="input input-bordered " {...register("email")} required />
         </div>
         <div className="form-control">
           <label className="label ">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered text-black" {...register("password")} required />
+          <input type="password" placeholder="password" className="input input-bordered " {...register("password")} required />
          
         </div>
 
