@@ -1,11 +1,14 @@
 import usePayments from "../../../Hooks/usePayments";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const AllPayments = () => {
     const [payments] = usePayments()
     console.log(payments);
     return (
-        <div>
+        <div  data-aos="fade-up" data-aos-duration="1500" className="mx-5">
+            <h1 className="text-4xl ml-5 font-bold my-7">Payments </h1>
               <table className="table">
     {/* head */}
     <thead>

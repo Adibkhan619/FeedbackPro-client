@@ -10,7 +10,7 @@ const Feedback = () => {
     const unPublished = surveys.filter(item => item?.status === "Unpublish" && item?.email ===user?.email)
     console.log(unPublished);
     return (
-        <div className="my-10">
+        <div className="my-10 mx-5 overflow-x-auto">
             <h1 className="text-4xl font-semibold my-10">My Feedbacks</h1>
               <table className="table">
     {/* head */}

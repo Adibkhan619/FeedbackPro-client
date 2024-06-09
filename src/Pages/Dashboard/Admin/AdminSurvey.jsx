@@ -4,10 +4,12 @@ import useSurveys from "../../../Hooks/useSurveys";
 import { useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const AdminSurvey = () => {
-    const [surveys] = useSurveys();
+    const [surveys, ,refetch] = useSurveys();
 
     const axiosPublic = useAxiosPublic();
 
@@ -42,14 +44,16 @@ const AdminSurvey = () => {
                 showConfirmButton: false,
                 timer: 1500,
             });
+            refetch()
         }
 
     };
 
     return (
         <div>
-            <div>
-                <div className="overflow-x-auto mx-5 my-5">
+            <div  data-aos="fade-up" data-aos-duration="1500" className="mx-5">
+                <h1 className="text-4xl ml-5 font-bold my-7">All Surveys</h1>
+                <div className="overflow-x-auto  my-5">
                     <table className="table">
                         {/* head */}
                         <thead>
@@ -61,7 +65,7 @@ const AdminSurvey = () => {
                                 <th>Deadline</th>
                                 <th>View Response</th>
                                 <th>Status</th>
-                                <th>Unp ublish</th>
+                                <th>Unpublish</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,17 +82,17 @@ const AdminSurvey = () => {
                                             to={`/dashboard/surveyor/details/${survey._id}`}
                                         >
                                             {" "}
-                                            <button className="btn-ghost text-blue-400 p-5 rounded-md font-semibold hover:bg-blue-100">
+                                            <button className="btn-ghost text-sky-400 p-5 rounded-md font-semibold hover:bg-blue-100">
                                                 Responses
                                             </button>
                                         </Link>
                                     </td>
                                     
-                                    {survey.status ==="Unpublish" ? <td className="px-3 bg-red-100 font-semibold text-red-400">
+                                    {survey.status ==="Unpublish" ? <td className="px-3  font-semibold text-red-400">
                                         {survey.status}
                                     </td>
                                     :
-                                    <td className="px-3 bg-green-100 font-semibold text-green-400">
+                                    <td className="px-3  font-semibold text-green-400">
                                         {survey.status}
                                     </td>}
                                     <td>
@@ -141,7 +145,7 @@ const AdminSurvey = () => {
                                                         </div>
                                                         <div className="flex justify-between items-center">
                                                             <button
-                                                            className="btn bg-pink-300"
+                                                            className="btn text-black bg-orange-300"
                                                             type="submit"
                                                             onClick={closeModal}
                                                         >

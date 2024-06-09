@@ -35,38 +35,45 @@ const Surveys = () => {
 
     return (
         <div className="lg:mx-24">
+            <div className="my-10 flex gap-5 justify-between">
 
-            <div className="my-10 flex gap-5">
+                <h1 className="text-4xl font-semibold"><span className="font-bold text-5xl">Feedback Pro</span> Surveys</h1>
+                
+                <div className="flex gap-5">
+                    {/* CATEGORY */}
                 <select
-                onChange={handleCategory}
-                className="select select-bordered w-full max-w-xs rounded-xl"
-            >
-                <option value="">Sort by Category</option>
-                <option value="Customer Satisfaction">
-                    Customer Satisfaction
-                </option>
-                <option value="Employee Engagement">Employee Engagement</option>
-                <option value="Market Research">Market Research</option>
-                <option value="Product Feedback">Product Feedback</option>
-                <option value="Event Feedback">Event Feedback</option>
-            </select>
+                    onChange={handleCategory}
+                    className="select select-bordered w-full max-w-xs rounded-xl"
+                >
+                    <option value="">Sort by Category</option>
+                    <option value="Customer Satisfaction">
+                        Customer Satisfaction
+                    </option>
+                    <option value="Employee Engagement">
+                        Employee Engagement
+                    </option>
+                    <option value="Market Research">Market Research</option>
+                    <option value="Product Feedback">Product Feedback</option>
+                    <option value="Event Feedback">Event Feedback</option>
+                </select>
 
-            <select
-                onChange={(e) => {
-                    setSort(e.target.value);                   
-                }}
-                value={sort}
-                name="sort"
-                className="select select-bordered w-full max-w-xs rounded-xl menu"
-            >
-                <option value="">Sort By Vote Count</option>
-                <option value="asc">Ascending</option>
-                <option value="dsc">Descending</option>
-            </select>
+                {/* SORT */}
+                <select
+                    onChange={(e) => {
+                        setSort(e.target.value);
+                    }}
+                    value={sort}
+                    name="sort"
+                    className="select select-bordered w-full max-w-xs rounded-xl menu"
+                >
+                    <option value="">Sort By Vote Count</option>
+                    <option value="asc">Ascending</option>
+                    <option value="dsc">Descending</option>
+                </select>
+                </div>
             </div>
-            
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mb-10 gap-5">
                 {!category
                     ? surveys?.map((survey) => (
                           <SurveyCards

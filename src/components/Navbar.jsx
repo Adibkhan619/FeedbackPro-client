@@ -63,7 +63,7 @@ const Navbar = () => {
     }
     return (
         <div>
-            <div className="navbar  z-10  bg-gradient-to-r from-sky-400 via-sky-500 to-sky-400 text-white  ">
+            <div className="navbar  z-10  bg-gradient-to-r from-sky-300 via-sky-300 to-sky-300 text-white  ">
                 <div className="navbar-start ">
                     <a className="btn btn-ghost text-xl">daisyUI</a>
                     {/* <ul className="menu menu-horizontal px-1"></ul> */}

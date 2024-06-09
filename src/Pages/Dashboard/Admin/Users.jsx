@@ -1,9 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 // import { HiTrash } from "react-icons/hi";
-import {  FaRegIdBadge, FaUsers } from "react-icons/fa";
+import {  FaAward,  FaClipboardList, } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
+
 
 const Users = () => {
     const [role, setRole] = useState(false);
@@ -81,12 +85,14 @@ const Users = () => {
 
     return (
         <div>
-            <div className="border mx-24 p-5">
+            <div  data-aos="fade-up" data-aos-duration="1500" className=" mx-5 p-5">
                 <div className="flex justify-between items-center">
-                    <h1 className="text-5xl  my-5 ">
+                    <h1 className="text-4xl font-bold  my-5 ">
                         Total Users: {users.length}
                     </h1>
-                    <select
+                    <div className="flex items-center gap-5">
+                        <p className="text-2xl font-bold">Sort by Category</p>
+                        <select
                         onChange={handleRole}
                         className="select select-bordered w-full max-w-xs"
                     >
@@ -96,19 +102,21 @@ const Users = () => {
                         <option value="user">User</option>
                         <option value="pro-user">Pro User</option>
                     </select>
+                    </div>
+                    
                 </div>
 
                 <div className="overflow-x-auto ">
                     <table className="table ">
                         {/* head */}
                         <thead className="rounded-xl ">
-                            <tr className="bg-orange-200 rounded-xl">
+                            <tr className="rounded-xl">
                                 <th></th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Action</th>
-                                <th></th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -132,11 +140,11 @@ const Users = () => {
                                                               user
                                                           )
                                                       }
-                                                      className="btn bg-orange-200"
+                                                      className="btn bg-base-200"
                                                   >
                                                       {" "}
                                                       Make Surveyor
-                                                      <FaUsers className="text-2xl text-white  " />
+                                                      <FaClipboardList className="text-xl  " />
                                                   </button>
                                               )}
                                           </td>
@@ -148,11 +156,11 @@ const Users = () => {
                                                       onClick={() =>
                                                           handleMakeAdmin(user)
                                                       }
-                                                      className="btn bg-orange-200"
+                                                      className="btn  text-black bg-sky-200"
                                                   >
                                                       {" "}
                                                       Make Admin
-                                                      <FaRegIdBadge className="text-2xl text-white  " />
+                                                      <FaAward className="text-xl  " />
                                                   </button>
                                               )}
                                           </td>
@@ -176,11 +184,11 @@ const Users = () => {
                                                               user
                                                           )
                                                       }
-                                                      className="btn bg-orange-200"
+                                                      className="btn bg-base-200"
                                                   >
                                                       {" "}
                                                       Make Surveyor
-                                                      <FaUsers className="text-2xl text-white  " />
+                                                      <FaClipboardList className="text-xl  " />
                                                   </button>
                                               )}
                                           </td>
@@ -192,11 +200,11 @@ const Users = () => {
                                                       onClick={() =>
                                                           handleMakeAdmin(user)
                                                       }
-                                                      className="btn bg-orange-200"
+                                                      className="btn text-black bg-sky-200 "
                                                   >
                                                       {" "}
                                                       Make Admin
-                                                      <FaRegIdBadge className="text-2xl text-white  " />
+                                                      <FaAward className="text-xl text-base-300 " />
                                                   </button>
                                               )}
                                           </td>

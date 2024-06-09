@@ -13,7 +13,7 @@ const MySurveyDetails = () => {
     const Category = response[0]?.category
 
     return (
-        <div className="my-10">
+        <div className="my-10 mx-5">
              <p className="my-5 bg-base-300 shadow-md p-4 rounded-r-xl lg:w-64 flex font-semibold    items-center gap-2">
                         <FaTags className=" text-2xl"></FaTags>
                         {Category}

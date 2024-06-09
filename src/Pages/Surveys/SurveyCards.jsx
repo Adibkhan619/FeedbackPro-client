@@ -26,13 +26,13 @@ const SurveyCards = ({ survey }) => {
                                 </p>
 
                                 <div className="mt-5 space-y-2">
-                                    <p className=" text-base  flex items-center gap-4">
+                                    <p className=" text-base font-semibold  flex items-center gap-4">
                                         <FaTag className="text-orange-400"></FaTag>
                                         {survey?.category}
                                     </p>
 
-                                    <p className="  text-base  flex items-center gap-4">
-                                        <FaUser className="text-sky-500"></FaUser>
+                                    <p className="  text-base font-semibold  flex items-center gap-4">
+                                        <FaUser className="text-sky-500 font-semibold"></FaUser>
                                         Vote : {survey?.voteCount} 
                                     </p>
                                 </div>

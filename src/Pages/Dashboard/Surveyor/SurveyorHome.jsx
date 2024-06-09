@@ -2,6 +2,7 @@ import useSurveyorSurvey from "../../../Hooks/useSurveyorSurvey";
 import icon from "../../../../public/icon/survey.png.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import { Link } from "react-router-dom";
 AOS.init();
 
 
@@ -16,7 +17,8 @@ const SurveyorHome = () => {
                 <div>
                     {surveys?.map((item, idx) => (
                         <div key={item._id}>
-                            <div data-aos="flip-down" data-aos-duration="1500" className="border p-5 my-3 flex gap-3 items-center bg-base-200 shadow-lg">
+                            <Link to={`/dashboard/surveyor/details/${item._id}`}>
+                            <div data-aos="flip-down" data-aos-duration="1500" className="border p-5 my-3 flex gap-3 items-center bg-base-200 shadow-lg hover:bg-base-100">
                                 <h1 className=" font-bold bg-sky-300 px-3 py-1 rounded-full">
                                     {idx + 1}
                                 </h1>
@@ -29,10 +31,11 @@ const SurveyorHome = () => {
                                     </h1>
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     ))}
                 </div>
-                <img data-aos="fade-up" data-aos-duration="3000" className="max-w-[500px] max-h-[500px] shadow-3xl rounded-full" src={icon} alt="" />
+                <img data-aos="fade-up" data-aos-duration="3000" className="hidden lg:flex md:flex md:max-h-[300px] md:max-w-[300px]  lg:max-w-[450px] lg:max-h-[450px] mx-auto shadow-3xl rounded-full" src={icon} alt="" />
             </div>
         </div>
     );

@@ -58,7 +58,7 @@ const MyPostedSurveys = () => {
     };
     return (
         <div className="my-10 mx-5">
-            <div className="flex items-center justify-start gap-24">
+            <div className="flex items-center justify-start gap-24 mx-5">
                 <h1 className="text-4xl font-semibold">My Posted Surveys</h1>
                 <div className="flex gap-6 items-center">
                     {!chart? <p className="font-semibold">Click for Chart view</p>: <p className="font-semibold">Click for Table view</p>}
@@ -77,7 +77,7 @@ const MyPostedSurveys = () => {
 
 
             {chart ? (
-                <Chart className="m-32 p-32"></Chart>
+                <Chart></Chart>
             ) : (
                 <div className="overflow-x-auto m-5">
                     <select

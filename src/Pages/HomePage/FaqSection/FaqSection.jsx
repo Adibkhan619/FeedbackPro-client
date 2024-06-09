@@ -67,6 +67,15 @@ const FaqSection = () => {
                     <p>A: FeedbackPro offers various pricing plans to suit different needs and budgets, including a free tier with basic features and premium plans with advanced capabilities. Visit our pricing page for detailed information.</p>
                 </div>
             </div>
+            <div data-aos="flip-down" data-aos-duration="1500" className="collapse bg-base-200">
+                <input type="checkbox" />
+                <div className="collapse-title text-xl font-medium">
+                Q: How do I create a survey on FeedbackPro?
+                </div>
+                <div className="collapse-content">
+                    <p>A: You can create surveys for customer satisfaction, employee engagement, market research, product feedback, and event feedback, each with customizable questions to suit your specific needs.</p>
+                </div>
+            </div>
             
         </div>
         </div>

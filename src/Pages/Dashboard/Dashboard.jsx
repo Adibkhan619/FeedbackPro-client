@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import {  HiHome  } from "react-icons/hi";
-import {  HiChartBar, HiDocumentPlus  } from "react-icons/hi2";
-import { FaAward, FaBook, FaComment, FaDove, FaEnvelope,  FaExclamationTriangle,  FaHome, FaUsers, FaWallet, } from "react-icons/fa";
+import {  HiChartBar, HiChartBarSquare, HiDocumentPlus  } from "react-icons/hi2";
+import { FaAward, FaBook, FaChartArea, FaChartBar, FaChartLine, FaComment, FaDove, FaEnvelope,  FaExclamationTriangle,  FaHome, FaRegChartBar, FaUsers, FaWallet, } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAdmin from "../../Hooks/useAdmin";
@@ -26,20 +26,20 @@ const Dashboard = () => {
                 <h1 className="text-3xl font-semibold m-10 hidden lg:flex">Welcome {user.displayName}</h1>
                 <div className="divider hidden lg:flex"></div> 
                 <ul 
-                className="lg:p-0 p-2 space-y-1 flex lg:flex-col lg:menu  justify-around">
+                className="lg:p-0 p-2 space-y-1 flex lg:flex-col lg:menu   justify-around">
                     {
                         isAdmin && 
                         <>
-                        <li><Link to="/dashboard/admin"><HiHome className="text-xl"/><span className="lg:flex hidden md:flex">Admin Home</span> </Link></li>
+                        <li><Link to="/dashboard/admin"><HiHome className="text-2xl"/><span className="lg:flex hidden md:flex">Admin Home</span> </Link></li>
                     <li><NavLink to="/dashboard/admin/users"><FaUsers className="text-xl"/><span className="lg:flex hidden md:flex">Manage Users</span></NavLink></li>
-                    <li><NavLink to="/dashboard/admin/survey"><FaBook className="text-lg"/><span className="lg:flex hidden md:flex"> Surveys</span></NavLink></li>
+                    <li><NavLink to="/dashboard/admin/survey"><FaChartArea className="text-xl"/><span className="lg:flex hidden md:flex"> Surveys</span></NavLink></li>
                     <li><NavLink to="/dashboard/admin/allPayments"><FaWallet className="text-lg" /><span className="lg:flex hidden md:flex">All Payments</span></NavLink></li>
                         </>
                         }
 
                         { isSurveyor &&
                         <>
-                        <li><Link to="/dashboard/surveyor"><HiHome className="text-lg"/><span className="lg:flex hidden md:flex">Home</span></Link></li>
+                        <li><Link to="/dashboard/surveyor"><HiHome className="lg:text-xl text-2xl"/><span className="lg:flex hidden md:flex">My Home</span></Link></li>
                     <li><NavLink to="/dashboard/surveyor/create"><HiDocumentPlus className="text-lg" /><span className="lg:flex hidden md:flex">Create Survey</span></NavLink></li>
                     <li><NavLink to={`/dashboard/surveyor/surveys/${user?.email}`}><HiChartBar  className="text-lg"/><span className="lg:flex hidden md:flex">My Surveys</span>   </NavLink></li>
                     <li><NavLink to="/dashboard/surveyor/feedback"><FaComment  className="text-lg"/><span className="lg:flex hidden md:flex">Feedback</span> </NavLink></li>
