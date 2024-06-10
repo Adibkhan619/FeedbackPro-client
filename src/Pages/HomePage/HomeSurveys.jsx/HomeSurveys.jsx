@@ -7,7 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 const HomeSurveys = () => {
     const [surveys, setSurveys] = useState();
     useEffect(() => {
-        fetch("http://localhost:5000/homeSurveys")
+        fetch("https://feedbackpro.vercel.app/homeSurveys")
             .then((res) => res.json())
             .then((data) => setSurveys(data));
     }, []);

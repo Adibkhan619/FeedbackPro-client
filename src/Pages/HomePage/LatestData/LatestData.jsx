@@ -6,7 +6,7 @@ import { FaArrowRight } from 'react-icons/fa';
 const LatestData = () => {
     const [surveys, setSurveys] = useState()
     useEffect(()=> {
-        fetch("http://localhost:5000/latestData")
+        fetch("https://feedbackpro.vercel.app/latestData")
         .then(res => res.json())
         .then(data =>
             setSurveys(data)

@@ -98,18 +98,18 @@ const Router = createBrowserRouter([
                 path: "surveyor/update/:id",
                 element: <SurveyorRoutes><UpdateSurvey></UpdateSurvey></SurveyorRoutes>,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/survey/${params.id}`),
+                    fetch(`https://feedbackpro.vercel.app/survey/${params.id}`),
             },
             {
                 path: "surveyor/surveys/:email",
                 element: <SurveyorRoutes><MyPostedSurveys></MyPostedSurveys></SurveyorRoutes>,
-                // loader: ({params}) => fetch(`http://localhost:5000/surveys/${params.email}`)
+                // loader: ({params}) => fetch(`https://feedbackpro.vercel.app/surveys/${params.email}`)
             },
             {
                 path: "surveyor/details/:id",
                 element: <PrivateRoutes><MySurveyDetails></MySurveyDetails></PrivateRoutes>,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/response/${params.id}`),
+                    fetch(`https://feedbackpro.vercel.app/response/${params.id}`),
             },
             {
                 path: "surveyor/feedback",
@@ -128,7 +128,7 @@ const Router = createBrowserRouter([
             {
                 path: "user/my-reports",
                 element: <PrivateRoutes><UserReport></UserReport></PrivateRoutes>,
-                loader:  () => fetch(`http://localhost:5000/response`),
+                loader:  () => fetch(`https://feedbackpro.vercel.app/response`),
             },
             {
                 path: "user/payment",

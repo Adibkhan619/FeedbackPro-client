@@ -17,7 +17,7 @@ const Surveys = () => {
     useEffect(() => {
         const getData = async () => {
             const { data } = await axiosPublic.get(
-                `http://localhost:5000/surveys?sort=${sort}`
+                `https://feedbackpro.vercel.app/surveys?sort=${sort}`
             );
             setSurveys(data);
         };
