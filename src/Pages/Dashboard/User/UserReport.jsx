@@ -19,7 +19,8 @@ const UserReport = () => {
               <Helmet>
                 <title>Feedback Pro | Dashboard</title>
             </Helmet>
-            <div className="overflow-x-auto mt-10 mx-5">
+            <h1 className="text-4xl font-semibold mt-8 mx-5">My Reports</h1>
+            <div className="overflow-x-auto mt-5 mx-5">
   <table className="table">
     {/* head */}
     <thead>
