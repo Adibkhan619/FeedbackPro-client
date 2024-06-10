@@ -21,7 +21,7 @@ const UserHome = () => {
         }
     })
 
-    const userResponse = responses.filter(item => item?.voterEmail === user?.email)
+    const userResponse = responses.filter(item => item?.voterEmail.toUpperCase() === user?.email.toUpperCase())
     // console.log(userResponse);
 
     // console.log(responses);
@@ -31,7 +31,8 @@ const UserHome = () => {
               <Helmet>
                 <title>Feedback Pro | Dashboard</title>
             </Helmet>
-            <h1 className="mt-10 text-4xl font-semibold">My Responses</h1>
+            <h1 className="mt-10 text-4xl font-semibold">My Responses : {userResponse.length}</h1>
+           
             <div className="overflow-x-auto mt-5">
   <table className="table">
     {/* head */}
