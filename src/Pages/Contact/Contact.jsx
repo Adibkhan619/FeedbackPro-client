@@ -1,9 +1,12 @@
 import { Helmet } from "react-helmet";
 import img from "../../../public/icon/pngwing.com (13).png"
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 
 const Contact = () => {
     return (
-        <div className="lg:mx-24 mx-5 my-10 flex items-center lg:flex-row flex-col gap-10">
+        <div data-aos="fade-up" data-aos-duration="2000" className="lg:mx-24 mx-5 my-10 flex items-center lg:flex-row flex-col gap-10">
                 <Helmet>
                 <title>Feedback Pro | Contact</title>
             </Helmet>
@@ -27,7 +30,7 @@ const Contact = () => {
 
 </div>
 
-<img className="max-w-[400px] max-h-[400px] hidden lg:flex md:flex" src={img} alt="" />
+<img data-aos="fade-left" data-aos-duration="1500" className="max-w-[400px] max-h-[400px] hidden lg:flex md:flex" src={img} alt="" />
 
 
 

@@ -26,7 +26,7 @@ const About = () => {
             </div>
 
             <div data-aos="fade-up" data-aos-duration="2000" className="flex mt-10 lg:flex-row flex-col">
-                <img className="lg:max-w-[800px] max-w-500" src={img1} alt="" />
+                <img data-aos="flip-left" data-aos-duration="1500" className="lg:max-w-[800px] max-w-500" src={img1} alt="" />
                 <div className="">
                     <h1 className="text-4xl font-semibold">
                         Our Survey Categories

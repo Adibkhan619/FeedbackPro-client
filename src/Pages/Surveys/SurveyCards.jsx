@@ -17,8 +17,8 @@ const SurveyCards = ({ survey }) => {
                   data-aos="flip-up" data-aos-duration="2000">
                     <div key={survey?._id}>
                         <div className="rounded-xl shadow-md  dark:bg-base-100   bg-white   card hover:bg-base-300 dark:hover:bg-base-300">
-                            <div className="card-body h-72 ">
-                                <h2 className="card-title  text-3xl flex justify-start items-start">
+                            <div className="card-body lg:h-72  w-screen lg:w-fit">
+                                <h2 className="card-title  text-3xl ">
                                     {survey?.question}
                                 </h2>
                                 <p className="dmSerif text-lg  ">

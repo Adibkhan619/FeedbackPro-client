@@ -10,7 +10,7 @@ const FaqSection = () => {
             <div className="max-w-[700px] space-y-5 " data-aos="fade-up" data-aos-duration="1500">
                 <h1 className="text-4xl font-semibold">Frequently Asked Questions</h1>
                 <p>Welcome to the FeedbackPro FAQ section! Here you will find answers to common questions about our survey tool, including how to create and distribute surveys, the types of surveys you can make, and how to view results. Whether you are a small business owner or part of a larger organization, FeedbackPro is designed to help you gather and analyze valuable insights with ease. If you have any additional questions, do not hesitate to reach out to our support team. We are here to help you make the most of your feedback and drive success!</p>
-                <img className='max-w-[500px]' src={img} alt="" />
+                <img data-aos="flip-up" data-aos-duration="2000" className='lg:max-w-[500px]' src={img} alt="" />
             </div>
             <div className="space-y-5">
             <div data-aos="flip-down" data-aos-duration="1500" className="collapse bg-base-200">

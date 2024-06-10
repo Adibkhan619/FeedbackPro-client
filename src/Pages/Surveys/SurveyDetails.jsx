@@ -31,7 +31,7 @@ const SurveyDetails = () => {
     const [survey, , refetch] = useSingleSurvey();
     // console.log(survey);
 
-    const currentUser = users.find((item) => item.email == user?.email);
+    const currentUser = users.find((item) => item?.email.toUpperCase() == user?.email.toUpperCase());
     // console.log(currentUser);
 
     const {

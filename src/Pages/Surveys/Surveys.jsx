@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SurveyCards from "./SurveyCards";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Helmet } from "react-helmet";
+import 'animate.css';
 
 const Surveys = () => {
     // const [surveys, setSurveys] = useSurveys();
@@ -35,13 +36,13 @@ const Surveys = () => {
     };
 
     return (
-        <div className="lg:mx-24">
+        <div className="lg:mx-24 mx-5">
               <Helmet>
                 <title>Feedback Pro | Surveys</title>
             </Helmet>
-            <div className="my-10 flex gap-5 justify-between">
+            <div className="my-10 flex flex-col lg:flex-row gap-5 justify-between">
 
-                <h1 className="text-4xl font-semibold"><span className="font-bold text-5xl">Feedback Pro</span> Surveys</h1>
+                <h1 className="text-4xl font-semibold"><span className="font-bold text-5xl animate__animated animate__lightSpeedInLeft">Feedback Pro</span> Surveys</h1>
                 
                 <div className="flex gap-5">
                     {/* CATEGORY */}

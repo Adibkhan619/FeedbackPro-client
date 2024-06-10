@@ -11,7 +11,7 @@ const Home = () => {
         <div className="bg-base-100">
             <Banner></Banner>
             {/* <ParallaxBanner></ParallaxBanner> */}
-            <div className="lg:mx-24 lg:my-24 my-10 mx-5 space-y-24">
+            <div className="lg:mx-24 lg:my-24 my-5 mx-5 lg:space-y-24 space-y-10">
                 
                 <HomeSurveys></HomeSurveys>
                 <HowItWorks></HowItWorks>

@@ -82,7 +82,7 @@ const Login = () => {
         </div>
 
         <div className="form-control mt-6">
-          <button type="submit" className="btn btn-primary">Login</button>
+          <button type="submit" className="btn bg-sky-300 text-gray-800">Login</button>
         </div>
        <SocialLogin></SocialLogin>
       </form>

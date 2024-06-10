@@ -11,8 +11,9 @@ import useAllUsers from "../../Hooks/useAllUsers";
 const CheckoutForm = () => {
     const [error, setError] = useState('')
     const {user} = useContext(AuthContext)
-    const [users] = useAllUsers()
-    // console.log(users);
+    console.log(user);
+    const [users, , ] = useAllUsers()
+    console.log(users);
     const stripe = useStripe()
     const elements = useElements()
     const [message, setMessage] = useState('')
@@ -31,8 +32,8 @@ const CheckoutForm = () => {
 
     },[axiosSecure, membershipPrice])
 
-    const proUser = users?.find(item => item.email === user.email)
-    // console.log(proUser);
+    const proUser = users?.find(item => item?.email.toUpperCase() === user?.email.toUpperCase())
+    console.log(proUser);
     
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -88,8 +89,7 @@ const CheckoutForm = () => {
                     }
 
                     // !MAKE USER PRO ------------------> 
-                    await axiosPublic.patch(`/users/pro/${proUser._id}`)
-
+                    await axiosPublic.patch(`/users/pro/${proUser?._id}`)
                     .then(res => {
                     console.log('user made pro', res.data);
                     })
@@ -104,7 +104,7 @@ const CheckoutForm = () => {
                             icon: "success",
                             title: "Payment Successful. Now you are a Pro User Now!" ,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000
                           });
                           navigate("/")
                     }

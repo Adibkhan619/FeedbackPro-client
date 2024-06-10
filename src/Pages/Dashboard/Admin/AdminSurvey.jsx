@@ -4,30 +4,25 @@ import useSurveys from "../../../Hooks/useSurveys";
 import { useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Helmet } from "react-helmet";
 AOS.init();
 
 const AdminSurvey = () => {
-    const [surveys, ,refetch] = useSurveys();
+    const [surveys, , refetch] = useSurveys();
 
     const axiosPublic = useAxiosPublic();
 
-
     const [selectedItem, setSelectedItem] = useState(null);
-
 
     const openModal = (item) => {
         setSelectedItem(item);
     };
 
-    const closeModal = () => {
-
-    };
+    const closeModal = () => {};
 
     const handleUnPublish = async (e) => {
-
         const updateData = {
             status: "Unpublish",
             adminFeedback: e.currentTarget.feedback.value,
@@ -45,17 +40,16 @@ const AdminSurvey = () => {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            refetch()
+            refetch();
         }
-
     };
 
     return (
         <div>
-            <div  data-aos="fade-up" data-aos-duration="1500" className="mx-5">
-            <Helmet>
-                <title>Feedback Pro | Dashboard</title>
-            </Helmet>
+            <div data-aos="fade-up" data-aos-duration="1500" className="mx-5">
+                <Helmet>
+                    <title>Feedback Pro | Dashboard</title>
+                </Helmet>
                 <h1 className="text-4xl ml-5 font-bold my-7">All Surveys</h1>
                 <div className="overflow-x-auto  my-5">
                     <table className="table">
@@ -80,17 +74,19 @@ const AdminSurvey = () => {
                                     <th>{survey.question}</th>
                                     <td>{survey.description}</td>
                                     <td>{survey.category}</td>
-                                    <td>{survey.deadline?.slice(0,10)}</td>
-
-                                    {survey?.status ==="Unpublish" ? <td className="px-3  font-semibold text-red-400">
-                                        {survey?.status}
+                                    <td>{survey.deadline?.slice(0, 10)}</td>
+                                    <td>
+                                        {survey?.status === "Unpublish" ? (
+                                            <p className="px-3  font-semibold text-red-400">
+                                                {survey?.status}
+                                            </p>
+                                        ) : (
+                                            <p className="px-3  font-semibold text-green-400">
+                                                {survey?.status}
+                                            </p>
+                                        )}
                                     </td>
-                                    :
-                                    <td className="px-3  font-semibold text-green-400">
-                                        {survey?.status}
-                                    </td>}
-
-                                    <td>{survey.status}</td>
+                                    {/* <td>{survey.status}</td> */}
                                     <td>
                                         <Link
                                             to={`/dashboard/surveyor/details/${survey._id}`}
@@ -101,8 +97,7 @@ const AdminSurvey = () => {
                                             </button>
                                         </Link>
                                     </td>
-                                    
-                                    
+
                                     <td>
                                         <button
                                             className="btn"
@@ -139,11 +134,13 @@ const AdminSurvey = () => {
                                                         <div className="form-control">
                                                             <label className="label">
                                                                 <span className="label-text">
-                                                                    Why do you want to unpublish the survey?
+                                                                    Why do you
+                                                                    want to
+                                                                    unpublish
+                                                                    the survey?
                                                                 </span>
                                                             </label>
                                                             <input
-
                                                                 type="text"
                                                                 name="feedback"
                                                                 placeholder="Feedback"
@@ -153,15 +150,22 @@ const AdminSurvey = () => {
                                                         </div>
                                                         <div className="flex justify-between items-center">
                                                             <button
-                                                            className="btn text-black bg-orange-300"
-                                                            type="submit"
-                                                            onClick={closeModal}
-                                                        >
-                                                            Unpublish
-                                                        </button>
-                                                        <p>Press <span className="text-green-400">Esc </span>to cancel</p>
+                                                                className="btn text-black bg-orange-300"
+                                                                type="submit"
+                                                                onClick={
+                                                                    closeModal
+                                                                }
+                                                            >
+                                                                Unpublish
+                                                            </button>
+                                                            <p>
+                                                                Press{" "}
+                                                                <span className="text-green-400">
+                                                                    Esc{" "}
+                                                                </span>
+                                                                to cancel
+                                                            </p>
                                                         </div>
-                                                        
                                                     </form>
                                                 </div>
                                             </div>
